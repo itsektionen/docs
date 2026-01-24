@@ -1,0 +1,43 @@
+---
+title: Trustees
+icon: Users
+description: A trustee is a person who has been elected by the Chapter to carry out some work.
+---
+
+<Callout title="Important" type="warn">
+Right now, trustees are managed through a .ts file (`data/trustees.ts`).
+This will eventually be replaced by an external API, for use between all projects that might require the data.
+</Callout>
+
+The trustees can be viewed at [kth.it/trustees](https://kth.it/trustees).
+
+## Shape
+
+```ts
+export type Trustee = {
+  name: string;
+  role: string;
+  image?: string;
+  mail?: string;
+  committeeIds?: CommitteeSlug[];
+};
+````
+
+## Adding, removing and editing trustees
+
+To add a trustee, simply update the `data/trustees.ts` file.
+
+If a person is holding multiple roles, you simply add them for each of the roles.
+
+### Committee Trustees
+
+All trustees belong to a committee (even if the Board isn't *technically* a committee, we treat it as such here).
+
+Some trustee positions may belong to multiple committees. For instance, the Board Members responsible for Study Social Activities, Business Relations, JML and Communications.
+To allow this, the `committeeIds` property is an array of committee slugs, so in those cases you just add the slugs of each committee to the array.
+
+### Pictures
+
+The pictures are stored in the `public/assets/img/trustees` folder.
+Simply add the image file name to the `image` property of the trustee and it will be displayed on the website.
+It is highly recommended to use a square image, preferably of small size as to reduce the file size.

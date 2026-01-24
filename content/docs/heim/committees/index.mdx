@@ -1,0 +1,25 @@
+---
+title: Committees
+icon: Users
+description: A committee is a subgroup of the Chapter that might arrange events, ensure equality and diversity, among other things.
+---
+<Callout title="Important" type="warn">
+Right now, committees are managed through a .ts file (`data/committees.ts`).
+This will eventually be replaced by an external API, for use between all projects that might require the data.
+</Callout>
+
+The committees can be viewed at [kth.it/committees](https://kth.it/committees).
+
+## Shape
+
+```ts
+export type Committee = {
+  name: string;
+  slug: string;
+  color?: string;
+  textColor?: string;
+  description: string;
+  website?: string;
+  img?: string;
+};
+````

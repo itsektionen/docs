@@ -1,0 +1,102 @@
+---
+title: Events
+icon: Calendar
+---
+
+<Callout title="Important" type="warn">
+Make sure that the events you fetch are open for everyone. We do **not** want to show internal events on the website.
+</Callout>
+
+In order to automatically add your committee's events to the event calendar
+you can build an integration.
+
+All calendar events **must** adhere to the `CommitteeEvent` interface.
+
+```ts title="lib/events/index.ts"
+export type CalendarEvent = {
+  id: string;
+  title: string;
+  description?: string;
+  start: Date;
+  end?: Date;
+  location?: string;
+  imageUrl?: string;
+  url?: string;
+  committeeSlug?: CommitteeSlug; // must be set if the event is to be associated with a committee
+};
+```
+
+Then, it's highly recommended to add typings and mapper functions for the response that your API returns.
+
+```ts title="types/committee/my-committee.ts"
+export interface MyCommitteeEvent {
+  id: number;
+  heading: string;
+  content: string;
+  startDate: string;
+  endDate: string;
+}
+
+export const mapMyCommitteeEvent = (event: MyCommitteeEvent): CalendarEvent => ({
+  id: "my-committee-" + event.id, // add a unique identifier to ensure uniqueness of the id's
+  title: event.heading,
+  description: event.content,
+  start: new Date(event.startDate),
+  end: new Date(event.endDate),
+});
+```
+
+You can now fetch the events, like so:
+
+```ts title="lib/committees/events.ts"
+const listMyCommitteeEvents = async (): Promise<CalendarEvent[]> => {
+  const res = await fetch(`${env.MY_COMMITTEE_BASE_URL}/api/events`);
+  const data: MyCommitteeEvent[] = await res.json();
+
+  return data
+    .map(mapMyCommitteeEvent)
+    .sort(
+      (a, b) =>
+        b.start.getTime() - a.start.getTime() || b.title.localeCompare(a.title),
+    );
+};
+
+const getMyCommitteeEvent = async (id: number): Promise<CalendarEvent | null> => {
+  const res = await fetch(`${env.MY_COMMITTEE_BASE_URL}/api/events/${id}`);
+  const data: MyCommitteeEvent[] = await res.json();
+
+  const event = data.find((event) => event.id === id);
+
+  return event ? mapMyCommitteeEvent(event) : null;
+};
+```
+
+Now, add your fetcher functions to the general purpose ones:
+
+```ts title="lib/committees/events.ts"
+export const getCommitteeEvent = async (
+  id: string,
+): Promise<CalendarEvent | null> => {
+  const slug = id.split("-")[0] as CommitteeSlug;
+  switch (slug) {
+    case "my-committee":
+      const myCommitteeId = parseInt(id.split("-")[1]);
+      return getMyCommitteeEvent(myCommitteeId);
+
+    default:
+      return null;
+  }
+};
+
+export const listCommitteeEvents = async (
+  slug: CommitteeSlug,
+): Promise<CalendarEvent[] | null> => {
+  switch (slug) {
+    case "my-committee":
+      return listMyCommitteeEvents();
+
+    default:
+      return null;
+  }
+};
+```
