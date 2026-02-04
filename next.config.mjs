@@ -13,6 +13,11 @@ const config = {
       },
     ];
   },
+  images: {
+    remotePatterns: [
+      new URL("https://raw.githubusercontent.com/insektionen/**")
+    ]
+  }
 };
 
 export default withMDX(config);
