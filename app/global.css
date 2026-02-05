@@ -19,6 +19,10 @@
     --color-fd-accent: hsla(0, 0%, 82%, 50%);
     --color-fd-accent-foreground: hsl(0, 0%, 9%);
     --color-fd-ring: hsl(0, 0%, 63.9%);
+    --tree-node-bg: #efddf7;
+    --tree-node-border: #dc85f7;
+    --tree-bg: #f9f2fa;
+    --tree-border: #e08cfa;
 }
 
 .dark {
@@ -38,6 +42,10 @@
     --color-fd-accent: hsla(0, 0%, 40.9%, 30%);
     --color-fd-accent-foreground: hsl(0, 0%, 90%);
     --color-fd-ring: hsl(0, 0%, 54.9%);
+    --tree-node-bg: #2b1d3f;
+    --tree-node-border: #d176e7;
+    --tree-bg: #1f1d24;
+    --tree-border: #a19cb1;
 }
 
 ::selection {
