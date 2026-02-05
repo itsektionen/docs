@@ -1,6 +1,6 @@
 import { Heading } from "fumadocs-ui/components/heading";
 import { FixtureTypeSchema } from "./fixtureConfigSchema";
-import styles from "./fixture.module.css";
+import styles from "./lmixer.fixture.module.css";
 import { Fragment } from "react/jsx-runtime";
 
 export default function FixtureType(
