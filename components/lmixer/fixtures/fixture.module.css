@@ -1,0 +1,17 @@
+
+
+.fixturechannelrangedfunctionrange {
+    display: inline-block;
+    background-color: #0000002d;
+    padding: 0.2em;
+    border-radius: 0.2em;
+    margin: 0.2em;
+    text-align: center;
+}
+
+.fixturechannelrangedfunction {
+    display: grid;
+    grid-template-columns: 12ch auto;
+    align-items: center;
+    column-gap: 0.5em;
+}
