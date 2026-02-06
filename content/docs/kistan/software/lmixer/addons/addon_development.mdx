@@ -1,5 +1,5 @@
 ---
-title: Addon Develop,emt
+title: Addon Developmemt
 ---
 
 Addons can be made from UI in the same way as a script.
@@ -7,11 +7,10 @@ However for more complex addons, it is recommended to
 work locally, and publish to the MQTT server.
 
 When publishing, simply publish to the [addons topic](./../technical/mqtt_topics.html#light-mixer-addons).
-:::caution
+<CalloutExt type="warn">
 Make sure to have the **retain** flag set when publishing
 to make your addons persistent.
-:::
-
+</CalloutExt>
 # Splitting up across files
 
 It is way easier to manage a project when split up
@@ -35,12 +34,10 @@ The initialization process for addons is the following:
 1. Load all dependencies (skipping dependencies that already are loaded)
 2. Execute self as .lua code
 
-:::warning
+<CalloutExt type="warn">
 Cyclic dependency loops lead to weird initialization orders, and should be avoided if possible.
-:::
+</CalloutExt>
 
-
-:::details Technical info
+<CalloutExt type="details" title="Technical details">
 `Active Addons` is internally treated as an addon, which is why --#DEPENDENCY is used there.
-:::
-
+</CalloutExt>

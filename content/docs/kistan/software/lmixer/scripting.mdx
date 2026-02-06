@@ -34,7 +34,7 @@ dimmer = layer(master, mul, 512, 1)
 ```
 
 
-{/* <ExclusiveTo exclusiveTo="LMixerAddonSuiteExtensions">
+<ExclusiveTo exclusiveTo="LMixerAddonSuiteExtensions">
 
 ## `layerExt`
 
@@ -46,7 +46,7 @@ See the [layerExt](./addons/addon_suite/extended.html#layerext) for details.
 
 Alpha layers allow for more advanced mixing. To create them, see the [alpha_data_layer](./addons/addon_suite/extended.html#alpha-data-layer)
 
-</ExclusiveTo> */}
+</ExclusiveTo>
 
 ## `output`
 
@@ -124,15 +124,15 @@ lamp2 = fix(132, 4)
 lamps = { lamp1, lamp2 }
 ```
 
-{/* <ExclusiveTo exclusiveTo="LMixerAddonSuiteExtensions">
+<ExclusiveTo exclusiveTo="LMixerAddonSuiteExtensions">
 
 ## `fixExt`
 
 If the LMixer Addon Suite is in use, `fixExt` should be used instead of `fix`.
 
-See [fixExt](./addons/addon_suite/extended.html#fixext) for details.
+See [fixExt](./addons/addon_suite/extended#fixext) for details.
 
-</ExclusiveTo> */}
+</ExclusiveTo>
 
 ## `range`
 
@@ -279,13 +279,13 @@ Start a script by name. Normally this is used to repeat the current script by
 starting it again after some time. Can also be used to split common effects into
 separate script and then combining them.
 
-:::note
+<CalloutExt type="note">
 When running a script from another script and it has been previously stopped, it
 will not be placed on the timeline. [start](#start) bypasses this and starts it
 anyway.
 
 If this stopping is desired run `Scripts.script_name:unstop()` beforehand.
-:::
+</CalloutExt>
 
 | Name | Optional | Description                                     |
 | ---- | -------- | ----------------------------------------------- |
@@ -297,11 +297,11 @@ If this stopping is desired run `Scripts.script_name:unstop()` beforehand.
 run("rainbow")
 ```
 
-:::danger
+<CalloutExt type="danger">
 If not careful one might cause stacking of script if the run command is issued
 before the last effect of the previous run. This causes an infinite loop of
 scripts starting on top of each other until something crashes.
-:::
+</CalloutExt>
 
 
 ## `start`
@@ -318,12 +318,11 @@ Similar to [run](#run) except it always executes.
 start("rainbow")
 ```
 
-:::danger
+<CalloutExt type="danger">
 Since this always executes the script, if a call loop exists, stopping individually
 from the UI will not work, you need to stop all scripts.
-:::
-
-{/* <ExclusiveTo exclusiveTo="LMixer">
+</CalloutExt>
+<ExclusiveTo exclusiveTo="LMixer">
 
 ## `play`
 
@@ -346,16 +345,16 @@ Stop playback of all sound files. No parameters.
 ```lua
 stop_play()
 ```
-</ExclusiveTo> */}
-{/* 
+</ExclusiveTo>
+
 <ExclusiveTo exclusiveTo="LMixerAddonSuite">
 
 ## `interval`
 
-Runs a function at an interval. See [interval](./addons/addon_suite/effects.html#interval) for details.
+Runs a function at an interval. See [interval](./addons/addon_suite/effects#interval) for details.
 
-</ExclusiveTo> */}
-{/* 
+</ExclusiveTo>
+
 <ExclusiveTo exclusiveTo="LMixerAddonSuiteExtensions">
 
 ## `<alpha-data-layer>.alpha`
@@ -368,13 +367,13 @@ See [`<alpha-data-layer>.alpha` in Addon Suite Extension](./addons/addon_suite/e
 
 Takes control of a fixture on an alpha layer.
 
-See [`take_control_of_fixture` in Addon Suite Extension](./addons/addon_suite/extended.html#take-control-of-fixture) for details.
+See [`take_control_of_fixture` in Addon Suite Extension](./addons/addon_suite/extended#take-control-of-fixture) for details.
 
 ## `release_control_of_fixture`
 
 Releases control of a fixture on an alpha layer.
 
-See [`release_control_of_fixture` in Addon Suite Extension](./addons/addon_suite/extended.html#release-control-of-fixture) for details.
+See [`release_control_of_fixture` in Addon Suite Extension](./addons/addon_suite/extended#release-control-of-fixture) for details.
 
 </ExclusiveTo>
 
@@ -384,44 +383,43 @@ See [`release_control_of_fixture` in Addon Suite Extension](./addons/addon_suite
 
 Creates a shader effect for the roof.
 
-See [`roof_shader` in Kistan_specific Addons](./addons/kistan_specific.html#roof-shader) for details.
+See [`roof_shader` in Kistan_specific Addons](./addons/kistan_specific#roof-shader) for details.
 
 ## `sign_shader`
 
 Creates a shader effect for the Kistan sign.
 
-See [`sign_shader` in Kistan_specific Addons](./addons/kistan_specific.html#sign-shader) for details.
+See [`sign_shader` in Kistan_specific Addons](./addons/kistan_specific#sign-shader) for details.
 
 ## `sign_spiral`
 
 Creates a spiral shader for the Kistan sign.
 
-See [`sign_spiral` in Kistan_specific Addons](./addons/kistan_specific.html#sign-spiral) for details.
+See [`sign_spiral` in Kistan_specific Addons](./addons/kistan_specific#sign-spiral) for details.
 
 ## `sign_heartbeat`
 
 Creates a heartbeat effect for the Kistan sign.
 
-See [`sign_heartbeat` in Kistan_specific Addons](./addons/kistan_specific.html#sign-heartbeat) for details.
+See [`sign_heartbeat` in Kistan_specific Addons](./addons/kistan_specific#sign-heartbeat) for details.
 
 ## `drinks_moving_blocks`
 
 Creates moving blocks on the drink lights.
 
-See [`drinks_moving_blocks` in Kistan_specific Addons](./addons/kistan_specific.html#drinks-moving-blocks) for details.
+See [`drinks_moving_blocks` in Kistan_specific Addons](./addons/kistan_specific#drinks-moving-blocks) for details.
 
-</ExclusiveTo> */}
+</ExclusiveTo>
 
 ---
 # Script keywords
 
 Scripts are accessed from `Scripts.` in the global scope.
 
-:::note Compatibility mode
+<CalloutExt type="note" title="Compatibility mode">
 If `builtin/compatibility/MakeScriptNamesGlobalScope` is added as an addon,
 scripts start in the global scope.
-:::
-
+</CalloutExt>
 ## `<script>:start`
 Runs a script, this is synchronous and will be executed instantly.
 

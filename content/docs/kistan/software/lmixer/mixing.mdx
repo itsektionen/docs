@@ -16,14 +16,13 @@ The `dim` function can be used to fade fixtures with RGB values between colors.
 Note that the colors will mix between colors during the fade resulting in a
 timeline like the picture below.
 
-![A fade between blue and red][./images/fade_normal.png]
+![A fade between blue and red](./images/fade_normal.png)
 
 It is also possible to change color and lower the intensity at the same time.
 In this case the red color is only set to 20% of the blue colors intensity.
 It is also possible to accomplish this using the multi-layer technic below.
 
-![A fade between blue and red with 
-intensity going down][./images/fade_dim.png]
+![A fade between blue and red with intensity going down](./images/fade_dim.png)
 
 # Multi-layer scripting
 
@@ -33,8 +32,7 @@ common use is to run a script on the `master` layer and multiply that with a
 master layer and the dimmer layer can add in some randomness by flickering
 lights off and on. Great use for a spooky theme.
 
-![A fade between blue and red with 
-another layer creating on/off pattern][./images/fade_on_off.png]
+![A fade between blue and red with another layer creating on/off pattern](./images/fade_on_off.png)
 
 The dimmer layer can also be used to "turn off" some lights in a specified area.
 An example that have been used is to turn of the roof pixels above the dance
@@ -44,7 +42,7 @@ rest is running another script.
 
 
 
-{/* <ExclusiveTo exclusiveTo="LMixerAddonSuiteExtensions">
+<ExclusiveTo exclusiveTo="LMixerAddonSuiteExtensions">
 
 ## Alpha-data layer scripting
 
@@ -82,5 +80,4 @@ dj:add(0, take_control_of_fixture(djFixtures, 1000))
 -- DJ_Stop
 dj:add(0, release_control_of_fixture(djFixtures, 1000))
 ```
-
-</ExclusiveTo> */}
+</ExclusiveTo> 

@@ -5,6 +5,8 @@ import FixtureInfos from './components/lmixer/fixtures/FixtureInfos';
 import FixtureGroups from './components/lmixer/fixtures/FixtureGroups';
 import LayerTreeExplaination from './components/lmixer/layer/LayerTreeExplaination';
 import DrawAllLayers from './components/lmixer/layer/DrawAllLayers';
+import ExclusiveTo from './components/generic/callout/ExclusiveTo';
+import CalloutExt from './components/generic/callout/CalloutExt';
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -14,6 +16,8 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     FixtureInfos: FixtureInfos,
     FixtureGroups: FixtureGroups,
     LayerTreeExplaination: LayerTreeExplaination,
-    DrawAllLayers: DrawAllLayers
+    DrawAllLayers: DrawAllLayers,
+    ExclusiveTo: ExclusiveTo,
+    CalloutExt: CalloutExt
   };
 }

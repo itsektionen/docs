@@ -39,10 +39,9 @@ Prints a error message to mqtt, which thus gets displayed on the LMixer UI. Usef
 LMixerError("This is a test message");
 ```
 
-:::note
+<CalloutExt type="note">
 Only one error message can be displayed on the UI at once, if multiple Error are made, only the latest is displayed.
-:::
-
+</CalloutExt>
 
 ## `LMixerPrint`
 Prints a message to mqtt, which thus gets displayed on the LMixer UI. Useful for debugging.
@@ -56,15 +55,13 @@ Prints a message to mqtt, which thus gets displayed on the LMixer UI. Useful for
 LMixerPrint("Testing");
 ```
 
-:::note
+<CalloutExt type="note">
 Only one message can be displayed on the UI at once, if multiple messages are made, only the latest is displayed.
-:::
-
-:::details
+</CalloutExt>
+<CalloutExt type="details">
 This is actually just adds a error message to the mqtt, however, using the appropriate function is recommended
 since if it is later updated, it will be correct.
-:::
-
+</CalloutExt>
 # Complete Suite
 
 ***Location:*** `addon_suite/completeSuite`
