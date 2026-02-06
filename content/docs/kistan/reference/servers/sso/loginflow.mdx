@@ -1,0 +1,31 @@
+---
+title: Login flow
+---
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+    <Step>
+        User navigates to app domain. Ex. [https://lmixer.kth.it][1].
+    </Step>
+    <Step>
+        User is redirected to the SSO service at [https://sso.kth.it][2].
+    </Step>
+    <Step>
+        User needs to log in and is redirected to Google sign in.
+    </Step>
+    <Step>
+        After sign in user is redirected back to the SSO service.
+    </Step>
+    <Step>
+        User is checked against group and roles.
+    </Step>
+    <Step>
+        If app is assigned to any group the user belongs to access is granted.
+    </Step>
+    <Step>
+        If all OK, redirect back to the app that was requested.
+    </Step>
+</Steps>
+
+[1]: https://lmixer.kth.it
+[2]: https://sso.kth.it

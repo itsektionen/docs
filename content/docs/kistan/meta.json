@@ -1,14 +1,15 @@
 {
-  "title": "Kistan 2.0",
-  "description": "Docs for our locale",
-  "root": true,
-  "icon": "Hammer",
-  "pages": [
-    "---Introduction---",
-    "index",
-    "---Software---",
-    "...software",
-    "---Reference---",
-    "...reference"
-  ]
+    "title": "Kistan 2.0",
+    "description": "Docs for our locale",
+    "root": true,
+    "icon": "Hammer",
+    "pages": [
+        "---Introduction---",
+        "index",
+        "guides",
+        "---Software---",
+        "...software",
+        "---Reference---",
+        "...reference"
+    ]
 }
