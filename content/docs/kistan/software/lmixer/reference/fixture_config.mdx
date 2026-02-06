@@ -4,10 +4,9 @@ title: Fixture Config File
 
 All fixtures accessible in LMixer should also be in a config file, located [here](../../data/gen/kistanFixtures.json?url).
 
-:::note
+<CalloutExt type="note">
 Currently, the nearly all of the fixtures on the master layer are listed here, other layers are not listed.
-:::
-
+</CalloutExt>
 This file exists reduce maintenance for future projects. Instead of all of the projects having their own list
 of the fixtures in kistan, and having to update every project for every fixture, it is centralized into a
 single config file which needs to be maintained.
@@ -109,10 +108,9 @@ Strobing speed for lights tend to have a deadzone, for both of these, a "ranged"
 | identicalWithinRange | boolean?                                   | Set to `true` if all the values in the range behave identically                                  |
 | mapRangeForDisplay   | [RangeMappingSchema](#rangemappingschema)? | Used for displaying values to the user, maps the [0, 255] range to something else.               |
 
-:::note
+<CalloutExt type="note">
 The ranges should not overlap. Overlapping ranges in undefined behavior.
-:::
-
+</CalloutExt>
 ### Range Naming
 
 Ranged functions can _in general_ do their own system, every model is unique after all,
@@ -151,10 +149,9 @@ In LMixer, fixtures can be grouped, so the config file also has support for this
 | description | string?  | Optional extra information about the group                                                                                                            |
 | fixtures    | string[] | An array of the fixtures contained. The values are the Lua names of the fixtures. Fixture groups are also allowed to be specified with their Lua name |
 
-:::note
+<CalloutExt type="note">
 Take care to order the FixtureGroups such that dependencies (other fixture groups) are **_earlier_** in the file then the dependent group. This is to simply the loading.
-:::
-
+</CalloutExt>
 # Schema
 
 ```ts

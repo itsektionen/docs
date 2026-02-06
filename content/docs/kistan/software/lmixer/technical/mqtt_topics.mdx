@@ -10,11 +10,10 @@ These are topics which are executed as script. The order listed here is the
 standard execution order. Note however that (in most cases), publishing to
 any of these topics will reload it.
 
-:::warning
+<CalloutExt type="warn">
 Make sure to publish with the _retain_ flag _set_. If not, the script will
 revert upon restart.
-:::
-
+</CalloutExt>
 ## `light_mixer/active_addons`
 
 ***Execution Mode:*** Always
@@ -31,13 +30,12 @@ subscribed to when listed as a dependency. This means that publishing to
 an addon that has _not_ been loaded during this session, will cause it
 to not get executed.
 
-:::caution
+<CalloutExt type="caution">
 Due to MQTT not providing a proper way of checking if a topic exists,
 LMixer will wait until something is published to the addon. This means
 if an addon is listed as a dependency, but cannot be found, LMixer will
 wait until it is published before continuing loading the rest of this.
-:::
-
+</CalloutExt>
 ## `light_mixer/fixtures`
 
 ***Execution Mode:*** Always
@@ -70,10 +68,9 @@ These topics are for getting code to be executed
 
 ## `light_mixer/code/run`
 
-:::warning Deprecated
+<CalloutExt type="deprecated">
 This topic exists for compatibility.
-:::
-
+</CalloutExt>
 If [the Global Scope Script Names Addon](compatibility.html#builtin-compatibility-makescriptnamesglobalscope-addon)
 is active, this does the same thing as [execute](#light-mixer-code-execute).
 
