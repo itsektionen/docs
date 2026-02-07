@@ -14,7 +14,7 @@ of multiple arguments as this allows for more functionality later on.
 
 **_Location:_** `addon_suite/extended/fixtures`
 
-A extended version of [`fix`](./../../scripting.html#fix).
+A extended version of [`fix`](./../../scripting#fix).
 
 Currently behaves the same as fix.
 
@@ -31,7 +31,7 @@ Params:
 
 **_Location:_** `addon_suite/extended/layers`
 
-`layerExt` extends [`layer`](./../../index.html#layers).
+`layerExt` extends [`layer`](./../../#layers).
 
 It functionally differs from normal `layer` in the following way:
 
@@ -100,11 +100,11 @@ as it is subject to change.
 <CalloutExt type="note">
 Even if the alpha is zero, effects are still executed.
 
-For [set](./../../scripting.html#set) and [dim](./../../scripting.html#dim), the new data is
+For [set](./../../scripting#set) and [dim](./../../scripting#dim), the new data is
 calculated, but does not take effect until the alpha is set to a non-zero value.
 
-For [execute](./../../scripting.html#execute), [run](./../../scripting.html#run), [start](./../../scripting.html#start),
-[play](./../../scripting.html#play), and [stop_play](./../../scripting.html#stop_play), since
+For [execute](./../../scripting#execute), [run](./../../scripting#run), [start](./../../scripting#start),
+[play](./../../scripting#play), and [stop_play](./../../scripting#stop_play), since
 they do not effect the data anyway, they are executed exactly like normal,
 regardless of the alpha.
 </CalloutExt>
@@ -152,7 +152,7 @@ otherwise, when another script is ran, the fixture will still be controlled,
 by the layer. 
 
 (This can sometimes be desired however, see
-[Alpha-data layer scripting](mixing.html#alpha-data-layer-scripting) for an
+[Alpha-data layer scripting](mixing#alpha-data-layer-scripting) for an
 example of multi-script layer control)
 </CalloutExt>
 ## `release_control_of_fixture`
