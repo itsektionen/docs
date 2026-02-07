@@ -6,7 +6,7 @@ Addons can be made from UI in the same way as a script.
 However for more complex addons, it is recommended to
 work locally, and publish to the MQTT server.
 
-When publishing, simply publish to the [addons topic](./../technical/mqtt_topics.html#light-mixer-addons).
+When publishing, simply publish to the [addons topic](./../technical/mqtt_topics#light-mixer-addons).
 <CalloutExt type="warn">
 Make sure to have the **retain** flag set when publishing
 to make your addons persistent.
@@ -14,7 +14,7 @@ to make your addons persistent.
 # Splitting up across files
 
 It is way easier to manage a project when split up
-across files. By using the [DEPENDENCY Macro](./../macros.html#dependency)
+across files. By using the [DEPENDENCY Macro](./../macros#dependency)
 you can require other parts of the addon to be loaded
 before this one.
 
