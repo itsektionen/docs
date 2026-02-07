@@ -3,45 +3,7 @@
 import { usePathname } from "fumadocs-core/framework";
 import { useOnChange } from "fumadocs-core/utils/use-on-change";
 import { Fragment, useEffect, useState } from "react";
-
-enum DocLocations {
-  Default,
-  Kistan,
-  Init,
-}
-
-const docMappings: { matchString: string; location: DocLocations }[] = [
-  { matchString: "kistan", location: DocLocations.Kistan },
-  { matchString: "heim", location: DocLocations.Init },
-  { matchString: "slinky", location: DocLocations.Init },
-];
-
-const docTitles: {
-  [key in DocLocations]: {
-    title: string;
-  };
-} = {
-  [DocLocations.Default]: {
-    title: "IT/docs",
-  },
-  [DocLocations.Kistan]: {
-    title: "Kistan/docs",
-  },
-  [DocLocations.Init]: {
-    title: "init/docs",
-  },
-};
-
-function getMapping(pathName: string): DocLocations {
-  pathName = pathName + "/";
-  const mapping = docMappings.find((mapping) => {
-    return pathName.startsWith("/docs/" + mapping.matchString + "/");
-  });
-  if (mapping == undefined) {
-    return DocLocations.Default;
-  }
-  return mapping.location;
-}
+import { getLocationInfo, getMapping } from "./pathnameMapper";
 
 function getLengthOfMatchingStart(a: string, b: string) {
   let minLength = Math.min(a.length, b.length);
@@ -58,17 +20,17 @@ export default function TitleComponent() {
   const mapping = getMapping(pathname);
 
   const [targetDocTitle, setTargetDocTitle] = useState(
-    docTitles[mapping].title,
+    getLocationInfo(mapping).title,
   );
-  const [docTitle, setDocTitle] = useState(docTitles[mapping].title);
+  const [docTitle, setDocTitle] = useState(getLocationInfo(mapping).title);
 
   useOnChange(pathname, () => {
     const newMapping = getMapping(pathname);
-    setTargetDocTitle(docTitles[newMapping].title);
+    setTargetDocTitle(getLocationInfo(newMapping).title);
     const prefersReducedMotion =
       window.matchMedia("(prefers-reduced-motion: reduce)").matches == true;
     if (prefersReducedMotion) {
-      setDocTitle(docTitles[newMapping].title);
+      setDocTitle(getLocationInfo(newMapping).title);
     }
   });
 
