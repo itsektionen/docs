@@ -24,7 +24,7 @@ export default function IconedCard({ icon, title, ...props }: CardProps) {
           {icon}
         </div>
         <div className="h-10 mx-auto mt-1" role="none">
-          <div className="border border -skew-10 h-full mx-auto w-0"></div>
+          <div className="border -skew-10 h-full mx-auto w-0"></div>
         </div>
         <div className="flex-1">
           <h3 className="not-prose mb-1 text-sm font-medium">{title}</h3>

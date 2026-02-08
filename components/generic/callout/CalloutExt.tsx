@@ -1,12 +1,6 @@
-import {
-  Callout,
-  CalloutDescription,
-  CalloutTitle,
-} from "fumadocs-ui/components/callout";
+import { CalloutDescription } from "fumadocs-ui/components/callout";
 import {
   BookText,
-  ChevronLeft,
-  ChevronRight,
   CircleCheck,
   CircleX,
   Hourglass,
@@ -120,7 +114,7 @@ export default function CalloutExt({
   const calloutType = calloutTypes[type];
 
   if (calloutType == undefined) {
-    throw new Error("Invalid Callout Type: " + type)
+    throw new Error("Invalid Callout Type: " + type);
   }
 
   return (

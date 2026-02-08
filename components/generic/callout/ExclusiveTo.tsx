@@ -1,4 +1,3 @@
-import { Callout } from "fumadocs-ui/components/callout";
 import { ReactNode } from "react";
 import { cn } from "@fumadocs/ui/cn";
 import styles from "./generic.callout.exclusiveTo.module.css";
@@ -73,7 +72,7 @@ export default function ExclusiveTo({
   return (
     <div
       className={cn(
-        "my-4 rounded-xl border bg-fd-card p-3 p-1 text-fd-card-foreground shadow-md",
+        "my-4 rounded-xl border bg-fd-card p-1 text-fd-card-foreground shadow-md",
         styles[exclusiveInfo.contentClass],
       )}
     >
@@ -85,7 +84,10 @@ export default function ExclusiveTo({
               {exclusiveInfo.description}
             </p>
           </div>
-          <div role="none" className="h-0.5 bg-(--callout-color)/50 rounded-sm" />
+          <div
+            role="none"
+            className="h-0.5 bg-(--callout-color)/50 rounded-sm"
+          />
           <div className="p-1">{children}</div>
         </div>
       </div>
