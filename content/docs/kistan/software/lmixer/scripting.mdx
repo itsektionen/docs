@@ -2,9 +2,9 @@
 title: Scripting Keyword
 ---
 
-# Layer keywords
+## Layer keywords
 
-## Create layer
+### Create layer
 
 A layer hold information for outputting data to a UDP listener. The layer have a
 length and can be combined with another layer using different mathematical
@@ -36,19 +36,19 @@ dimmer = layer(master, mul, 512, 1)
 
 <ExclusiveTo exclusiveTo="LMixerAddonSuiteExtensions">
 
-## `layerExt`
+### `layerExt`
 
 If the LMixer Addon Suite is in use, `layerExt` should be used instead of `layer`.
 
 See the [layerExt](./addons/addon_suite/extended#layerext) for details.
 
-## Create Alpha-Layer
+### Create Alpha-Layer
 
 Alpha layers allow for more advanced mixing. To create them, see the [alpha_data_layer](./addons/addon_suite/extended#alpha-data-layer)
 
 </ExclusiveTo>
 
-## `output`
+### `output`
 
 Output controls what data is sent to each controller. An output can only send
 one layer.
@@ -65,7 +65,7 @@ one layer.
 output("192.168.1.10", 1234, master)
 ```
 
-## `artnet_output`
+### `artnet_output`
 
 Create a new output in the ArtNet[1] format.
 
@@ -82,7 +82,7 @@ universe set to 123.
 artnet_output("192.168.1.10", 123, master)
 ```
 
-## `input`
+### `input`
 
 Open a UDP port and bind data messages on that port to an existing layer.
 
@@ -98,9 +98,9 @@ additional_data = layer(nil, add, 512)
 input(1234, additional_data)
 ```
 ---
-# Fixture keywords
+## Fixture keywords
 
-## `fix`
+### `fix`
 
 Create a new fixture with specified parameters. Fixtures can also be added
 into "groups" by adding them to a table in Lua.
@@ -126,7 +126,7 @@ lamps = { lamp1, lamp2 }
 
 <ExclusiveTo exclusiveTo="LMixerAddonSuiteExtensions">
 
-## `fixExt`
+### `fixExt`
 
 If the LMixer Addon Suite is in use, `fixExt` should be used instead of `fix`.
 
@@ -134,7 +134,7 @@ See [fixExt](./addons/addon_suite/extended#fixext) for details.
 
 </ExclusiveTo>
 
-## `range`
+### `range`
 
 Create several fixtures in a series and add them to a group.
 
@@ -150,9 +150,9 @@ Create several fixtures in a series and add them to a group.
 pixels = range(10, 1, 3)
 ```
 
-# Effect keywords
+## Effect keywords
 
-## `<layer>:add`
+### `<layer>:add`
 
 Add an effect to a layer.
 
@@ -167,7 +167,7 @@ Add an effect to a layer.
 master:add(1000, set(lamp1, 255, 255, 0, 0))
 ```
 
-## `dim`
+### `dim`
 
 Fade a fixture from previous values to new values over a period of time.
 
@@ -183,7 +183,7 @@ Fade a fixture from previous values to new values over a period of time.
 dim(100, lamp1, 255, 0, 0, 0)
 ```
 
-## `set`
+### `set`
 
 Set a fixture to the specified values.
 
@@ -198,7 +198,7 @@ Set a fixture to the specified values.
 set(lamp1, 255, 0, 0, 0)
 ```
 
-## `cycle`
+### `cycle`
 
 Add an effect for each fixture in a group with a delay between each.
 
@@ -216,7 +216,7 @@ each fixture.
 cycle(lamps, 100, set, 255, 0, 0, 0)
 ```
 
-## `rev`
+### `rev`
 
 Reverse a group of fixtures to use them in backwards order. Is usually used
 inline with cycle command to do effects in reverse order.
@@ -231,7 +231,7 @@ inline with cycle command to do effects in reverse order.
 rev(lamps)
 ```
 
-## `even`
+### `even`
 
 Get a subset of fixtures in a group based on their index value. Usually used
 inline when specifying groups for an effect.
@@ -246,7 +246,7 @@ inline when specifying groups for an effect.
 set(even(lamps), 255, 0, 0, 0)
 ```
 
-## `odd`
+### `odd`
 
 Get a subset of fixtures in a group based on their index value. Usually used
 inline when specifying groups for an effect.
@@ -261,7 +261,7 @@ inline when specifying groups for an effect.
 set(odd(lamps), 255, 0, 0, 0)
 ```
 
-## `execute`
+### `execute`
 
 | Name    | Optional | Description                                            |
 | ------- | -------- | ------------------------------------------------------ |
@@ -273,7 +273,7 @@ set(odd(lamps), 255, 0, 0, 0)
 execute("dalicmd -g 255 -c 16")
 ```
 
-## `run`
+### `run`
 
 Start a script by name. Normally this is used to repeat the current script by
 starting it again after some time. Can also be used to split common effects into
@@ -304,7 +304,7 @@ scripts starting on top of each other until something crashes.
 </CalloutExt>
 
 
-## `start`
+### `start`
 
 Similar to [run](#run) except it always executes.
 
@@ -324,7 +324,7 @@ from the UI will not work, you need to stop all scripts.
 </CalloutExt>
 <ExclusiveTo exclusiveTo="LMixer">
 
-## `play`
+### `play`
 
 | Name     | Optional | Description                                       |
 | -------- | -------- | ------------------------------------------------- |
@@ -336,7 +336,7 @@ from the UI will not work, you need to stop all scripts.
 play("blotet/dans_mitt.mp3")
 ```
 
-## `stop_play`
+### `stop_play`
 
 Stop playback of all sound files. No parameters.
 
@@ -349,7 +349,7 @@ stop_play()
 
 <ExclusiveTo exclusiveTo="LMixerAddonSuite">
 
-## `interval`
+### `interval`
 
 Runs a function at an interval. See [interval](./addons/addon_suite/effects#interval) for details.
 
@@ -357,19 +357,19 @@ Runs a function at an interval. See [interval](./addons/addon_suite/effects#inte
 
 <ExclusiveTo exclusiveTo="LMixerAddonSuiteExtensions">
 
-## `<alpha-data-layer>.alpha`
+### `<alpha-data-layer>.alpha`
 
 Access to the alpha layer.
 
 See [`<alpha-data-layer>.alpha` in Addon Suite Extension](./addons/addon_suite/extended#alpha-data-layer-alpha) for details.
 
-## `take_control_of_fixture`
+### `take_control_of_fixture`
 
 Takes control of a fixture on an alpha layer.
 
 See [`take_control_of_fixture` in Addon Suite Extension](./addons/addon_suite/extended#take-control-of-fixture) for details.
 
-## `release_control_of_fixture`
+### `release_control_of_fixture`
 
 Releases control of a fixture on an alpha layer.
 
@@ -379,31 +379,31 @@ See [`release_control_of_fixture` in Addon Suite Extension](./addons/addon_suite
 
 <ExclusiveTo exclusiveTo="LMixerKistanExclusiveAddon">
 
-## `roof_shader`
+### `roof_shader`
 
 Creates a shader effect for the roof.
 
 See [`roof_shader` in Kistan_specific Addons](./addons/kistan_specific#roof-shader) for details.
 
-## `sign_shader`
+### `sign_shader`
 
 Creates a shader effect for the Kistan sign.
 
 See [`sign_shader` in Kistan_specific Addons](./addons/kistan_specific#sign-shader) for details.
 
-## `sign_spiral`
+### `sign_spiral`
 
 Creates a spiral shader for the Kistan sign.
 
 See [`sign_spiral` in Kistan_specific Addons](./addons/kistan_specific#sign-spiral) for details.
 
-## `sign_heartbeat`
+### `sign_heartbeat`
 
 Creates a heartbeat effect for the Kistan sign.
 
 See [`sign_heartbeat` in Kistan_specific Addons](./addons/kistan_specific#sign-heartbeat) for details.
 
-## `drinks_moving_blocks`
+### `drinks_moving_blocks`
 
 Creates moving blocks on the drink lights.
 
@@ -412,7 +412,7 @@ See [`drinks_moving_blocks` in Kistan_specific Addons](./addons/kistan_specific#
 </ExclusiveTo>
 
 ---
-# Script keywords
+## Script keywords
 
 Scripts are accessed from `Scripts.` in the global scope.
 
@@ -420,7 +420,7 @@ Scripts are accessed from `Scripts.` in the global scope.
 If `builtin/compatibility/MakeScriptNamesGlobalScope` is added as an addon,
 scripts start in the global scope.
 </CalloutExt>
-## `<script>:start`
+### `<script>:start`
 Runs a script, this is synchronous and will be executed instantly.
 
 **Example:** Start rainbow instantly
@@ -428,7 +428,7 @@ Runs a script, this is synchronous and will be executed instantly.
 Scripts.rainbow:start()
 ```
 
-## `<script>:stop`
+### `<script>:stop`
 Stops a script, this only affects [run](#run)
 
 **Example:** Stops rainbow
@@ -436,7 +436,7 @@ Stops a script, this only affects [run](#run)
 Scripts.rainbow:stop()
 ```
 
-## `<script>:unstop`
+### `<script>:unstop`
 Unstops a script, this allows [run](#run) to execute this script again
 
 **Example:** Unstops rainbow
@@ -444,7 +444,7 @@ Unstops a script, this allows [run](#run) to execute this script again
 Scripts.rainbow:unstop()
 ```
 
-## `<script>:is_stopped()`
+### `<script>:is_stopped()`
 Checks if a script has been stopped, useful for having multiple script
 
 **Example:** Checks if rainbow is stopped, and stops rainbow_roof if

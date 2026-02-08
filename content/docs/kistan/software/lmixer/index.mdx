@@ -10,19 +10,19 @@ version is built with [lua 5.4][2] and some extensions. It renders a new frame
 at 30 FPS, which is once every 32ms. A shorter time between two effects will not
 be visible.
 
-# Components
+## Components
 
 The LMixer software is made up of a couple of different components.
 
-## Output
+### Output
 
 An output is used to send layer data using raw UDP socket to other programs.
 
-## Input
+### Input
 
 An input can be created to bind an incoming UDP stream to layer data.
 
-## Layers
+### Layers
 
 A layer is the base for data storage and manipulation. A layer can be combined
 with another layer using mathematical operations. Layers can be stacked and
@@ -43,13 +43,13 @@ In the image below the top and right sides are inputs, bottom and left are outpu
 
 The layer setup in kistan can be found [here](./layers.md)
 
-## Fixtures
+### Fixtures
 
 A fixture represent a single light or RGB-list. They can also be organized into
 groups. This part of the LMixer defines the names for each fixture and where in
 the layer they are located. Fixtures are not bound to a single layer.
 
-## Scripts
+### Scripts
 
 Each script is a series of instructions that are added to a timeline each time
 the run command is used. A script may repeat by running itself again. Make sure
@@ -69,7 +69,7 @@ The editor can save without running a script by pressing CTRL+S. Useful
 for a looping script that loads the change on the next iteration.
 </CalloutExt>
 
-### Code
+#### Code
 
 This acts like a script but is only run once at startup (or when manually
 triggered by the run function). Here some extra global code and different

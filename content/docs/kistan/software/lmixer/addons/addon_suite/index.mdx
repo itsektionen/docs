@@ -10,24 +10,24 @@ at one's own risk.
 Some features are unfinished and are then not documented here. These are almost guaranteed
 to change.
 
-# Types
+## Types
 
 ***Location:*** `addon_suite/types`
 
 Only contains some type definitions.
 
-# Core
+## Core
 
 ***Location:*** `addon_suite/core`
 
 The most "essential" parts to have.
 
-## `AddonData`
+### `AddonData`
 
 This is a table that can be used by any addon to store data in without polluting the global
 name space.
 
-## `LMixerError`
+### `LMixerError`
 Prints a error message to mqtt, which thus gets displayed on the LMixer UI. Useful for debugging.
 
 | Name          | Optional | Description       |
@@ -43,7 +43,7 @@ LMixerError("This is a test message");
 Only one error message can be displayed on the UI at once, if multiple Error are made, only the latest is displayed.
 </CalloutExt>
 
-## `LMixerPrint`
+### `LMixerPrint`
 Prints a message to mqtt, which thus gets displayed on the LMixer UI. Useful for debugging.
 
 | Name          | Optional | Description          |
@@ -62,7 +62,7 @@ Only one message can be displayed on the UI at once, if multiple messages are ma
 This is actually just adds a error message to the mqtt, however, using the appropriate function is recommended
 since if it is later updated, it will be correct.
 </CalloutExt>
-# Complete Suite
+## Complete Suite
 
 ***Location:*** `addon_suite/completeSuite`
 
