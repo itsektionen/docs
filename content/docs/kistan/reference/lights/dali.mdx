@@ -3,12 +3,12 @@ title: DALI Lights
 icon: LampCeiling
 ---
 
-# DALI Protocol
+## DALI Protocol
 
 The dali protocol is used for all normal roof lights in Kistan. It is also used
 in all classrooms.
 
-## Usage
+### Usage
 
 In a DALI network all the lights store their own information. The controller(s)
 just broadcast instructions to all or some lamps. Instructions are always
@@ -40,7 +40,7 @@ dalicmd [-g] [-c] [-s] [-a] [-h] [-r]
 
 ```
 
-### Common commands
+#### Common commands
 
 | Command-number | Name               |
 |----------------|--------------------|
@@ -48,16 +48,16 @@ dalicmd [-g] [-c] [-s] [-a] [-h] [-r]
 | 5              | Go to Max          |
 | 16 - 31        | Go to scene 0 - 15 |
 
-# DALI Mappings in Kistan
+## DALI Mappings in Kistan
 
-## Addresses
+### Addresses
 
 Addresses in DALI are assigned at random and here is a map of all the DALI
 lights and their addresses in Kistan.
 
 ![dali_map](./images/dali_lamps.svg)
 
-## Special addresses
+### Special addresses
 
 Some special addresses is used to control relays for different roof outlets. The
 DALI relays is mounted in the electrical cabinet in Spritförrådet.
@@ -73,7 +73,7 @@ DALI relays is mounted in the electrical cabinet in Spritförrådet.
 | 41      | Relay 2.3                           |
 | 42      | Relay 2.4                           |
 
-## Groups
+### Groups
 
 | Group number | Name                      |
 |--------------|---------------------------|
@@ -86,7 +86,7 @@ DALI relays is mounted in the electrical cabinet in Spritförrådet.
 | 6            | All hanging               |
 | 7            | Shit lamps                |
 
-## Scenes
+### Scenes
 
 | Scene number | CMD Go to | Name       |
 |--------------|-----------|------------|
@@ -96,12 +96,12 @@ DALI relays is mounted in the electrical cabinet in Spritförrådet.
 | 3            | 19        | Sofas high |
 | 4            | 20        | Caps       |
 
-# Examples
+## Examples
 
-## All off
+### All off
 
 `dalicmd -g 255 -c 18`
 
-## Max on dance floor
+### Max on dance floor
 
 `dalicmd -g 3 -c 5 && dalicmd -g 4 -c 5`

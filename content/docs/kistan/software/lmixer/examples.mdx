@@ -2,7 +2,7 @@
 title:  Examples
 ---
 
-# Pub
+## Pub
 
 Dim some lights in the bar to their on-color, run rainbow script and set DALI
 lights to "pub" scene.
@@ -14,7 +14,7 @@ master:add(0, run("rainbow"))
 master:add(0, execute("dalicmd -g 255 -c 16"))
 ```
 
-# Rainbow
+## Rainbow
 
 Defines some variables locally in the script that can be used later in the code.
 Then add cycle-effect to fade each lamp to "red" state. Append more effects
@@ -39,7 +39,7 @@ master:add(space * 5, cycle(all, nextLamp, dim, dimrate, intensity, 0, intensity
 master:add(space * 6, run("rainbow"))
 ```
 
-# Stars
+## Stars
 
 Using the roof pixels in Kistan to create a sparkling star night. Stars are
 randomly faded in and out during the script execution. Using a loop to set

@@ -11,7 +11,7 @@ When publishing, simply publish to the [addons topic](./../technical/mqtt_topics
 Make sure to have the **retain** flag set when publishing
 to make your addons persistent.
 </CalloutExt>
-# Splitting up across files
+## Splitting up across files
 
 It is way easier to manage a project when split up
 across files. By using the [DEPENDENCY Macro](./../macros#dependency)
@@ -25,7 +25,7 @@ this addon
 --#DEPENDENCY addon_suite/core
 ```
 
-# Initialization Order
+## Initialization Order
 
 Addons are loaded before any other script, including Fixtures, Layers, and Extra (code),
 however addons are loaded _after_ the internal LMixer code.

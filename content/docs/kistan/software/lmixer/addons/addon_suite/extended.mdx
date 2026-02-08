@@ -8,9 +8,9 @@ Various extensions to the default LMixer behavior.
 A leading principle is to a single tables for parameters instead
 of multiple arguments as this allows for more functionality later on.
 
-# Fixtures
+## Fixtures
 
-## `fixExt`
+### `fixExt`
 
 **_Location:_** `addon_suite/extended/fixtures`
 
@@ -25,9 +25,9 @@ Params:
 | chStart  | number | The starting channel of the fixtures  |
 | chLength | number | The number of channels on the fixture |
 
-# Layers
+## Layers
 
-## `layerExt`
+### `layerExt`
 
 **_Location:_** `addon_suite/extended/layers`
 
@@ -40,7 +40,7 @@ It functionally differs from normal `layer` in the following way:
 
 The part that is not backwards compatable is creation.
 
-### Create layerExt
+#### Create layerExt
 
 Creation of a [LayerExt](#layerext) is done through a single table argument:
 
@@ -61,7 +61,7 @@ dimmer = layerExt({ name = "dimmer", parent = master, op = mul, default = 1 })
 ```
 
 
-## `alpha_data_layer`
+### `alpha_data_layer`
 
 Alpha-data layers are layers with alpha support. The alpha blends between the layers below
 this one and it self. An alpha of 0 means keep the layers below, an alpha of 1 means "replace"
@@ -110,7 +110,7 @@ regardless of the alpha.
 </CalloutExt>
 
 
-## `<alpha-data-layer>.alpha`
+### `<alpha-data-layer>.alpha`
 
 Alpha-data layers are made of two layer, the data layer (the "main" layer"), and the alpha
 layer which is accessed via .alpha. It is a standard layer, thus the :add works like expected.
@@ -131,7 +131,7 @@ In this case, direct alpha access makes sense, however, in general taking contro
 fixture is desired, for this [take_control_of_fixture](#take-control-of-fixture) and
 [release_control_of_fixture](#release-control-of-fixture) should be used.
 </CalloutExt>
-## `take_control_of_fixture`
+### `take_control_of_fixture`
 
 Sets the alpha of a fixture group to 1 over a transition time
 
@@ -155,7 +155,7 @@ by the layer.
 [Alpha-data layer scripting](mixing#alpha-data-layer-scripting) for an
 example of multi-script layer control)
 </CalloutExt>
-## `release_control_of_fixture`
+### `release_control_of_fixture`
 
 Sets the alpha of a fixture group to 0 over a transition time
 

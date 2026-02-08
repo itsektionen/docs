@@ -2,7 +2,7 @@
 title: Compatibility
 ---
 
-# Global Scope Scripts
+## Global Scope Scripts
 
 Scripts used to be stored in the global scope. If a script existed called `rainbow`,
 it could be called like this:
@@ -19,14 +19,14 @@ Scripts.rainbow:start()
 
 Since this is a breaking change, multiple things exist to allow for compatibility.
 
-## `builtin/compatibility/MakeScriptNamesGlobalScope` Addon
+### `builtin/compatibility/MakeScriptNamesGlobalScope` Addon
 
 Since removing scripts from the global scope, having a translation layer does not
 work, instead this addon sets a flag to revert almost all of the changes.
 
 It makes scripts exists in the global scope again.
 
-## `light_mixer/code/+` removal
+### `light_mixer/code/+` removal
 
 The [MQTT topics](./mqtt_topics) `light_mixer/code/+` were removed and replaced
 with multiple, more specific. The old system has all of these execute the published

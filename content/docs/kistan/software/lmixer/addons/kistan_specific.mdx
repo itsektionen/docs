@@ -12,11 +12,11 @@ of fixtures.
 These have the [Addon Suite](./addon_suite/) as a
 required dependency.
 
-# Roof
+## Roof
 
 **_Location:_** `kistan_specific/roof`
 
-## `roof_shader`
+### `roof_shader`
 
 Arguments:
 
@@ -49,13 +49,13 @@ end
 roof:add(0, roof_shader(roof_hue_gradient, nil))
 ```
 
-# Sign
+## Sign
 
 **_Location:_** `kistan_specific/sign`
 
 Things for the "Kistan sign"
 
-## `sign_shader`
+### `sign_shader`
 
 | name     | description                                           |
 | -------- | ----------------------------------------------------- |
@@ -70,7 +70,7 @@ The fragment shader gets the following parameters:
 | y    | The y-coordinate of the pixel                |
 | time | The time in ms since the start of the shader |
 
-## `sign_spiral`
+### `sign_spiral`
 
 Creates a spiral shader for the sign. Only argument is settings
 
@@ -120,7 +120,7 @@ sign_dim:add(0, sign_shader(sign_spiral({
 The sign's coordinates are very spaced out. While on the roof it is 1unit/pixel, on the sign
 it is significantly larger.
 </CalloutExt>
-## `sign_heartbeat`
+### `sign_heartbeat`
 
 Make the "heartbeat shaped A" pulse.
 
@@ -149,11 +149,11 @@ sign:add(speed*4.5, sign_heartbeat({
     easePowerOut = 40}))
 ```
 
-# Drink Lights
+## Drink Lights
 
 **_Location:_** `kistan_specific/drink_lights`
 
-## `drinks_moving_blocks`
+### `drinks_moving_blocks`
 
 Makes multiple
 
