@@ -3,15 +3,12 @@ import { getLocationInfo, getMapping } from "@/lib/pathnameMapper";
 import { usePathname } from "fumadocs-core/framework";
 import SiMoN from "./images/SiMoN.svg";
 import Image from "next/image";
-import { ReactNode } from "react";
-import { SidebarTabsDropdown } from "fumadocs-ui/components/sidebar/tabs/dropdown";
 import { getSidebarTabs } from "fumadocs-ui/components/sidebar/tabs/index";
 import { source } from "@/lib/source";
-import { Card, Cards } from "fumadocs-ui/components/card";
 import IconedCard from "../iconedCard";
-import { Info } from "lucide-react";
+import { DocsPage } from "fumadocs-ui/layouts/docs/page";
 
-export default function NotFound({ children }: { children?: ReactNode }) {
+export default function NotFound() {
   const pathname = usePathname();
   const locationInfo = getLocationInfo(getMapping(pathname));
 
@@ -34,10 +31,7 @@ export default function NotFound({ children }: { children?: ReactNode }) {
   });
 
   return (
-    <article
-      className="flex flex-col w-full max-w-[900px] mx-auto [grid-area:main] px-4 py-6 gap-4 md:px-6 md:pt-8 xl:px-8 xl:pt-14 xl:layout:[--fd-toc-width:268px]"
-      id="nd-page"
-    >
+    <DocsPage full={true}>
       <div className="p-5 prose">
         <h1
           className="mx-auto w-fit my-0!"
@@ -74,6 +68,6 @@ export default function NotFound({ children }: { children?: ReactNode }) {
           </div>
         </div>
       </div>
-    </article>
+    </DocsPage>
   );
 }
