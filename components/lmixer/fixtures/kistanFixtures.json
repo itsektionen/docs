@@ -1,7 +1,7 @@
 {
     "formatVersion": 1,
     "fixtureTypes": {
-                "wash_Varytec715": {
+        "wash_Varytec715": {
             "displayName": "Wash",
             "displayNamePlural": "Washes",
             "model": "Varytec Hero Wash 715 HEX LED",

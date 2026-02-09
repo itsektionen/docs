@@ -8,7 +8,7 @@ const lmixerLayers = lmixerLayersUnknown as LayerConfig;
 const trees = lmixerLayers.layers.map((layer) => LayerToTree(layer));
 
 export default function DrawAllLayers() {
-  return Object.entries(trees).map(([index, tree]) => {
+  return trees.map((tree, index) => {
     return (
       <Fragment key={index}>
         <Heading as="h2" id={"layer-tree-" + tree.content.text}>

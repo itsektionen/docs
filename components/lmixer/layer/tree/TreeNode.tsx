@@ -1,45 +1,69 @@
 import { TreeGridNode, TreeGridNodeConnector } from "./treeGridType";
 import styles from "./lmixer.tree.module.css";
+import { cn } from "@/lib/cn";
 
 export default function TreeNode(
   node: TreeGridNode | TreeGridNodeConnector,
   isTopNode?: boolean,
 ) {
-  if (node.nodeType == "dot" || node.nodeType == undefined) {
-    return <div className={styles.dotNode}></div>;
+  let nodeData: TreeNodeData = {
+    node: node,
+    isTopNode: isTopNode,
+  };
+  switch (node.nodeType) {
+    default:
+    case "dot":
+      return DotNode(nodeData);
+    case "header":
+      return HeaderNode(nodeData);
+    case "big":
+      return BigNode(nodeData);
+    case "combine":
+      return CombineNode(nodeData);
   }
-  if (node.nodeType == "header") {
-    return (
-      <div
-        className={[styles.bigNode, isTopNode ? styles.topNode : ""].join(" ")}
+}
+
+type TreeNodeData = {
+  node: TreeGridNode | TreeGridNodeConnector;
+  isTopNode?: boolean;
+};
+
+function DotNode(_nodeData: TreeNodeData) {
+  return <div className={styles.dotNode}></div>;
+}
+function HeaderNode(nodeData: TreeNodeData) {
+  return (
+    <div
+      className={cn(styles.bigNode, nodeData.isTopNode ? styles.topNode : "")}
+    >
+      <a
+        href={"#" + (nodeData.node.content?.text ?? "")}
+        id={nodeData.node.content?.text ?? ""}
       >
-        <a
-          href={"#" + (node.content?.text ?? "")}
-          id={node.content?.text ?? ""}
-        >
-          {node.content?.text}
-        </a>
-      </div>
-    );
-  }
-  if (node.nodeType == "big") {
-    return (
-      <div
-        className={[styles.bigNode, isTopNode ? styles.topNode : ""].join(" ")}
-      >
-        {node.content?.text}
-      </div>
-    );
-  }
-  if (node.nodeType == "combine") {
-    return (
-      <div
-        className={[styles.connectorNode, isTopNode ? styles.topNode : ""].join(
-          " ",
-        )}
-      >
-        {node.content?.text}
-      </div>
-    );
-  }
+        {nodeData.node.content?.text}
+      </a>
+    </div>
+  );
+}
+function BigNode(nodeData: TreeNodeData) {
+  return (
+    <div
+      className={cn(styles.bigNode, nodeData.isTopNode ? styles.topNode : "")}
+    >
+      {nodeData.node.content?.text}
+    </div>
+  );
+}
+
+function CombineNode(nodeData: TreeNodeData) {
+  return (
+    <div
+      className={cn(
+        styles.connectorNode,
+        nodeData.isTopNode ? styles.topNode : "",
+      )}
+    >
+      {nodeData.node.content?.text}
+    </div>
+  );
 }
