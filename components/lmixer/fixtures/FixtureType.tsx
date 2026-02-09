@@ -1,95 +1,109 @@
 import { Heading } from "fumadocs-ui/components/heading";
-import { FixtureTypeSchema } from "./fixtureConfigSchema";
+import {
+  ChannelRangedFunction,
+  FixtureChannelSchema,
+  FixtureConfig,
+  FixtureTypeSchema,
+} from "./fixtureConfigSchema";
 import styles from "./lmixer.fixture.module.css";
 import { Fragment } from "react/jsx-runtime";
+import ModelDescriptionToText from "./FixtureDescriptions";
+import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
+import * as fixtureConfigUnknown from "./kistanFixtures.json";
+const fixtureConfig = fixtureConfigUnknown as FixtureConfig;
 
 export default function FixtureType(
   fixtureType: FixtureTypeSchema,
   fixtureTypeId: string,
   isDropdown?: boolean,
 ) {
+  isDropdown = isDropdown ?? false;
   return (
     <Fragment key={fixtureTypeId}>
-      {isDropdown ? (
-        <></>
-      ) : (
+      {!isDropdown && (
         <Heading id={fixtureTypeId} key={fixtureTypeId} as="h1">
           {fixtureType.displayName}
         </Heading>
       )}
-      {fixtureType.model ? (
-        <>
-          <b>Model: </b>
-          {fixtureType.model}
-        </>
-      ) : (
-        <></>
-      )}
-      {fixtureType.model && fixtureType.description ? (
-        <>
-          <br></br>
-        </>
-      ) : (
-        <></>
-      )}
-      {fixtureType.description ? <>{fixtureType.description}</> : <></>}
 
-      <table>
-        <thead>
-          <tr>
-            <th>Channel</th>
-            <th>Function</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Object.entries(fixtureType.channels).map(
-            ([channelID, channelInfo]) => {
-              return (
-                <Fragment key={channelID}>
-                  <tr>
-                    <th>{channelID}</th>
-                    <td>
-                      {channelInfo.displayName}
-                      {channelInfo.rangedFunction ? (
-                        <>
-                          <div className={styles.fixturechannelrangedfunction}>
-                            {Object.entries(channelInfo.rangedFunction).map(
-                              ([index, rangedFunction]) => {
-                                return (
-                                  <Fragment key={index}>
-                                    <span
-                                      className={
-                                        styles.fixturechannelrangedfunctionrange
-                                      }
-                                    >
-                                      {rangedFunction.min ==
-                                      rangedFunction.max ? (
-                                        rangedFunction.min
-                                      ) : (
-                                        <>
-                                          {rangedFunction.min}-
-                                          {rangedFunction.max}
-                                        </>
-                                      )}
-                                    </span>
-                                    <span>{rangedFunction.displayName}</span>
-                                  </Fragment>
-                                );
-                              },
-                            )}
-                          </div>
-                        </>
-                      ) : (
-                        <></>
-                      )}
-                    </td>
-                  </tr>
-                </Fragment>
-              );
-            },
-          )}
-        </tbody>
-      </table>
+      {ModelDescriptionToText(fixtureType)}
+
+      {FixtureTypeTable(fixtureType)}
+    </Fragment>
+  );
+}
+
+export function FixtureTypeAccordion(fixtureTypeId: string) {
+  let fixtureType = fixtureConfig.fixtureTypes[fixtureTypeId];
+  return (
+    <Accordions type="single">
+      <Accordion title={"FixtureType: " + fixtureType.displayName}>
+        {FixtureType(fixtureType, fixtureTypeId, true)}
+      </Accordion>
+    </Accordions>
+  );
+}
+
+function FixtureTypeTable(fixtureType: FixtureTypeSchema) {
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Channel</th>
+          <th>Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        {Object.entries(fixtureType.channels).map(([channelID, channelInfo]) =>
+          FixtureChannelRow(channelID, channelInfo),
+        )}
+      </tbody>
+    </table>
+  );
+}
+
+function FixtureChannelRow(
+  channelID: string,
+  channelInfo: FixtureChannelSchema,
+) {
+  return (
+    <tr key={channelID}>
+      <th>{channelID}</th>
+      <td>
+        {channelInfo.displayName}
+        {RangeFunctionedChannel(channelInfo)}
+      </td>
+    </tr>
+  );
+}
+
+function RangeFunctionedChannel(channelInfo: FixtureChannelSchema) {
+  if (channelInfo.rangedFunction == null) {
+    return <></>;
+  }
+  return (
+    <div className={styles.fixturechannelrangedfunction}>
+      {channelInfo.rangedFunction.map((rangedFunction, index) => {
+        return ChannelFunctionBlock(rangedFunction, index);
+      })}
+    </div>
+  );
+}
+
+function ChannelFunctionBlock(
+  rangedFunction: ChannelRangedFunction,
+  index: number,
+) {
+  let range = "";
+  if (rangedFunction.min == rangedFunction.max) {
+    range = rangedFunction.min.toString();
+  } else {
+    range = rangedFunction.min + "-" + rangedFunction.max;
+  }
+  return (
+    <Fragment key={index}>
+      <span className={styles.fixturechannelrangedfunctionrange}>{range}</span>
+      <span>{rangedFunction.displayName}</span>
     </Fragment>
   );
 }
