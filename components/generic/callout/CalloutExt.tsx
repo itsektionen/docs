@@ -15,6 +15,12 @@ import { ReactNode } from "react";
 import { cn } from "@fumadocs/ui/cn";
 import styles from "./generic.callout.calloutExt.module.css";
 
+/*
+
+Modified version of Fumadocs' <Callout/> Component
+
+*/
+
 const iconClassFill = "size-5 -me-0.5 fill-(--callout-color) text-fd-card";
 const iconClassStroke = "size-5 -me-0.5 stroke-(--callout-color) text-fd-card";
 
