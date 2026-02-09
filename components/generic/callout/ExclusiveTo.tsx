@@ -2,6 +2,12 @@ import { ReactNode } from "react";
 import { cn } from "@fumadocs/ui/cn";
 import styles from "./generic.callout.exclusiveTo.module.css";
 
+/*
+
+Heavily modified version of Fumadocs' <Callout/> Component
+
+*/
+
 export type ExclusiveToLocations =
   | "KistanGeneric"
   | "LMixer"

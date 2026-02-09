@@ -1,4 +1,3 @@
-import { loader } from "fumadocs-core/source";
 import { icons } from "lucide-react";
 import { createElement, ReactNode } from "react";
 import * as LMixer from "content/icons/lmixer.png";

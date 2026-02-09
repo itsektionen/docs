@@ -7,6 +7,7 @@ import { getSidebarTabs } from "fumadocs-ui/components/sidebar/tabs/index";
 import { source } from "@/lib/source";
 import IconedCard from "../iconedCard";
 import { DocsPage } from "fumadocs-ui/layouts/docs/page";
+import { Cards } from "fumadocs-ui/components/card";
 
 export default function NotFound() {
   const pathname = usePathname();
@@ -52,7 +53,7 @@ export default function NotFound() {
         </div>
         <hr />
         <div>
-          <div className="grid grid-cols-2 gap-3 @container">
+          <Cards>
             {tabs.map((x) => {
               return (
                 <IconedCard
@@ -64,8 +65,8 @@ export default function NotFound() {
                   {x.description}
                 </IconedCard>
               );
-            })}{" "}
-          </div>
+            })}
+          </Cards>
         </div>
       </div>
     </DocsPage>

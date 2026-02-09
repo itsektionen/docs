@@ -2,7 +2,7 @@
 
 import { usePathname } from "fumadocs-core/framework";
 import { useOnChange } from "fumadocs-core/utils/use-on-change";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getLocationInfo, getMapping } from "./pathnameMapper";
 
 function getLengthOfMatchingStart(a: string, b: string) {
