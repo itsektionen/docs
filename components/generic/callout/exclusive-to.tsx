@@ -69,7 +69,6 @@ const exclusivityTypes: {
 export default function ExclusiveTo({
   children,
   exclusiveTo,
-  ...props
 }: {
   children: ReactNode;
   exclusiveTo: ExclusiveToLocations;
