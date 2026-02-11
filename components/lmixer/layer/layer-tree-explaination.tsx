@@ -1,5 +1,5 @@
-import TreeGrid from "./tree/TreeGrid";
-import { TreeGridNode } from "./tree/treeGridType";
+import TreeGrid from "./tree/tree-grid";
+import { TreeGridNode } from "./tree/tree-grid-type";
 
 export default function LayerTreeExplaination(properties: {
   [key: string]: string;

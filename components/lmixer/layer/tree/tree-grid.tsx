@@ -1,6 +1,6 @@
-import { TreeGridNode, TreeGridNodeConnector } from "./treeGridType";
+import { TreeGridNode, TreeGridNodeConnector } from "./tree-grid-type";
 import styles from "./lmixer.tree.module.css";
-import TreeNode from "./TreeNode";
+import TreeNode from "./tree-node";
 import { Fragment } from "react/jsx-runtime";
 
 export default function TreeGrid(tree: TreeGridNode, isChild: boolean) {

@@ -1,4 +1,4 @@
-import { TreeGridNode, TreeGridNodeConnector } from "./tree/treeGridType";
+import { TreeGridNode, TreeGridNodeConnector } from "./tree/tree-grid-type";
 
 export type LayerConfigOutput = {
     to: string,
