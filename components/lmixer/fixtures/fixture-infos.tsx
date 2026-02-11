@@ -1,9 +1,9 @@
 import { Heading } from "fumadocs-ui/components/heading";
-import { FixtureConfig, FixtureSchema } from "./fixtureConfigSchema";
-import * as fixtureConfigUnknown from "./kistanFixtures.json";
+import { FixtureConfig, FixtureSchema } from "./fixture-config-schema";
+import * as fixtureConfigUnknown from "./kistan-fixtures.json";
 import { Fragment } from "react/jsx-runtime";
-import ModelDescriptionToText from "./FixtureDescriptions";
-import { FixtureTypeAccordion } from "./FixtureType";
+import ModelDescriptionToText from "./fixture-descriptions";
+import { FixtureTypeAccordion } from "./fixture-type";
 const fixtureConfig = fixtureConfigUnknown as FixtureConfig;
 export default function FixtureInfos() {
   return (

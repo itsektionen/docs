@@ -1,8 +1,8 @@
 import { Fragment } from "react/jsx-runtime";
-import { LayerConfig, LayerToTree } from "./layerConfigSchema";
-import * as lmixerLayersUnknown from "./lmixerLayers.json";
+import { LayerConfig, LayerToTree } from "./layer-config-schema";
+import * as lmixerLayersUnknown from "./lmixer-layers.json";
 import { Heading } from "fumadocs-ui/components/heading";
-import TreeGrid from "./tree/TreeGrid";
+import TreeGrid from "./tree/tree-grid";
 const lmixerLayers = lmixerLayersUnknown as LayerConfig;
 
 const trees = lmixerLayers.layers.map((layer) => LayerToTree(layer));

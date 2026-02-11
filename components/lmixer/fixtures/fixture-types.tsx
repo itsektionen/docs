@@ -1,6 +1,6 @@
-import { FixtureConfig } from "./fixtureConfigSchema";
-import FixtureType from "./FixtureType";
-import * as fixtureConfigUnknown from "./kistanFixtures.json";
+import { FixtureConfig } from "./fixture-config-schema";
+import FixtureType from "./fixture-type";
+import * as fixtureConfigUnknown from "./kistan-fixtures.json";
 const fixtureConfig = fixtureConfigUnknown as FixtureConfig;
 export default function FixtureTypes() {
   return (

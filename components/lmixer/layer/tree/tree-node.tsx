@@ -1,4 +1,4 @@
-import { TreeGridNode, TreeGridNodeConnector } from "./treeGridType";
+import { TreeGridNode, TreeGridNodeConnector } from "./tree-grid-type";
 import styles from "./lmixer.tree.module.css";
 import { cn } from "@/lib/cn";
 

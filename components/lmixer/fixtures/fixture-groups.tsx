@@ -1,6 +1,6 @@
 import { Fragment } from "react/jsx-runtime";
-import { FixtureConfig, FixtureGroupSchema } from "./fixtureConfigSchema";
-import * as fixtureConfigUnknown from "./kistanFixtures.json";
+import { FixtureConfig, FixtureGroupSchema } from "./fixture-config-schema";
+import * as fixtureConfigUnknown from "./kistan-fixtures.json";
 import { Heading } from "fumadocs-ui/components/heading";
 const fixtureConfig = fixtureConfigUnknown as FixtureConfig;
 export default function FixtureGroups() {

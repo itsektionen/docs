@@ -4,12 +4,12 @@ import {
   FixtureChannelSchema,
   FixtureConfig,
   FixtureTypeSchema,
-} from "./fixtureConfigSchema";
+} from "./fixture-config-schema";
 import styles from "./lmixer.fixture.module.css";
 import { Fragment } from "react/jsx-runtime";
-import ModelDescriptionToText from "./FixtureDescriptions";
+import ModelDescriptionToText from "./fixture-descriptions";
 import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
-import * as fixtureConfigUnknown from "./kistanFixtures.json";
+import * as fixtureConfigUnknown from "./kistan-fixtures.json";
 const fixtureConfig = fixtureConfigUnknown as FixtureConfig;
 
 export default function FixtureType(
