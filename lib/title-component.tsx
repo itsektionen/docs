@@ -3,7 +3,7 @@
 import { usePathname } from "fumadocs-core/framework";
 import { useOnChange } from "fumadocs-core/utils/use-on-change";
 import { useEffect, useState } from "react";
-import { getLocationInfo, getMapping } from "./pathnameMapper";
+import { getLocationInfo, getMapping } from "./pathname-mapper";
 
 function getLengthOfMatchingStart(a: string, b: string) {
   let minLength = Math.min(a.length, b.length);

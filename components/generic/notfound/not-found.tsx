@@ -1,11 +1,11 @@
 "use client";
-import { getLocationInfo, getMapping } from "@/lib/pathnameMapper";
+import { getLocationInfo, getMapping } from "@/lib/pathname-mapper";
 import { usePathname } from "fumadocs-core/framework";
 import SiMoN from "./images/SiMoN.svg";
 import Image from "next/image";
 import { getSidebarTabs } from "fumadocs-ui/components/sidebar/tabs/index";
 import { source } from "@/lib/source";
-import IconedCard from "../iconedCard";
+import IconedCard from "../iconed-card";
 import { DocsPage } from "fumadocs-ui/layouts/docs/page";
 import { Cards } from "fumadocs-ui/components/card";
 
