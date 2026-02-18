@@ -24,7 +24,7 @@ function TreeChildren(
 ) {
   return (
     <>
-      <div></div>
+      <div/>
       {children.map((child, childIndex) => {
         return TreeChild(tree, child, childIndex, isChild);
       })}
