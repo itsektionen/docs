@@ -21,7 +21,7 @@ export default function ModelDescriptionToText(
 
       {descriptionModel.model && descriptionModel.description && <br></br>}
 
-      {descriptionModel.description && descriptionModel.description}
+      {descriptionModel.description}
 
       {(descriptionModel.model || descriptionModel.description) &&
         settings.addNewLinesAtEnd && (
