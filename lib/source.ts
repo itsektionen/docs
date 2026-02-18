@@ -1,7 +1,7 @@
 import { docs } from 'fumadocs-mdx:collections/server';
 import { type InferPageType, loader } from 'fumadocs-core/source';
 import { lucideIconsPlugin } from 'fumadocs-core/source/lucide-icons';
-import { iconResolver } from "./custom-icons"
+import { iconResolver } from "./custom-icons";
 
 // See https://fumadocs.dev/docs/headless/source-api for more info
 export const source = loader({
