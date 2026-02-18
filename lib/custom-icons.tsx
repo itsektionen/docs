@@ -14,12 +14,17 @@ export const iconResolver = function (icon: string | undefined): ReactNode {
 
   if (icon in customIcons) {
     return (
-      <Image
-        src={customIcons[icon as keyof typeof customIcons].src}
-        alt=""
-        width={24}
-        height={24}
-      />
+      <svg width={24} height={24} xmlns="http://www.w3.org/2000/svg">
+        <foreignObject width="100%" height="100%">
+          <Image
+            src={customIcons[icon as keyof typeof customIcons].src}
+            alt=""
+            width={24}
+            height={24}
+            style={{ width: "100%", height: "100%" }}
+          />
+        </foreignObject>
+      </svg>
     );
   }
 
