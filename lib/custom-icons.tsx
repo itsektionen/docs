@@ -1,6 +1,6 @@
 import { icons } from "lucide-react";
 import { createElement, ReactNode } from "react";
-import * as LMixer from "content/icons/lmixer.png";
+import LMixer from "content/icons/lmixer.svg";
 import Image from "next/image";
 
 const customIcons = {
@@ -12,16 +12,14 @@ export const iconResolver = function (icon: string | undefined): ReactNode {
     return;
   }
 
-  const iconSize = 24;
-
   if (icon in customIcons) {
     return (
       <Image
-        width={iconSize}
-        height={iconSize}
-        src={customIcons[icon as keyof typeof customIcons].default.src}
+        src={customIcons[icon as keyof typeof customIcons].src}
         alt=""
-      ></Image>
+        width={24}
+        height={24}
+      />
     );
   }
 
