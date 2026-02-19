@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { cn } from "@fumadocs/ui/cn";
+import { cn } from "@/lib/cn";
 import styles from "./generic.callout.exclusiveTo.module.css";
 
 /*
@@ -78,7 +78,7 @@ export default function ExclusiveTo({
     <div
       className={cn(
         "my-4 rounded-xl border bg-fd-card p-1 text-fd-card-foreground shadow-md",
-        styles[exclusiveInfo.contentClass],
+        styles[exclusiveInfo.contentClass]
       )}
     >
       <div className="border-(--callout-color)/50 border-2 border-soild rounded-md p-2 my-0">

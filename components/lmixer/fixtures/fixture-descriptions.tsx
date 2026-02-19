@@ -6,7 +6,7 @@ export default function ModelDescriptionToText(
   descriptionModel: IDescriptionModel,
   settings?: {
     addNewLinesAtEnd?: boolean;
-  },
+  }
 ) {
   settings = settings ?? {};
 
@@ -19,15 +19,15 @@ export default function ModelDescriptionToText(
         </>
       )}
 
-      {descriptionModel.model && descriptionModel.description && <br/>}
+      {descriptionModel.model && descriptionModel.description && <br />}
 
       {descriptionModel.description}
 
       {(descriptionModel.model || descriptionModel.description) &&
         settings.addNewLinesAtEnd && (
           <>
-            <br/>
-            <br/>
+            <br />
+            <br />
           </>
         )}
     </>

@@ -17,7 +17,7 @@ export default function IconedCard({ icon, title, ...props }: CardProps) {
       className={cn(
         "block rounded-xl border bg-fd-card p-4 text-fd-card-foreground transition-colors @max-lg:col-span-full",
         props.href && "hover:bg-fd-accent/80",
-        props.className,
+        props.className
       )}
     >
       <div

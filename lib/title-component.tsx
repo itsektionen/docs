@@ -20,7 +20,7 @@ export default function TitleComponent() {
   const mapping = getMapping(pathname);
 
   const [targetDocTitle, setTargetDocTitle] = useState(
-    getLocationInfo(mapping).title,
+    getLocationInfo(mapping).title
   );
   const [docTitle, setDocTitle] = useState(getLocationInfo(mapping).title);
 
@@ -58,7 +58,7 @@ export default function TitleComponent() {
       () => {
         setDocTitle(newDocName);
       },
-      Math.max(40 / remainingSteps, 4),
+      Math.max(40 / remainingSteps, 4)
     );
 
     return () => {

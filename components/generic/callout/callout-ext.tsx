@@ -1,4 +1,4 @@
-import { CalloutDescription } from "fumadocs-ui/components/callout";
+import { Callout, CalloutDescription } from "fumadocs-ui/components/callout";
 import {
   BookText,
   CircleCheck,
@@ -12,7 +12,7 @@ import {
   TriangleAlert,
 } from "lucide-react";
 import { ReactNode } from "react";
-import { cn } from "@fumadocs/ui/cn";
+import { cn } from "@/lib/cn";
 import styles from "./generic.callout.calloutExt.module.css";
 
 /*
@@ -122,13 +122,12 @@ export default function CalloutExt({
   if (calloutType == undefined) {
     throw new Error("Invalid Callout Type: " + type);
   }
-
   return (
     <div
       className={cn(
         "flex gap-2 my-4 rounded-xl border bg-fd-card p-3 ps-1 text-sm text-fd-card-foreground shadow-md",
         styles["calloutext-base-style"],
-        styles[calloutType.className],
+        styles[calloutType.className]
       )}
       {...props}
     >

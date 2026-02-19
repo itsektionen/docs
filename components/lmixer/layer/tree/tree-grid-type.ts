@@ -1,17 +1,17 @@
 export type TreeGridNodeContent = {
-    text: string
-}
+  text: string;
+};
 
-export type TreeNodeTypes = "big" | "header" | "combine" | "dot"
+export type TreeNodeTypes = "big" | "header" | "combine" | "dot";
 
 export type TreeGridNodeConnector = {
-    sideInput?: TreeGridNode,
-    nodeType?: TreeNodeTypes,
-    content?: TreeGridNodeContent
-}
+  sideInput?: TreeGridNode;
+  nodeType?: TreeNodeTypes;
+  content?: TreeGridNodeContent;
+};
 export type TreeGridNode = {
-    content: TreeGridNodeContent,
-    nodeType: TreeNodeTypes,
-    children?: TreeGridNodeConnector[],
-    endOfChain?: boolean
-}
+  content: TreeGridNodeContent;
+  nodeType: TreeNodeTypes;
+  children?: TreeGridNodeConnector[];
+  endOfChain?: boolean;
+};

@@ -2,7 +2,6 @@
 title: Kistan Specific Addons
 ---
 
-
 **_Location:_** `kistan_specific`
 
 These are a group of addons that only apply to things
@@ -22,7 +21,7 @@ Arguments:
 
 | name     | description                                           |
 | -------- | ----------------------------------------------------- |
-| shader   | See [shaders](./addon_suite/effects#shader)      |
+| shader   | See [shaders](./addon_suite/effects#shader)           |
 | duration | How long to run this shader (ms), `nil` if indefinite |
 
 The fragment shader gets the following parameters:
@@ -59,7 +58,7 @@ Things for the "Kistan sign"
 
 | name     | description                                           |
 | -------- | ----------------------------------------------------- |
-| shader   | See [shaders](./addon_suite/effects#shader)      |
+| shader   | See [shaders](./addon_suite/effects#shader)           |
 | duration | How long to run this shader (ms), `nil` if indefinite |
 
 The fragment shader gets the following parameters:
@@ -74,11 +73,11 @@ The fragment shader gets the following parameters:
 
 Creates a spiral shader for the sign. Only argument is settings
 
-| name          | type                                         | description                                   |
-| ------------- | -------------------------------------------- | --------------------------------------------- |
-| width         | number                                       | The width of the spiral                       |
-| invert        | boolean?                                     | Inverts                                       |
-| falloff_power | number                                       | The power of the falloff of the spiral        |
+| name          | type                                    | description                                   |
+| ------------- | --------------------------------------- | --------------------------------------------- |
+| width         | number                                  | The width of the spiral                       |
+| invert        | boolean?                                | Inverts                                       |
+| falloff_power | number                                  | The power of the falloff of the spiral        |
 | color         | [RGBColor](./addon_suite/util#rgbcolor) | The color of the spiral, defaults to 0x010101 |
 
 The fragment shader gets the following parameters:
@@ -117,8 +116,8 @@ sign_dim:add(0, sign_shader(sign_spiral({
 ```
 
 <CalloutExt type="note">
-The sign's coordinates are very spaced out. While on the roof it is 1unit/pixel, on the sign
-it is significantly larger.
+  The sign's coordinates are very spaced out. While on the roof it is
+  1unit/pixel, on the sign it is significantly larger.
 </CalloutExt>
 ### `sign_heartbeat`
 
@@ -126,26 +125,27 @@ Make the "heartbeat shaped A" pulse.
 
 Settings:
 
-| name         | type                                         | description                                         |
-| ------------ | -------------------------------------------- | --------------------------------------------------- |
-| width        | number?                                      | The width of the entire pulse, must > 0             |
-| dimIn        | number?                                      | The width of the dim in part. dimIn+dimOut \<= width |
-| dimOut       | number?                                      | The width of the dim out part dimIn+dimOut \<= width |
-| color        | [RGBColor](./addon_suite/util#rgbcolor) | The color of the pulse                              |
-| backColor    | [RGBColor](./addon_suite/util#rgbcolor) | The color of the background, defaults to 0x000000   |
-| speed        | number?                                      | The speed of the pulse                              |
-| easePowerIn  | number?                                      | The exponent of the fading in part                  |
-| easePowerOut | number?                                      | The exponent of the fading out part                 |
+| name         | type                                    | description                                          |
+| ------------ | --------------------------------------- | ---------------------------------------------------- |
+| width        | number?                                 | The width of the entire pulse, must > 0              |
+| dimIn        | number?                                 | The width of the dim in part. dimIn+dimOut \<= width |
+| dimOut       | number?                                 | The width of the dim out part dimIn+dimOut \<= width |
+| color        | [RGBColor](./addon_suite/util#rgbcolor) | The color of the pulse                               |
+| backColor    | [RGBColor](./addon_suite/util#rgbcolor) | The color of the background, defaults to 0x000000    |
+| speed        | number?                                 | The speed of the pulse                               |
+| easePowerIn  | number?                                 | The exponent of the fading in part                   |
+| easePowerOut | number?                                 | The exponent of the fading out part                  |
 
-***Example:*** Make the A pulse white
+**_Example:_** Make the A pulse white
+
 ```lua
 sign:add(speed*4.5, sign_heartbeat({
-    color = {255, 255, 255}, 
-    width = 2500, 
-    speed = 0.5, 
-    dimIn = 100, 
-    dimOut = 2300, 
-    easePowerIn = 10, 
+    color = {255, 255, 255},
+    width = 2500,
+    speed = 0.5,
+    dimIn = 100,
+    dimOut = 2300,
+    easePowerIn = 10,
     easePowerOut = 40}))
 ```
 
@@ -157,12 +157,12 @@ sign:add(speed*4.5, sign_heartbeat({
 
 Makes multiple
 
-| name       | type                                         | description                                       |
-| ---------- | -------------------------------------------- | ------------------------------------------------- |
-| blockWidth | number?                                      | The width of one block                            |
+| name       | type                                    | description                                       |
+| ---------- | --------------------------------------- | ------------------------------------------------- |
+| blockWidth | number?                                 | The width of one block                            |
 | colors     | [RGBColor](./addon_suite/util#rgbcolor) | Array of colors for each block.                   |
-| stepTime   | number?                                      | The time in ms between each move                  |
-| stepSize   | number?                                      | The number of pixels to move each step            |
-| duration   | number?                                      | The time to show this effect                      |
-| flip       | boolean?                                     | Mirror the effect                                 |
-| flipPerRow | boolean?                                     | Alternates mirrored and non-mirrored for each row |
+| stepTime   | number?                                 | The time in ms between each move                  |
+| stepSize   | number?                                 | The number of pixels to move each step            |
+| duration   | number?                                 | The time to show this effect                      |
+| flip       | boolean?                                | Mirror the effect                                 |
+| flipPerRow | boolean?                                | Alternates mirrored and non-mirrored for each row |

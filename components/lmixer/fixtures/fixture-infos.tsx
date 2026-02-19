@@ -54,7 +54,7 @@ function FixtureList(fixtureInfo: FixtureSchema) {
       <tbody>
         {Object.entries(fixtureInfo.fixtureChannels).map(
           ([fixtureKey, fixtureChannel]) =>
-            FixtureListRow(fixtureChannel, fixtureKey, numberOfChannels),
+            FixtureListRow(fixtureChannel, fixtureKey, numberOfChannels)
         )}
       </tbody>
     </table>
@@ -64,7 +64,7 @@ function FixtureList(fixtureInfo: FixtureSchema) {
 function FixtureListRow(
   fixtureChannel: number,
   fixtureKey: string,
-  numberOfChannels: number,
+  numberOfChannels: number
 ) {
   let channelRange = "";
   if (numberOfChannels == 1) {

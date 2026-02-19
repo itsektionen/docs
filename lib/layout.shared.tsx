@@ -4,7 +4,7 @@ import TitleComponent from "./title-component";
 export function baseOptions(): BaseLayoutProps {
   return {
     nav: {
-      title: <TitleComponent/>,
+      title: <TitleComponent />,
     },
   };
 }

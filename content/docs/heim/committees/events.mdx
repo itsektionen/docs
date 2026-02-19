@@ -4,7 +4,8 @@ icon: Calendar
 ---
 
 <CalloutExt type="important">
-Make sure that the events you fetch are open for everyone. We do **not** want to show internal events on the website.
+  Make sure that the events you fetch are open for everyone. We do **not** want
+  to show internal events on the website.
 </CalloutExt>
 
 In order to automatically add your committee's events to the event calendar
@@ -37,7 +38,9 @@ export interface MyCommitteeEvent {
   endDate: string;
 }
 
-export const mapMyCommitteeEvent = (event: MyCommitteeEvent): CalendarEvent => ({
+export const mapMyCommitteeEvent = (
+  event: MyCommitteeEvent
+): CalendarEvent => ({
   id: "my-committee-" + event.id, // add a unique identifier to ensure uniqueness of the id's
   title: event.heading,
   description: event.content,
@@ -57,11 +60,13 @@ const listMyCommitteeEvents = async (): Promise<CalendarEvent[]> => {
     .map(mapMyCommitteeEvent)
     .sort(
       (a, b) =>
-        b.start.getTime() - a.start.getTime() || b.title.localeCompare(a.title),
+        b.start.getTime() - a.start.getTime() || b.title.localeCompare(a.title)
     );
 };
 
-const getMyCommitteeEvent = async (id: number): Promise<CalendarEvent | null> => {
+const getMyCommitteeEvent = async (
+  id: number
+): Promise<CalendarEvent | null> => {
   const res = await fetch(`${env.MY_COMMITTEE_BASE_URL}/api/events/${id}`);
   const data: MyCommitteeEvent[] = await res.json();
 
@@ -75,7 +80,7 @@ Now, add your fetcher functions to the general purpose ones:
 
 ```ts title="lib/committees/events.ts"
 export const getCommitteeEvent = async (
-  id: string,
+  id: string
 ): Promise<CalendarEvent | null> => {
   const slug = id.split("-")[0] as CommitteeSlug;
   switch (slug) {
@@ -89,7 +94,7 @@ export const getCommitteeEvent = async (
 };
 
 export const listCommitteeEvents = async (
-  slug: CommitteeSlug,
+  slug: CommitteeSlug
 ): Promise<CalendarEvent[] | null> => {
   switch (slug) {
     case "my-committee":

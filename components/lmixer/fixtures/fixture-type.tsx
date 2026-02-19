@@ -15,7 +15,7 @@ const fixtureConfig = fixtureConfigUnknown as FixtureConfig;
 export default function FixtureType(
   fixtureType: FixtureTypeSchema,
   fixtureTypeId: string,
-  isDropdown?: boolean,
+  isDropdown?: boolean
 ) {
   isDropdown = isDropdown ?? false;
   return (
@@ -55,7 +55,7 @@ function FixtureTypeTable(fixtureType: FixtureTypeSchema) {
       </thead>
       <tbody>
         {Object.entries(fixtureType.channels).map(([channelID, channelInfo]) =>
-          FixtureChannelRow(channelID, channelInfo),
+          FixtureChannelRow(channelID, channelInfo)
         )}
       </tbody>
     </table>
@@ -64,7 +64,7 @@ function FixtureTypeTable(fixtureType: FixtureTypeSchema) {
 
 function FixtureChannelRow(
   channelID: string,
-  channelInfo: FixtureChannelSchema,
+  channelInfo: FixtureChannelSchema
 ) {
   return (
     <tr key={channelID}>
@@ -92,7 +92,7 @@ function RangeFunctionedChannel(channelInfo: FixtureChannelSchema) {
 
 function ChannelFunctionBlock(
   rangedFunction: ChannelRangedFunction,
-  index: number,
+  index: number
 ) {
   let range = "";
   if (rangedFunction.min == rangedFunction.max) {
