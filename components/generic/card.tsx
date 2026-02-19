@@ -8,7 +8,7 @@ Modified version of Fumadocs' <Card/> Component
 
 */
 
-export default function IconedCard({ icon, title, ...props }: CardProps) {
+export default function Card({ icon, title, ...props }: CardProps) {
   const OuterElement = props.href ? Link : "div";
   return (
     <OuterElement

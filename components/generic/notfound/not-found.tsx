@@ -5,7 +5,7 @@ import SiMoN from "./images/SiMoN.svg";
 import Image from "next/image";
 import { getSidebarTabs } from "fumadocs-ui/components/sidebar/tabs/index";
 import { source } from "@/lib/source";
-import IconedCard from "../iconed-card";
+import Card from "../card";
 import { DocsPage } from "fumadocs-ui/layouts/docs/page";
 import { Cards } from "fumadocs-ui/components/card";
 
@@ -56,14 +56,14 @@ export default function NotFound() {
           <Cards>
             {tabs.map((x) => {
               return (
-                <IconedCard
+                <Card
                   key={x.url}
                   href={x.url}
                   icon={x.icon}
                   title={x.title}
                 >
                   {x.description}
-                </IconedCard>
+                </Card>
               );
             })}
           </Cards>
