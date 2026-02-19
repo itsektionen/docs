@@ -45,7 +45,7 @@ export function getMapping(pathName: string): DocLocations {
     const mapping = docMappings.find((mapping) => {
         return pathName.startsWith("/docs/" + mapping.matchString + "/");
     });
-    if (mapping == undefined) {
+    if (mapping === undefined) {
         return DocLocations.Default;
     }
     return mapping.location;
