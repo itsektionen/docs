@@ -20,11 +20,11 @@ export default function TreeGrid(tree: TreeGridNode, isChild: boolean) {
 function TreeChildren(
   tree: TreeGridNode,
   children: TreeGridNodeConnector[],
-  isChild: boolean,
+  isChild: boolean
 ) {
   return (
     <>
-      <div/>
+      <div />
       {children.map((child, childIndex) => {
         return TreeChild(tree, child, childIndex, isChild);
       })}
@@ -36,7 +36,7 @@ function TreeChild(
   tree: TreeGridNode,
   child: TreeGridNodeConnector,
   childIndex: number,
-  isParentAChild: boolean,
+  isParentAChild: boolean
 ) {
   let verticalLineClass = styles.connectorVerticalLine;
   if (isParentAChild || childIndex != (tree.children?.length ?? 0) - 1) {

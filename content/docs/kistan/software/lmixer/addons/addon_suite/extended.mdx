@@ -1,6 +1,7 @@
 ---
 title: Addon Suite Extensions
 ---
+
 **_Location:_** `addon_suite/extended`
 
 Various extensions to the default LMixer behavior.
@@ -60,7 +61,6 @@ Table type:
 dimmer = layerExt({ name = "dimmer", parent = master, op = mul, default = 1 })
 ```
 
-
 ### `alpha_data_layer`
 
 Alpha-data layers are layers with alpha support. The alpha blends between the layers below
@@ -80,7 +80,8 @@ Alpha-data layers inherit from `layerExt`, thus the information about `layerExt`
 | size   | Size   | No       | How many bytes is this layer                                                                                            |
 
 <CalloutExt type="note">
-size and default value are not applicable since theses are set by alpha_data_layer
+  size and default value are not applicable since theses are set by
+  alpha_data_layer
 </CalloutExt>
 **Example:** Create a new alpha-data layer on master
 
@@ -107,8 +108,8 @@ For [execute](./../../scripting#execute), [run](./../../scripting#run), [start](
 [play](./../../scripting#play), and [stop_play](./../../scripting#stop_play), since
 they do not effect the data anyway, they are executed exactly like normal,
 regardless of the alpha.
-</CalloutExt>
 
+</CalloutExt>
 
 ### `<alpha-data-layer>.alpha`
 
@@ -127,9 +128,10 @@ jingle.alpha:add(4000, set(lamp1, 1, 1, 1, 0))
 ```
 
 <CalloutExt type="tip">
-In this case, direct alpha access makes sense, however, in general taking control of the entire
-fixture is desired, for this [take_control_of_fixture](#take-control-of-fixture) and
-[release_control_of_fixture](#release-control-of-fixture) should be used.
+  In this case, direct alpha access makes sense, however, in general taking
+  control of the entire fixture is desired, for this
+  [take_control_of_fixture](#take-control-of-fixture) and
+  [release_control_of_fixture](#release-control-of-fixture) should be used.
 </CalloutExt>
 ### `take_control_of_fixture`
 
@@ -149,11 +151,12 @@ jingle:add(0, take_control_of_fixture(lamps, 1000))
 <CalloutExt type="important">
 Remember to [release the control of the fixture](#release-control-of-fixture),
 otherwise, when another script is ran, the fixture will still be controlled,
-by the layer. 
+by the layer.
 
 (This can sometimes be desired however, see
 [Alpha-data layer scripting](mixing#alpha-data-layer-scripting) for an
 example of multi-script layer control)
+
 </CalloutExt>
 ### `release_control_of_fixture`
 
@@ -171,7 +174,7 @@ jingle:add(3000, release_control_of_fixture(lamps, 1000))
 ```
 
 <CalloutExt type="note">
-The "take control" and "release control" terminology can be slightly confusing
-when it comes to priority. The priority is **_always_** whatever is latest in
-the layer order (the order that layers are added as children).
+  The "take control" and "release control" terminology can be slightly confusing
+  when it comes to priority. The priority is **_always_** whatever is latest in
+  the layer order (the order that layers are added as children).
 </CalloutExt>

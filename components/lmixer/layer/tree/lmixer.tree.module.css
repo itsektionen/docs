@@ -1,156 +1,156 @@
 @charset "UTF-8";
 
 .dotNode {
-    background-color: var(--tree-node-bg);
-    border: solid 2px var(--tree-node-border);
-    border-radius: 0.5em;
+  background-color: var(--tree-node-bg);
+  border: solid 2px var(--tree-node-border);
+  border-radius: 0.5em;
 
-    width: 0.4em;
-    height: 0.4em;
+  width: 0.4em;
+  height: 0.4em;
 
-    text-align: center;
+  text-align: center;
 }
 
 .bigNode {
-    background-color: var(--tree-node-bg);
-    border: solid 2px var(--tree-node-border);
-    border-radius: 0.5em;
+  background-color: var(--tree-node-bg);
+  border: solid 2px var(--tree-node-border);
+  border-radius: 0.5em;
 
-    padding: var(--node-padding);
-    min-width: 10ch;
-    width: fit-content;
+  padding: var(--node-padding);
+  min-width: 10ch;
+  width: fit-content;
 
-    text-align: center;
+  text-align: center;
 }
 
 .topNode {
-    justify-self: center;
+  justify-self: center;
 }
 
 .connectorNode {
-    background-color: var(--tree-node-bg);
-    border: solid 2px var(--tree-node-border);
+  background-color: var(--tree-node-bg);
+  border: solid 2px var(--tree-node-border);
 
-    padding: var(--node-padding);
+  padding: var(--node-padding);
 
-    text-align: center;
+  text-align: center;
 }
 
-
 .layerTreeWrapper {
-    display: flex;
+  display: flex;
 
-    background-color: var(--tree-bg);
-    border: solid 2px var(--tree-border);
-    border-radius: 0.5em;
+  background-color: var(--tree-bg);
+  border: solid 2px var(--tree-border);
+  border-radius: 0.5em;
 
-    padding: 1em;
-    margin: 1em;
+  padding: 1em;
+  margin: 1em;
 
-    justify-content: center;
+  justify-content: center;
 
-    overflow-x: auto;
+  overflow-x: auto;
 
-    overflow-y: visible;
-    padding-block: 4em;
+  overflow-y: visible;
+  padding-block: 4em;
 }
 
 @media (max-width: 1000px) {
-    .layerTreeWrapper {
-        font-size: 0.8rem;
-    }
+  .layerTreeWrapper {
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 800px) {
-    .layerTreeWrapper {
-        font-size: 0.6rem;
-    }
+  .layerTreeWrapper {
+    font-size: 0.6rem;
+  }
 }
 
 .treeDown {
-    --row-gap: 1em;
-    --column-gap: 0.5em;
-    --node-padding: 1em;
-    --connector-node-height: 4em;
-    --connector-line-width: 2px;
+  --row-gap: 1em;
+  --column-gap: 0.5em;
+  --node-padding: 1em;
+  --connector-node-height: 4em;
+  --connector-line-width: 2px;
 
-    display: grid;
-    grid-template-columns: auto auto;
+  display: grid;
+  grid-template-columns: auto auto;
 
-    row-gap: var(--row-gap);
-    column-gap: var(--column-gap);
+  row-gap: var(--row-gap);
+  column-gap: var(--column-gap);
 
-    justify-content: left;
-    max-width: 100%;
-    z-index: 2;
+  justify-content: left;
+  max-width: 100%;
+  z-index: 2;
 }
 
 .mergeConnectorGrid {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: auto var(--connector-node-height);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: auto var(--connector-node-height);
 }
 
 .mergeConnectorNode {
-    grid-column: 2;
-    grid-row: 2;
+  grid-column: 2;
+  grid-row: 2;
 
-    justify-self: center;
-    align-content: center;
+  justify-self: center;
+  align-content: center;
 
-    text-align: center;
+  text-align: center;
 }
 
 .connectorVerticalLine {
-    background-color: var(--tree-node-border);
-    width: var(--connector-line-width);
+  background-color: var(--tree-node-border);
+  width: var(--connector-line-width);
 
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: center;
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
 
-    margin-top: calc(0px - var(--row-gap));
-    margin-bottom: calc(0px - var(--connector-node-height) / 2);
-    z-index: -1;
+  margin-top: calc(0px - var(--row-gap));
+  margin-bottom: calc(0px - var(--connector-node-height) / 2);
+  z-index: -1;
 }
 
 .connectorVerticalLineThroughAll {
-    margin-bottom: calc(0px - var(--connector-node-height));
+  margin-bottom: calc(0px - var(--connector-node-height));
 }
 
 .connectorHorizontalLineRight {
-    background-color: var(--tree-node-border);
-    height: var(--connector-line-width);
+  background-color: var(--tree-node-border);
+  height: var(--connector-line-width);
 
-    grid-column: 3;
-    grid-row: 2;
-    align-self: center;
+  grid-column: 3;
+  grid-row: 2;
+  align-self: center;
 
-    margin-right: calc(0px - var(--column-gap));
+  margin-right: calc(0px - var(--column-gap));
 }
 
 .outputBox {
-    background-color: var(--tree-node-bg);
-    border: solid 2px var(--tree-node-border);
-    padding-inline: 1em;
-    align-content: center;
-    text-align: center;
-    height: var(--connector-node-height);
-    grid-column: 2;
-    grid-row: 2;
-    border-radius: 2em;
-    align-self: flex-end;
-    justify-self: center;
-
+  background-color: var(--tree-node-bg);
+  border: solid 2px var(--tree-node-border);
+  padding-inline: 1em;
+  align-content: center;
+  text-align: center;
+  height: var(--connector-node-height);
+  grid-column: 2;
+  grid-row: 2;
+  border-radius: 2em;
+  align-self: flex-end;
+  justify-self: center;
 }
 
 .edgeConnectorRouter {
-    border: solid var(--connector-line-width) var(--tree-node-border);
-    margin-top: calc(0px - var(--row-gap));
-    border-left: none;
-    border-top: none;
-    height: 2em;
-    border-bottom-right-radius: 0.5em;
-    margin-right: calc(50% - var(--connector-line-width) / 2);
-    margin-bottom: calc((var(--connector-node-height) - var(--connector-line-width))/2);
+  border: solid var(--connector-line-width) var(--tree-node-border);
+  margin-top: calc(0px - var(--row-gap));
+  border-left: none;
+  border-top: none;
+  height: 2em;
+  border-bottom-right-radius: 0.5em;
+  margin-right: calc(50% - var(--connector-line-width) / 2);
+  margin-bottom: calc(
+    (var(--connector-node-height) - var(--connector-line-width)) / 2
+  );
 }

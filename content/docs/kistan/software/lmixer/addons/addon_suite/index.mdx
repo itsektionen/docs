@@ -12,13 +12,13 @@ to change.
 
 ## Types
 
-***Location:*** `addon_suite/types`
+**_Location:_** `addon_suite/types`
 
 Only contains some type definitions.
 
 ## Core
 
-***Location:*** `addon_suite/core`
+**_Location:_** `addon_suite/core`
 
 The most "essential" parts to have.
 
@@ -28,43 +28,50 @@ This is a table that can be used by any addon to store data in without polluting
 name space.
 
 ### `LMixerError`
+
 Prints a error message to mqtt, which thus gets displayed on the LMixer UI. Useful for debugging.
 
 | Name          | Optional | Description       |
-|---------------|----------|-------------------|
+| ------------- | -------- | ----------------- |
 | Error message | No       | The error message |
 
-***Example:*** Prints `Error: This is a test message` to mqtt.
+**_Example:_** Prints `Error: This is a test message` to mqtt.
+
 ```lua
 LMixerError("This is a test message");
 ```
 
 <CalloutExt type="note">
-Only one error message can be displayed on the UI at once, if multiple Error are made, only the latest is displayed.
+  Only one error message can be displayed on the UI at once, if multiple Error
+  are made, only the latest is displayed.
 </CalloutExt>
 
 ### `LMixerPrint`
+
 Prints a message to mqtt, which thus gets displayed on the LMixer UI. Useful for debugging.
 
 | Name          | Optional | Description          |
-|---------------|----------|----------------------|
+| ------------- | -------- | -------------------- |
 | Print message | No       | The message to print |
 
-***Example:*** Prints `Info: Testing` to mqtt.
+**_Example:_** Prints `Info: Testing` to mqtt.
+
 ```lua
 LMixerPrint("Testing");
 ```
 
 <CalloutExt type="note">
-Only one message can be displayed on the UI at once, if multiple messages are made, only the latest is displayed.
+  Only one message can be displayed on the UI at once, if multiple messages are
+  made, only the latest is displayed.
 </CalloutExt>
 <CalloutExt type="details">
-This is actually just adds a error message to the mqtt, however, using the appropriate function is recommended
-since if it is later updated, it will be correct.
+  This is actually just adds a error message to the mqtt, however, using the
+  appropriate function is recommended since if it is later updated, it will be
+  correct.
 </CalloutExt>
 ## Complete Suite
 
-***Location:*** `addon_suite/completeSuite`
+**_Location:_** `addon_suite/completeSuite`
 
 Adds [core](#core), [effects](./effects), and [extended](./extended.md) as
 dependencies.

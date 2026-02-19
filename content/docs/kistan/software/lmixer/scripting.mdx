@@ -33,7 +33,6 @@ is 1.
 dimmer = layer(master, mul, 512, 1)
 ```
 
-
 <ExclusiveTo exclusiveTo="LMixerAddonSuiteExtensions">
 
 ### `layerExt`
@@ -97,7 +96,9 @@ Open a UDP port and bind data messages on that port to an existing layer.
 additional_data = layer(nil, add, 512)
 input(1234, additional_data)
 ```
+
 ---
+
 ## Fixture keywords
 
 ### `fix`
@@ -139,7 +140,7 @@ See [fixExt](./addons/addon_suite/extended#fixext) for details.
 Create several fixtures in a series and add them to a group.
 
 | Name   | Optional | Description                                                                             |
-|--------|----------|-----------------------------------------------------------------------------------------|
+| ------ | -------- | --------------------------------------------------------------------------------------- |
 | Count  | No       | How many fixtures to create                                                             |
 | Offset | No       | The offset from dmx channel 1, the first fixture's channel is `(Offset - 1) * Size + 1` |
 | Size   | No       | How many bytes does each fixture have                                                   |
@@ -285,6 +286,7 @@ will not be placed on the timeline. [start](#start) bypasses this and starts it
 anyway.
 
 If this stopping is desired run `Scripts.script_name:unstop()` beforehand.
+
 </CalloutExt>
 
 | Name | Optional | Description                                     |
@@ -298,11 +300,10 @@ run("rainbow")
 ```
 
 <CalloutExt type="danger">
-If not careful one might cause stacking of script if the run command is issued
-before the last effect of the previous run. This causes an infinite loop of
-scripts starting on top of each other until something crashes.
+  If not careful one might cause stacking of script if the run command is issued
+  before the last effect of the previous run. This causes an infinite loop of
+  scripts starting on top of each other until something crashes.
 </CalloutExt>
-
 
 ### `start`
 
@@ -345,6 +346,7 @@ Stop playback of all sound files. No parameters.
 ```lua
 stop_play()
 ```
+
 </ExclusiveTo>
 
 <ExclusiveTo exclusiveTo="LMixerAddonSuite">
@@ -412,6 +414,7 @@ See [`drinks_moving_blocks` in Kistan_specific Addons](./addons/kistan_specific#
 </ExclusiveTo>
 
 ---
+
 ## Script keywords
 
 Scripts are accessed from `Scripts.` in the global scope.
@@ -424,31 +427,38 @@ scripts start in the global scope.
 Runs a script, this is synchronous and will be executed instantly.
 
 **Example:** Start rainbow instantly
+
 ```lua
 Scripts.rainbow:start()
 ```
 
 ### `<script>:stop`
+
 Stops a script, this only affects [run](#run)
 
 **Example:** Stops rainbow
+
 ```lua
 Scripts.rainbow:stop()
 ```
 
 ### `<script>:unstop`
+
 Unstops a script, this allows [run](#run) to execute this script again
 
 **Example:** Unstops rainbow
+
 ```lua
 Scripts.rainbow:unstop()
 ```
 
 ### `<script>:is_stopped()`
+
 Checks if a script has been stopped, useful for having multiple script
 
 **Example:** Checks if rainbow is stopped, and stops rainbow_roof if
 that is the case
+
 ```lua
 if (Scripts.rainbow:is_stopped()) then
     Scripts.rainbow_roof:stop()

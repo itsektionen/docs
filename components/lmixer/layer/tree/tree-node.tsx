@@ -4,7 +4,7 @@ import { cn } from "@/lib/cn";
 
 export default function TreeNode(
   node: TreeGridNode | TreeGridNodeConnector,
-  isTopNode?: boolean,
+  isTopNode?: boolean
 ) {
   let nodeData: TreeNodeData = {
     node: node,
@@ -60,7 +60,7 @@ function CombineNode(nodeData: TreeNodeData) {
     <div
       className={cn(
         styles.connectorNode,
-        nodeData.isTopNode ? styles.topNode : "",
+        nodeData.isTopNode ? styles.topNode : ""
       )}
     >
       {nodeData.node.content?.text}

@@ -1,48 +1,47 @@
 .calloutext-base-style {
-
-    --callout-color: var(--callout-ext-color, var(--color-fd-muted))
+  --callout-color: var(--callout-ext-color, var(--color-fd-muted));
 }
 
 .calloutext-info {
-    --callout-ext-color: var(--color-fd-info);
+  --callout-ext-color: var(--color-fd-info);
 }
 
 .calloutext-warn {
-    --callout-ext-color: var(--color-fd-warning);
+  --callout-ext-color: var(--color-fd-warning);
 }
 
 .calloutext-error {
-    --callout-ext-color: var(--color-fd-error);
+  --callout-ext-color: var(--color-fd-error);
 }
 
 .calloutext-success {
-    --callout-ext-color: var(--color-fd-success);
+  --callout-ext-color: var(--color-fd-success);
 }
 
 .calloutext-idea {
-    --callout-ext-color: var(--color-fd-idea);
+  --callout-ext-color: var(--color-fd-idea);
 }
 
 .calloutext-note {
-    --callout-ext-color: #5953b1;
+  --callout-ext-color: #5953b1;
 }
 
 .calloutext-tip {
-    --callout-ext-color: #63b952;
+  --callout-ext-color: #63b952;
 }
 
-.calloutext-danger{
-    --callout-ext-color: #eb1d1d;
+.calloutext-danger {
+  --callout-ext-color: #eb1d1d;
 }
 
 .calloutext-important {
-    --callout-ext-color: #8e51ca;
+  --callout-ext-color: #8e51ca;
 }
 
 .calloutext-details {
-    --callout-ext-color: #867474;
+  --callout-ext-color: #867474;
 }
 
 .calloutext-deprecated {
-    --callout-ext-color: #bba66d;
+  --callout-ext-color: #bba66d;
 }

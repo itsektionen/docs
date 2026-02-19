@@ -7,9 +7,10 @@ However for more complex addons, it is recommended to
 work locally, and publish to the MQTT server.
 
 When publishing, simply publish to the [addons topic](./../technical/mqtt_topics#light-mixer-addons).
+
 <CalloutExt type="warn">
-Make sure to have the **retain** flag set when publishing
-to make your addons persistent.
+  Make sure to have the **retain** flag set when publishing to make your addons
+  persistent.
 </CalloutExt>
 ## Splitting up across files
 
@@ -31,13 +32,16 @@ Addons are loaded before any other script, including Fixtures, Layers, and Extra
 however addons are loaded _after_ the internal LMixer code.
 
 The initialization process for addons is the following:
+
 1. Load all dependencies (skipping dependencies that already are loaded)
 2. Execute self as .lua code
 
 <CalloutExt type="warn">
-Cyclic dependency loops lead to weird initialization orders, and should be avoided if possible.
+  Cyclic dependency loops lead to weird initialization orders, and should be
+  avoided if possible.
 </CalloutExt>
 
 <CalloutExt type="details" title="Technical details">
-`Active Addons` is internally treated as an addon, which is why --#DEPENDENCY is used there.
+  `Active Addons` is internally treated as an addon, which is why --#DEPENDENCY
+  is used there.
 </CalloutExt>
