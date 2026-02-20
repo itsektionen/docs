@@ -20,6 +20,6 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     DrawAllLayers: DrawAllLayers,
     ExclusiveTo: ExclusiveTo,
     CalloutExt: CalloutExt,
-    Card: Card
+    Card: Card,
   };
 }
