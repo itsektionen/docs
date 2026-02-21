@@ -7,6 +7,7 @@ import LayerTreeExplaination from "./components/lmixer/layer/layer-tree-explaina
 import DrawAllLayers from "./components/lmixer/layer/draw-all-layers";
 import ExclusiveTo from "./components/generic/callout/exclusive-to";
 import CalloutExt from "./components/generic/callout/callout-ext";
+import Icon from "./components/generic/icon";
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -19,5 +20,6 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     DrawAllLayers: DrawAllLayers,
     ExclusiveTo: ExclusiveTo,
     CalloutExt: CalloutExt,
+    Icon: Icon,
   };
 }
