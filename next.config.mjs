@@ -4,6 +4,7 @@ const withMDX = createMDX();
 
 /** @type {import('next').NextConfig} */
 const config = {
+  output: "export",
   reactStrictMode: true,
   async rewrites() {
     return [
@@ -14,8 +15,9 @@ const config = {
     ];
   },
   images: {
+    unoptimized: true,
     remotePatterns: [
-      new URL("https://raw.githubusercontent.com/insektionen/**"),
+      new URL("https://raw.githubusercontent.com/itsektionen/**"),
     ],
   },
 };
