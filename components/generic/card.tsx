@@ -12,41 +12,43 @@ Modified version of Fumadocs' <Card/> Component
 export enum CardType {
   baseUI = "base-ui",
   iconSlash = "icon-slash",
+  noInternalStyling = "styleless"
 }
 
-export type CardProps = FumaCard.CardProps & {
-  type?: CardType;
+type CardPropsGeneric = FumaCard.CardProps & {
+  title?: ReactNode;
+  type?: Exclude<CardType, CardType.noInternalStyling>;
 };
 
-export default function Card({
-  icon,
-  title,
-  description,
-  type,
-  ...props
-}: CardProps) {
-  // If no Icon is provided, use the Fumadocs card
-  let cardType = type;
-  if (cardType === undefined && icon === undefined) {
-    cardType = CardType.baseUI;
+
+type CardPropsNoStyling = Omit<Omit<CardPropsGeneric, "title">, "type"> & {
+  type: CardType.noInternalStyling;
+};
+
+export type CardProps = CardPropsGeneric | CardPropsNoStyling
+
+export default function Card(props: CardProps) {
+  switch (props.type) {
+    default:
+    case CardType.baseUI:
+      return FumaCard.Card(props);
+    case CardType.iconSlash:
+      return CardIconSlash(props);
+    case CardType.noInternalStyling:
+      return <OuterElement href={props.href} className={props.className} {...props}>{props.children}</OuterElement>
   }
+}
 
-  cardType ??= CardType.iconSlash;
+function CardIconSlash(props: CardPropsGeneric) {
+  return <OuterElement href={props.href} className={props.className} {...props}>
+    <IconGrid>
+      <IconSlash icon={props.icon} />
+      <Content title={props.title} description={props.description}>
+        {props.children}
+      </Content>
+    </IconGrid>
+  </OuterElement>
 
-  if (cardType === CardType.baseUI) {
-    return FumaCard.Card({ icon, title, description, ...props });
-  }
-
-  return (
-    <OuterElement href={props.href} className={props.className} {...props}>
-      <IconGrid>
-        <IconSlash icon={icon} />
-        <Content title={title} description={description}>
-          {props.children}
-        </Content>
-      </IconGrid>
-    </OuterElement>
-  );
 }
 
 function OuterElement({
@@ -54,7 +56,7 @@ function OuterElement({
   className,
   children,
   ...props
-}: { href?: string } & HTMLAttributes<HTMLElement>) {
+}: { href?: string } & Omit<CardProps, "title">) {
   const OuterElement = href ? Link : "div";
   return (
     <OuterElement
@@ -103,7 +105,7 @@ function Content({
   description,
   children,
 }: {
-  title: ReactNode;
+  title?: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
 }) {
