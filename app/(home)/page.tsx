@@ -1,4 +1,4 @@
-import Card, { CardType } from "@/components/generic/card";
+import Card, { CardType, EmptyCard } from "@/components/generic/card";
 import { source } from "@/lib/source";
 import { Cards } from "fumadocs-ui/components/card";
 import { getSidebarTabs } from "fumadocs-ui/components/sidebar/tabs/index";
@@ -31,14 +31,13 @@ function DocsTitle() {
 }
 
 function StartReadingButton() {
-  return <Card
-    href="/docs"
-    type={CardType.noInternalStyling}>
+  return <EmptyCard
+    href="/docs">
     <div className="grid grid-cols-[24px_auto_24px] w-full items-center">
       <span className="text-lg col-start-2 col-end-2">Start reading</span>
       <ArrowRight className="col-start-3 col-end-3"></ArrowRight>
     </div>
-  </Card>
+  </EmptyCard>
 }
 
 function PageShortcuts() {
