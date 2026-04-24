@@ -38,18 +38,18 @@ export default function Card({
   }
 
   return (
-    <OuterElement href={props.href} className={props.className} {...props}>
+    <EmptyCard href={props.href} className={props.className} {...props}>
       <IconGrid>
         <IconSlash icon={icon} />
         <Content title={title} description={description}>
           {props.children}
         </Content>
       </IconGrid>
-    </OuterElement>
+    </EmptyCard>
   );
 }
 
-function OuterElement({
+export function EmptyCard({
   href,
   className,
   children,
