@@ -1,52 +1,53 @@
 export enum DocLocations {
-  Default,
-  Kistan,
-  Init,
+    Default,
+    Kistan,
+    Init,
 }
 
 const docMappings: { matchString: string; location: DocLocations }[] = [
-  { matchString: "kistan", location: DocLocations.Kistan },
-  { matchString: "heim", location: DocLocations.Init },
-  { matchString: "slinky", location: DocLocations.Init },
+    { matchString: "kistan", location: DocLocations.Kistan },
+    { matchString: "lmixer", location: DocLocations.Kistan },
+    { matchString: "heim", location: DocLocations.Init },
+    { matchString: "slinky", location: DocLocations.Init },
 ];
 
 export type LocationInfo = {
-  title: string;
-  notFoundImage?: {
-    imageName: string;
-    imageAlt: string;
-  };
+    title: string;
+    notFoundImage?: {
+        imageName: string;
+        imageAlt: string;
+    };
 };
 
 const locationInfos: {
-  [key in DocLocations]: LocationInfo;
+    [key in DocLocations]: LocationInfo;
 } = {
-  [DocLocations.Default]: {
-    title: "it/docs",
-  },
-  [DocLocations.Kistan]: {
-    title: "kistan/docs",
-    notFoundImage: {
-      imageName: "SiMoN",
-      imageAlt: "SiMoN",
+    [DocLocations.Default]: {
+        title: "it/docs",
     },
-  },
-  [DocLocations.Init]: {
-    title: "init/docs",
-  },
+    [DocLocations.Kistan]: {
+        title: "kistan/docs",
+        notFoundImage: {
+            imageName: "SiMoN",
+            imageAlt: "SiMoN",
+        },
+    },
+    [DocLocations.Init]: {
+        title: "init/docs",
+    },
 };
 
 export function getMapping(pathName: string): DocLocations {
-  pathName = pathName + "/";
-  const mapping = docMappings.find((mapping) => {
-    return pathName.startsWith("/docs/" + mapping.matchString + "/");
-  });
-  if (mapping === undefined) {
-    return DocLocations.Default;
-  }
-  return mapping.location;
+    pathName = pathName + "/";
+    const mapping = docMappings.find((mapping) => {
+        return pathName.startsWith("/docs/" + mapping.matchString + "/");
+    });
+    if (mapping === undefined) {
+        return DocLocations.Default;
+    }
+    return mapping.location;
 }
 
 export function getLocationInfo(location: DocLocations): LocationInfo {
-  return locationInfos[location];
+    return locationInfos[location];
 }
