@@ -1,8 +1,8 @@
 {
   "title": "Kistan 2.0",
-  "description": "Docs for our locale",
+  "description": "Docs for the chapter locale",
   "root": true,
-  "icon": "Hammer",
+  "icon": "House",
   "pages": [
     "---Introduction---",
     "index",
