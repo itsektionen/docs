@@ -5,9 +5,9 @@ export enum DocLocations {
 }
 
 const docMappings: { matchString: string; location: DocLocations }[] = [
-  { matchString: "kistan", location: DocLocations.Kistan },
-  { matchString: "heim", location: DocLocations.Init },
-  { matchString: "slinky", location: DocLocations.Init },
+  { matchString: "locale", location: DocLocations.Kistan },
+  { matchString: "software/heim", location: DocLocations.Init },
+  { matchString: "software/slinky", location: DocLocations.Init },
 ];
 
 export type LocationInfo = {
