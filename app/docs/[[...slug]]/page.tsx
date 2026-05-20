@@ -11,6 +11,7 @@ import type { Metadata } from "next";
 import { createRelativeLink } from "fumadocs-ui/mdx";
 import { LLMCopyButton, ViewOptions } from "@/components/ai/page-actions";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
+import ContactFooter, { type Contacts } from "@/lib/contact-footer";
 
 export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
   const params = await props.params;
@@ -47,10 +48,11 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
           components={getMDXComponents({
             // this allows you to link to other pages with relative file paths
             a: createRelativeLink(source, page),
-            img: ImageZoom
+            img: ImageZoom,
           })}
         />
       </DocsBody>
+      <ContactFooter contacts={GetContacts(params.slug)} />
     </DocsPage>
   );
 }
@@ -73,4 +75,21 @@ export async function generateMetadata(
       images: getPageImage(page).url,
     },
   };
+}
+
+function GetContacts(slug: string[] | undefined): Contacts {
+  if (slug == undefined || slug.length == 0) {
+    return undefined;
+  }
+
+  const page = source.getPage(slug);
+  if (!page) {
+    return undefined;
+  }
+
+  if (page.data.contacts) {
+    return page.data.contacts;
+  }
+
+  return GetContacts(slug?.slice(0, -1));
 }
