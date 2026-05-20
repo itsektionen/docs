@@ -1,10 +1,30 @@
 import { z } from "zod";
-const ContactSchema = z.object({
-  name: z.string(),
-  role: z.string().optional(),
-  email: z.email().optional(),
-  url: z.url().optional(),
-});
+const ContactSchema = z
+  .object({
+    name: z.string(),
+    role: z.string().optional(),
+    email: z.email().optional(),
+    url: z.url().optional(),
+  })
+  .refine(
+    (x) => {
+      EnsureMutuallyExclusive(x, ["email", "url"]);
+    },
+    {
+      error: "URL and email are mutually exclusive properties",
+    }
+  );
+
+function EnsureMutuallyExclusive(x: { [key: string]: any }, keys: string[]) {
+  let keyCount = 0;
+  for (let i = 0; i < keys.length; i++) {
+    if (x[keys[i]] != undefined) {
+      keyCount++;
+    }
+  }
+  return keyCount <= 1;
+}
+
 export const ContactsSchema = z.array(ContactSchema).optional();
 
 export type Contacts = z.infer<typeof ContactsSchema>;
@@ -28,12 +48,6 @@ export default function ContactFooter(params: { contacts: Contacts }) {
 }
 
 function Contact(contact: Contact, index: number) {
-  const contents = (
-    <>
-      {contact.name} {contact.role && <> - {contact.role}</>}
-    </>
-  );
-
   let contactLink: string | undefined = undefined;
   if (contact.email) {
     contactLink = "mailto:" + contact.email;
@@ -47,18 +61,19 @@ function Contact(contact: Contact, index: number) {
     textContainer = (
       <a
         href={contactLink}
-        className="underline underline-offset-3.5 decoration-fd-primary hover:opacity-80"
+        className="block underline underline-offset-3.5 decoration-fd-primary hover:opacity-80"
       >
-        {contents}
+        {contact.name}
       </a>
     );
   } else {
-    textContainer = <span>{contents}</span>;
+    textContainer = <span className="block">{contact.name}</span>;
   }
 
   return (
     <li className="block m-1" key={index}>
-      {textContainer}
+      {textContainer}{" "}
+      {contact.role && <div className="opacity-70 block">{contact.role}</div>}
     </li>
   );
 }
