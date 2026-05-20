@@ -11,6 +11,7 @@ import type { Metadata } from "next";
 import { createRelativeLink } from "fumadocs-ui/mdx";
 import { LLMCopyButton, ViewOptions } from "@/components/ai/page-actions";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
+import Time from "@/components/generic/time";
 
 export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
   const params = await props.params;
@@ -41,13 +42,18 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
           // update it to match your repo
           githubUrl={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/content/docs/${page.path}`}
         />
+        {page.data.lastModified && (
+          <div className="ml-auto text-sm text-fd-muted-foreground">
+            Last updated: <Time time={page.data.lastModified} />
+          </div>
+        )}
       </div>
       <DocsBody>
         <MDX
           components={getMDXComponents({
             // this allows you to link to other pages with relative file paths
             a: createRelativeLink(source, page),
-            img: ImageZoom
+            img: ImageZoom,
           })}
         />
       </DocsBody>
