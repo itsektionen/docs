@@ -35,15 +35,16 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
       <DocsDescription className="mb-0">
         {page.data.description}
       </DocsDescription>
-      <div className="flex flex-row gap-2 items-center border-b pb-6">
+      <div className="flex flex-row gap-2 items-center border-b pb-6 flex-wrap">
         <LLMCopyButton markdownUrl={`${page.url}.mdx`} />
         <ViewOptions
           markdownUrl={`${page.url}.mdx`}
           // update it to match your repo
           githubUrl={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/content/docs/${page.path}`}
         />
+        <div className="grow"></div>
         {page.data.lastModified && (
-          <div className="ml-auto text-sm text-fd-muted-foreground">
+          <div className="shrink-0 text-sm text-fd-muted-foreground">
             Last updated: <Time time={page.data.lastModified} />
           </div>
         )}
