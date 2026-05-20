@@ -2,5 +2,5 @@
   "title": "Infrastructure",
   "description": "Docs for the chapter's digital infrastructure",
   "root": true,
-  "icon": "Server"
+  "icon": "ServerCog"
 }
