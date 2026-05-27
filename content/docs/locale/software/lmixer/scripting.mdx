@@ -280,7 +280,7 @@ Start a script by name. Normally this is used to repeat the current script by
 starting it again after some time. Can also be used to split common effects into
 separate script and then combining them.
 
-<CalloutExt type="note">
+<CalloutExt type="info">
 When running a script from another script and it has been previously stopped, it
 will not be placed on the timeline. [start](#start) bypasses this and starts it
 anyway.
@@ -299,7 +299,7 @@ If this stopping is desired run `Scripts.script_name:unstop()` beforehand.
 run("rainbow")
 ```
 
-<CalloutExt type="danger">
+<CalloutExt type="warning">
   If not careful one might cause stacking of script if the run command is issued
   before the last effect of the previous run. This causes an infinite loop of
   scripts starting on top of each other until something crashes.
@@ -419,7 +419,7 @@ See [`drinks_moving_blocks` in Kistan_specific Addons](./addons/kistan_specific#
 
 Scripts are accessed from `Scripts.` in the global scope.
 
-<CalloutExt type="note" title="Compatibility mode">
+<CalloutExt type="info" title="Compatibility mode">
 If `builtin/compatibility/MakeScriptNamesGlobalScope` is added as an addon,
 scripts start in the global scope.
 </CalloutExt>

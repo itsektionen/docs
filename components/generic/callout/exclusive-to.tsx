@@ -66,6 +66,9 @@ const exclusivityTypes: {
   },
 };
 
+/**
+ * @deprecated This component will be removed in favor of the more general callout component
+ */
 export default function ExclusiveTo({
   children,
   exclusiveTo,
