@@ -1,0 +1,79 @@
+---
+title: How to format the document
+icon: Album
+description: A quick guide to formatting
+---
+
+## Markdown
+
+This is a quick overview of markdown
+
+To make headers you use hashtags. A main header is `##`. Sub headers are obtained by using more hashtags.
+
+````mdx
+## I am a big header
+### I am a smaller header
+#### I am a tiny header
+
+I am not a header, i am normal text
+
+_I am italic_
+**I am bold**
+**_I am both italic and bold_**
+[I am a link](https://kth.it)
+
+
+- I am part of a list
+- Me too!
+
+1. I am also part of a list
+2. but with numbers!
+
+> I am quoting you
+```
+this is a code block
+```
+````
+
+If you want more information, you can look into [Fumadocs' markdown page](https://www.fumadocs.dev/docs/markdown)
+
+<CalloutExt type="warn">
+While the system allows for a single `#`, we do not use it. The only time to use it would be to split up a document into multiple parts.
+But for that multiple pages should used instead.
+</CalloutExt>
+
+### Custom Components
+
+Components lets you do some awesome things.
+
+## Frontmatter
+
+The frontmatter defines the meta information about the page
+```mdx
+---
+title: Here goes the title of the file
+icon: Album
+description: This is the description; keep it brief
+---
+```
+The title and description are both text that describe the contents. The icon is a bit trickier for that you need to consult Lucide
+
+### Lucide
+
+The icons we use are from Lucide, you can see the list [here](https://lucide.dev/icons/)
+
+Search for an icon you like, but if you try to add the name you will likely be disappointed. This is because you need to write it in PascalCase.
+
+Lets take `fish-off` as an example. The rule is simple:
+1. Make every word start with a capital letter, so `Fish-Off`
+2. Remove all dashes: `FishOff`
+
+That is name you should use.
+
+### Custom Icons
+
+If you are very fancy, you can add custom Icons. To do that, export the icon as an SVG and place it under `content/icons`.
+
+Next, add the icon to `lib/custom-icons.tsx`.
+1. Import the icon `import YourIconNameHere from "content/icons/yourIconNameHere.svg";`
+2. Add it to the list under `customIcons`: `YourIconNameHere: YourIconNameHere,`
