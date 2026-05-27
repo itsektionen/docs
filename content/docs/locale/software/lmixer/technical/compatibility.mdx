@@ -29,11 +29,11 @@ It makes scripts exists in the global scope again.
 
 ### `light_mixer/code/+` removal
 
-The [MQTT topics](./mqtt_topics) `light_mixer/code/+` were removed and replaced
+The [MQTT topics](./mqtt-topics) `light_mixer/code/+` were removed and replaced
 with multiple, more specific. The old system has all of these execute the published
 code directly, however in practice `light_mixer/code/run` is the main one used.
 
-`light_mixer/code/run` [tries to translate](./mqtt_topics#light-mixer-code-run)
-the code to support the move to `Scripts.`. The [start](./mqtt_topics#light-mixer-code-startscript)
-and [stop](./mqtt_topics#light-mixer-code-stopScript) topics exists as a bridge;
+`light_mixer/code/run` [tries to translate](./mqtt-topics#light-mixer-code-run)
+the code to support the move to `Scripts.`. The [start](./mqtt-topics#light-mixer-code-startscript)
+and [stop](./mqtt-topics#light-mixer-code-stopScript) topics exists as a bridge;
 they support both `Scripts.` and Global Scope, and switch their behavior to match.
