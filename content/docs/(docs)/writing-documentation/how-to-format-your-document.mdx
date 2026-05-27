@@ -54,19 +54,18 @@ icon: Squirrel
 description: A brief description of the page, displayed right under the title.
 ---
 ```
-The title and description are both text that describe the contents. The icon is a bit trickier for that you need to consult Lucide
+Try to keep both titles and descriptions short. Descriptions should preferably not be longer than a sentence.
 
-### Lucide
+Icons can be a bit tricky but do not need to exist for all pages, especially subpages.
 
-The icons we use are from Lucide, you can see the list [here](https://lucide.dev/icons/)
+### Lucide Icons
 
-Search for an icon you like, but if you try to add the name you will likely be disappointed. This is because you need to write it in PascalCase.
+Most of the icons we use are from Lucide, you can see the list [here](https://lucide.dev/icons/)
 
-Lets take `fish-off` as an example. The rule is simple:
-1. Make every word start with a capital letter, so `Fish-Off`
-2. Remove all dashes: `FishOff`
-
-That is name you should use.
+Icons are specified with their "component names", which are written in PascalCase.
+To get it, either manually rewrite the icon ID (**example:** icon id: `fish-off` to component name: `FishOff`)
+or click "Copy Component Name" under an icon on the website.
+You may need to navigate through a dropdown menu to find the button.
 
 If you are feeling extra fancy, and the situation is specific enough for it to be appropriate, you can add custom Icons.
 To do so, export the icon as an SVG and place it under `content/icons/`.
