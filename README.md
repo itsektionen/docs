@@ -1,6 +1,6 @@
 # it/docs
 
-[it/docs](https://docs.kth.it) is our documentation website for the IT-Chapter's systems and knowledge, built on [Fumadocs](https://www.fumadocs.dev/)!
+[it/docs](https://docs.kth.it) is the documentation website for the IT-Chapter's systems and knowledge, built on [Fumadocs](https://www.fumadocs.dev/)!
 
 If you want to know more, see [it/docs/introduction](https://docs.kth.it/docs).
 
