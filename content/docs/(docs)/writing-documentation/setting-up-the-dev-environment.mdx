@@ -5,19 +5,10 @@ description: Getting the documentation ready for you
 ---
 import { Step, Steps } from "fumadocs-ui/components/steps";
 
-If you are new to Git and/or Github, welcome! This should get you started.
+If you are new to Git and/or Github, welcome! This page should get you started.
 
 <CalloutExt type="info">
-Whenever something is written between double curly brackets (`{{` or `}}`), that means you should replace it with something else
-
-Example:
-```bash
-git branch docs/{{summary-of-plan}}
-```
-_Could_ be:
-```bash
-git branch docs/add-more-lmixer-examples
-```
+Whenever something is written between double curly brackets (`{{` or `}}`), that means you should replace the entire statement, including brackets.
 </CalloutExt>
 
 ## First time setup
@@ -25,99 +16,53 @@ git branch docs/add-more-lmixer-examples
 <Steps>
 <Step>
     ### Create a Github account
-    This will be needed for the later steps
+    You can register at: https://github.com/signup
 </Step>
 <Step>
-    ### Installing required software
-    [Git](https://git-scm.com/install/)
-    [NodeJS](https://nodejs.org/en/download)
+    ### Install the required software
+    - [Git](https://git-scm.com/install/)
+    - [NodeJS](https://nodejs.org/en/download)
 </Step>
 <Step>
-    ### Fork the Github Repo
-    A fork is your own copy of the code and documentation. You can make any changes you wish there.
-
-    To make a fork, either go to [https://github.com/itsektionen/docs](https://github.com/itsektionen/docs)
-    click on the button that says "Fork". Or just go to [this link](https://github.com/itsektionen/docs/fork) if you are lazy.
-
-    Name it something that is clear to you - for instance `it-docs`.
+    ### Fork the Github repository
+    To fork a repository means to create a personal copy to which you can make any changes you want without impacting anyone else.
+    You can fork the [documentation repository](https://github.com/itsektionen/docs) by either clicking the "Fork" button, or by [clicking here](https://github.com/itsektionen/docs/fork).
+    The name you give it does not matter, and is only for your own reference.
 </Step>
 <Step>
-    ### Get the code on your computer
-    Go to _your_ fork of the code in the browser and copy the url, should be similar to `https://github.com/{{your username}}/{{what you named the fork}}`.
+    ### Clone the fork
+    Get the url of the repository fork you just created via the "Code" button and then copying the url shown in the dropdown.
+    It should look something like: `https://github.com/username/reponame.git`.
 
-    Now, open up the terminal on your computer. Go to the path you want to store the code using 
-
-    {/*Yes, this is a windows file path. If you are using Linux you wont need guidance for this*/}
-    ```bash
-    cd {{C:/path/to/where/you/want/the/code}}
-    ```
-
-    and run:
-
-    ```bash
-    git clone https://github.com/{{your username}}/{{what you named the fork}}.git
-    ```
+    Then, open your computer's terminal at the path you want the code folder to be created.
+    On modern windows versions, you can navigate to where you want it placed in file explorer and right click and press "open in terminal".
+    If that option does not show, you can go there manually by opening your terminal and running:
     
-    You should now have a local copy of the code on your computer at `{{C:/path/to/where/you/want/the/code}}`!
 
-</Step>
-<Step>
-    Great! But before you start writing, lets quickly [create a new branch](#create-a-new-branch) first
 </Step>
 </Steps>
 
-## Create a new branch
+## Starting a new contribution
+Make sure that your terminal is at the same path as during the previous section.
 
 <Steps>
 <Step>
-    ### Use the terminal and navigate to the same path as above
-    ```bash
-    cd {{C:/path/to/where/you/want/the/code}}
-    ```
+    ### Making sure you are updated
+    If this is your first contribution, this step can be skipped.
+    
+    Make sure you are on the main branch, and that it is updated. 
+    The simplest way of doing this is through the github UI by clicking "sync fork" on your repository.
+    Alternatively, you can run:
+    
 
-    Note: Whenever something is said to be ran in the terminal, it should be ran at this path unless specified otherwise
-</Step>
-<Step>
-    ### Make sure you have the latest version of the code base:
-    In the terminal run:
-
-    ```bash
-    git switch main
-    ```
-    (this switches to branch "main")
-
-    ```bash
-    git pull upstream main
-    ```
-    (this puts the new code in main)
-
-</Step>
-<Step>
-    ### Creating the branch
-    In the terminal run:
-    `git branch {{name-of-new-branch}}`
-    If you are unsure what to name the branch, the standard we use is `docs/{{summary-of-plan}}`, for example `docs/add-more-lmixer-examples`
-
-    This creates a new branch from your current branch, that is why we started of from main.
-</Step>
-<Step>
-    ### Installing required things
-    In the terminal run:
-    `npm install`
-    it might take a bit to install, dont worry! Thats normal!
-</Step>
-</Steps>
-
-## Start the preview
-In the terminal run:
+## Actually contributing
+When all previous steps are done, you can finally start writing documentation!
+You probably want to see what your changes look like, to do so run:
 ```bash
 npm run dev
 ```
-This will take a good while to start sadly, multiple minutes.
+This will start the development server and show the URL in the terminal. Note, the first time you open up the webpage it will take a while to load, just give it a minute.
+Any changes you make in your editor will live update on the webpage.
 
-Once it is has started you can preview it at [localhost:3000](http://localhost:3000). Again, it will take a bit to load it the first time, just be patient.
-
-## Congratulations!
-This was the hardest part and you did it!
-You can now start [writing the documentation](./index.mdx#writing-the-documentation)!
+You can now at long last start [writing the documentation](./index.mdx#writing-the-documentation)!
 
