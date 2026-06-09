@@ -27,8 +27,8 @@ const colorVar = (key: string) => `var(--color-${key}, var(--color-fd-muted))`;
 const iconClass = "size-5 -me-0.5 stroke-(--callout-color) text-fd-card";
 
 const calloutTypes = {
-  info: {
-    title: "Info",
+  note: {
+    title: "Note",
     icon: <InfoIcon className={iconClass} />,
     color: colorVar("fd-info"),
   },
@@ -68,10 +68,10 @@ export type CalloutExtType = keyof typeof calloutTypes;
 export default function CalloutExt({
   children,
   title,
-  type: inputType = "info",
+  type: inputType = "note",
   icon,
   ...props
-}: Omit<CalloutContainerProps, "title"> & {
+}: Omit<CalloutContainerProps, "type" | "title"> & {
   type?: CalloutExtType;
   title?: ReactNode;
 }) {

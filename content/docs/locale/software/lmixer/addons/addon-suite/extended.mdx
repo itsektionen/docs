@@ -79,7 +79,7 @@ Alpha-data layers inherit from `layerExt`, thus the information about `layerExt`
 | parent | Parent | No       | Layer to do operation on, `nil` if this is the base layer                                                               |
 | size   | Size   | No       | How many bytes is this layer                                                                                            |
 
-<CalloutExt type="info">
+<CalloutExt type="note">
   size and default value are not applicable since theses are set by
   alpha_data_layer
 </CalloutExt>
@@ -98,7 +98,7 @@ because the alpha layer is processed first instead of last, causing the alpha to
 correctly on the children. This is unintended and usage is **_highly_** discouraged,
 as it is subject to change.
 </CalloutExt>
-<CalloutExt type="info">
+<CalloutExt type="note">
 Even if the alpha is zero, effects are still executed.
 
 For [set](./../../scripting#set) and [dim](./../../scripting#dim), the new data is
@@ -173,7 +173,7 @@ Sets the alpha of a fixture group to 0 over a transition time
 jingle:add(3000, release_control_of_fixture(lamps, 1000))
 ```
 
-<CalloutExt type="info">
+<CalloutExt type="note">
   The "take control" and "release control" terminology can be slightly confusing
   when it comes to priority. The priority is **_always_** whatever is latest in
   the layer order (the order that layers are added as children).
