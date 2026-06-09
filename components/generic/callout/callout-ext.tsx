@@ -3,18 +3,16 @@ import {
   CalloutDescription,
   CalloutTitle,
   type CalloutContainerProps,
-  type CalloutType,
 } from "fumadocs-ui/components/callout";
 import { ReactNode } from "react";
 import {
-  CircleCheck,
-  CircleX,
-  Hourglass,
-  Info,
-  Lightbulb,
-  Siren,
-  TriangleAlert,
-  Skull,
+  BookIcon,
+  HourglassIcon,
+  InfoIcon,
+  LightbulbIcon,
+  SirenIcon,
+  SkullIcon,
+  TriangleAlertIcon,
 } from "lucide-react";
 
 type CalloutConfig = {
@@ -28,68 +26,43 @@ const colorVar = (key: string) => `var(--color-${key}, var(--color-fd-muted))`;
 // we use stroked callout icons, while normal fumadocs uses filled icons
 const iconClass = "size-5 -me-0.5 stroke-(--callout-color) text-fd-card";
 
-// All the callout types available in the standard fumadocs component
-const calloutTypesFumadocs: CalloutMap<CalloutType> = {
+const calloutTypes = {
   info: {
     title: "Info",
-    icon: <Info className={iconClass}></Info>,
+    icon: <InfoIcon className={iconClass} />,
     color: colorVar("fd-info"),
   },
-  warn: {
-    title: "Warning",
-    icon: <TriangleAlert className={iconClass}></TriangleAlert>,
-    color: colorVar("fd-warning"),
-  },
-  warning: {
-    title: "Warning",
-    icon: <TriangleAlert className={iconClass}></TriangleAlert>,
-    color: colorVar("fd-warning"),
-  },
-  error: {
-    title: "Error",
-    icon: <CircleX className={iconClass}></CircleX>,
-    color: colorVar("fd-error"),
-  },
-  success: {
-    title: "Success",
-    icon: <CircleCheck className={iconClass}></CircleCheck>,
-    color: colorVar("fd-success"),
-  },
-  idea: {
-    title: "Idea",
-    icon: <Lightbulb className={iconClass} />,
-    color: colorVar("fd-idea"),
-  },
-};
-
-const calloutTypesCustom: CalloutMap = {
   tip: {
     title: "Tip",
-    icon: <Lightbulb className={iconClass} />,
-    color: colorVar("fd-idea"),
-  },
-  deprecated: {
-    title: "Deprecated",
-    icon: <Hourglass className={iconClass}></Hourglass>,
-    color: "#bba66d",
-  },
-
-  danger: {
-    title: "Danger",
-    icon: <Skull className={iconClass}></Skull>,
-    color: "#eb1d1d",
+    icon: <LightbulbIcon className={iconClass} />,
+    color: colorVar("fd-info"),
   },
   important: {
     title: "Important",
-    icon: <Siren className={iconClass}></Siren>,
-    color: "#8e51ca",
-  }
-};
-
-const calloutTypes: CalloutMap = {
-  ...calloutTypesFumadocs,
-  ...calloutTypesCustom,
-};
+    icon: <SirenIcon className={iconClass} />,
+    color: colorVar("fd-idea"),
+  },
+  warning: {
+    title: "Warning",
+    icon: <TriangleAlertIcon className={iconClass} />,
+    color: colorVar("fd-warning"),
+  },
+  danger: {
+    title: "Danger",
+    icon: <SkullIcon className={iconClass} />,
+    color: colorVar("fd-error"),
+  },
+  details: {
+    title: "Details",
+    icon: <BookIcon className={iconClass} />,
+    color: colorVar("fd-muted-foreground"),
+  },
+  deprecated: {
+    title: "Deprecated",
+    icon: <HourglassIcon className={iconClass} />,
+    color: "#bba66d",
+  },
+} as const satisfies CalloutMap;
 export type CalloutExtType = keyof typeof calloutTypes;
 
 export default function CalloutExt({
