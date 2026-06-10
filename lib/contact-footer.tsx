@@ -8,7 +8,7 @@ const ContactSchema = z
   })
   .refine(
     (x) => {
-      EnsureMutuallyExclusive(x, ["email", "url"]);
+      return EnsureMutuallyExclusive(x, ["email", "url"]);
     },
     {
       error: "URL and email are mutually exclusive properties",
