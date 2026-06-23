@@ -92,7 +92,7 @@ jingle = alpha_data_layer({ name="jingle", parent = master, size = 512})
 Alpha-data layers start with an alpha of 0, this needs to be changed for the layer to be visible,
 see [alpha-data-layer.alpha](#alpha-data-layer-alpha).
 
-<CalloutExt type="warn">
+<CalloutExt type="warning">
 Do not add child layers to an alpha-data-layer **_unless_** their operation is `mul`. This is
 because the alpha layer is processed first instead of last, causing the alpha to not apply
 correctly on the children. This is unintended and usage is **_highly_** discouraged,

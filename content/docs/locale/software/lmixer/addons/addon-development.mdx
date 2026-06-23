@@ -8,7 +8,7 @@ work locally, and publish to the MQTT server.
 
 When publishing, simply publish to the [addons topic](./../technical/mqtt-topics#light-mixer-addons).
 
-<CalloutExt type="warn">
+<CalloutExt type="warning">
   Make sure to have the **retain** flag set when publishing to make your addons
   persistent.
 </CalloutExt>
@@ -36,7 +36,7 @@ The initialization process for addons is the following:
 1. Load all dependencies (skipping dependencies that already are loaded)
 2. Execute self as .lua code
 
-<CalloutExt type="warn">
+<CalloutExt type="warning">
   Cyclic dependency loops lead to weird initialization orders, and should be
   avoided if possible.
 </CalloutExt>

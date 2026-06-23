@@ -10,7 +10,7 @@ These are topics which are executed as script. The order listed here is the
 standard execution order. Note however that (in most cases), publishing to
 any of these topics will reload it.
 
-<CalloutExt type="warn">
+<CalloutExt type="warning">
   Make sure to publish with the _retain_ flag _set_. If not, the script will
   revert upon restart.
 </CalloutExt>
@@ -30,7 +30,7 @@ subscribed to when listed as a dependency. This means that publishing to
 an addon that has _not_ been loaded during this session, will cause it
 to not get executed.
 
-<CalloutExt type="caution">
+<CalloutExt type="warning">
   Due to MQTT not providing a proper way of checking if a topic exists, LMixer
   will wait until something is published to the addon. This means if an addon is
   listed as a dependency, but cannot be found, LMixer will wait until it is
