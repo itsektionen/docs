@@ -1,0 +1,97 @@
+---
+title: Setting up the dev environment
+icon: GitFork
+description: Getting the documentation ready for you
+---
+
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+If you are new to Git and/or Github, welcome! This page should get you started.
+
+<CalloutExt type="info">
+Whenever something is written between double curly brackets (`{{` or `}}`), that means you should replace the entire statement, including brackets.
+</CalloutExt>
+
+## First time setup
+
+<Steps>
+<Step>
+    ### Create a Github account
+    You can register at: https://github.com/signup
+</Step>
+<Step>
+    ### Install the required software
+    - [Git](https://git-scm.com/install/)
+    - [NodeJS](https://nodejs.org/en/download)
+</Step>
+<Step>
+    ### Fork the Github repository
+    To fork a repository means to create a personal copy to which you can make any changes you want without impacting anyone else.
+    You can fork the [documentation repository](https://github.com/itsektionen/docs) by either clicking the "Fork" button, or by [clicking here](https://github.com/itsektionen/docs/fork).
+    The name you give it does not matter, and is only for your own reference.
+</Step>
+<Step>
+    ### Clone the fork
+    Get the url of the repository fork you just created via the "Code" button and then copying the url shown in the dropdown.
+    It should look something like: `https://github.com/username/reponame.git`.
+
+    Then, open your computer's terminal at the path you want the code folder to be created.
+    On modern windows versions, you can navigate to where you want it placed in file explorer and right click and press "open in terminal".
+    If that option does not show, you can go there manually by opening your terminal and running:
+
+</Step>
+</Steps>
+
+## Starting a new contribution
+
+Make sure that your terminal is at the same path as during the previous section.
+
+<Steps>
+<Step>
+    ### Making sure you are updated
+    If this is your first contribution, this step can be skipped.
+    
+    Make sure you are on the main branch, and that it is updated. 
+    The simplest way of doing this is through the github UI by clicking "sync fork" on your repository.
+    Alternatively, you can run:
+
+    ```bash
+    git switch main
+    git pull upstream main
+    ```
+
+</Step>
+<Step>
+    ### Make a new branch
+    To keep things clean, you will want to create a new branch to write your contributions to. 
+    To do so, run:
+
+    ```bash
+    git checkout -b docs/{branch name}
+    ```
+
+</Step>
+<Step>
+    ### Install required dependencies
+    In your terminal, run:
+
+    ```bash
+    npm install
+    ```
+
+</Step>
+</Steps>
+
+## Actually contributing
+
+When all previous steps are done, you can finally start writing documentation!
+You probably want to see what your changes look like, to do so run:
+
+```bash
+npm run dev
+```
+
+This will start the development server and show the URL in the terminal. Note, the first time you open up the webpage it will take a while to load, just give it a minute.
+Any changes you make in your editor will live update on the webpage.
+
+You can now at long last start [writing the documentation](./index.mdx#writing-the-documentation)!
