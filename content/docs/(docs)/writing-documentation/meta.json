@@ -1,9 +1,9 @@
 {
-    "pages": [
-        "setting-up-the-dev-environment",
-        "how-to-format-your-document",
-        "making-the-pull-request",
-        "!index",
-        "..."
-    ]
+  "pages": [
+    "setting-up-the-dev-environment",
+    "how-to-format-your-document",
+    "making-the-pull-request",
+    "!index",
+    "..."
+  ]
 }

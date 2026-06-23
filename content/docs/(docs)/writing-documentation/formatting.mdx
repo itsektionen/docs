@@ -15,7 +15,9 @@ of the largest (`#`) size. Prefer creating a new page rather than dividing a sin
 
 ````mdx
 ## I am a big header
+
 ### I am a smaller header
+
 #### I am a tiny header
 
 I am not a header, i am normal text
@@ -25,7 +27,6 @@ _I am italic_
 **_I am both italic and bold_**
 [I am a link](https://kth.it)
 
-
 - I am part of a list
 - Me too!
 
@@ -33,15 +34,17 @@ _I am italic_
 2. but with numbers!
 
 > I am quoting you
+
 ```
 this is a code block
 ```
 ````
 
-
 ## Frontmatter
+
 The frontmatter is a block of [YAML](https://yaml.org) placed at the top of the file.
 It defines meta information about the page, such as its title.
+
 ```mdx
 ---
 title: The displayed title of the page. Differs from the file name, which is used for the URL
@@ -49,6 +52,7 @@ icon: Squirrel
 description: A brief description of the page, displayed right under the title.
 ---
 ```
+
 Try to keep both titles and descriptions short. Descriptions should preferably not be longer than a sentence.
 
 Icons can be a bit tricky but do not need to exist for all pages, especially subpages.
@@ -66,5 +70,6 @@ If you are feeling extra fancy, and the situation is specific enough for it to b
 To do so, export the icon as an SVG and place it under `content/icons/`.
 
 Next, add the icon to `lib/custom-icons.tsx`.
+
 1. Import the icon `import YourIconNameHere from "content/icons/yourIconNameHere.svg";`
 2. Add it to the list under "customIcons": `YourIconNameHere: YourIconNameHere,`
