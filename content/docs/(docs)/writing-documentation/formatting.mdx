@@ -1,0 +1,70 @@
+---
+title: How to format the document
+icon: Album
+description: A quick guide to formatting
+---
+
+## Markdown
+
+This is a quick overview of the markdown format.
+For more extensive documentation, there are plenty of resources like [Markdown Guide](https://www.markdownguide.org/basic-syntax/) or [Fumadocs' markdown page](https://www.fumadocs.dev/docs/markdown).
+
+Headings are made using hash signs, with more signs correspond to smaller and smaller sub-headings.
+When writing for this documentation all headings start from `##`, since the page title itself is
+of the largest (`#`) size. Prefer creating a new page rather than dividing a single page into multiple parts using `#`.
+
+````mdx
+## I am a big header
+### I am a smaller header
+#### I am a tiny header
+
+I am not a header, i am normal text
+
+_I am italic_
+**I am bold**
+**_I am both italic and bold_**
+[I am a link](https://kth.it)
+
+
+- I am part of a list
+- Me too!
+
+1. I am also part of a list
+2. but with numbers!
+
+> I am quoting you
+```
+this is a code block
+```
+````
+
+
+## Frontmatter
+The frontmatter is a block of [YAML](https://yaml.org) placed at the top of the file.
+It defines meta information about the page, such as its title.
+```mdx
+---
+title: The displayed title of the page. Differs from the file name, which is used for the URL
+icon: Squirrel
+description: A brief description of the page, displayed right under the title.
+---
+```
+Try to keep both titles and descriptions short. Descriptions should preferably not be longer than a sentence.
+
+Icons can be a bit tricky but do not need to exist for all pages, especially subpages.
+
+### Lucide Icons
+
+Most of the icons we use are from Lucide, you can see the list [here](https://lucide.dev/icons/)
+
+Icons are specified with their "component names", which are written in PascalCase.
+To get it, either manually rewrite the icon ID (`fish-off` -> `FishOff`)
+or click "Copy Component Name" under an icon on the website.
+You may need to navigate through a dropdown menu to find the button.
+
+If you are feeling extra fancy, and the situation is specific enough for it to be appropriate, you can add custom Icons.
+To do so, export the icon as an SVG and place it under `content/icons/`.
+
+Next, add the icon to `lib/custom-icons.tsx`.
+1. Import the icon `import YourIconNameHere from "content/icons/yourIconNameHere.svg";`
+2. Add it to the list under "customIcons": `YourIconNameHere: YourIconNameHere,`
