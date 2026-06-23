@@ -1,45 +1,39 @@
-# docs
+# it/docs
 
-This is a Next.js application generated with
-[Create Fumadocs](https://github.com/fuma-nama/fumadocs).
+[it/docs](https://docs.kth.it) is the documentation website for the IT-Chapter's systems and knowledge, built on [Fumadocs](https://www.fumadocs.dev/)!
 
-Run development server:
+If you want to know more, see [it/docs/introduction](https://docs.kth.it/docs).
+
+## Development and building
+
+Clone the repo and using a node package manager of your choice install the packages:
+
+```bash
+npm install
+```
+
+To run in dev mode use:
 
 ```bash
 npm run dev
-# or
-pnpm dev
-# or
-yarn dev
 ```
 
-Open http://localhost:3000 with your browser to see the result.
+To build and see the static site:
 
-## Explore
+```bash
+npm run build && npm run serve
+```
 
-In the project, you can see:
+## Contributing
 
-- `lib/source.ts`: Code for content source adapter, [`loader()`](https://fumadocs.dev/docs/headless/source-api) provides the interface to access your content.
-- `lib/layout.shared.tsx`: Shared options for layouts, optional but preferred to keep.
+Contributions are welcome! If you want to add documentation see [Writing Documentation](https://docs.kth.it/docs/writing-documentation) for information on how to contribute.
 
-| Route                     | Description                                            |
-| ------------------------- | ------------------------------------------------------ |
-| `app/(home)`              | The route group for your landing page and other pages. |
-| `app/docs`                | The documentation layout and pages.                    |
-| `app/api/search/route.ts` | The Route Handler for search.                          |
+Code contributions are discussed in the [**init** discord forum post for the docs](https://discord.com/channels/1437949827597209774/1470404086716305578), if you are not in the server, please contact [the **init** mainframe](https://init.kth.it).
 
-### Fumadocs MDX
+Before contributing code, make sure to run both prettier and eslint:
 
-A `source.config.ts` config file has been included, you can customise different options like frontmatter schema.
+```bash
+npm run lint && npm run format:write
+```
 
-Read the [Introduction](https://fumadocs.dev/docs/mdx) for further details.
-
-## Learn More
-
-To learn more about Next.js and Fumadocs, take a look at the following
-resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Fumadocs](https://fumadocs.dev) - learn about Fumadocs
+If you are unsure about something, feel free to ask us!
