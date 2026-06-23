@@ -1,0 +1,61 @@
+---
+title: Making the pull request
+icon: GitPullRequest
+description: Getting your code back to use
+---
+
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+<Steps>
+<Step>
+    ## Commit your changes
+    When you have made some changes to your local copy (clone) of the docs, you can save the current state of the project by making a *commit*.
+    
+    First, add your changes to the git staging area with `git add`, and then bundle these changes in a commit with `git commit`. You may find it more convenient to this through your editor, but otherwise you can use the commands:
+
+    ```bash
+    git add --all
+    git commit -m "{message describing your changes}"
+    ```
+
+    Commit messages are usually quite short at a single sentence or less, but can be longer for more detail.
+    You can make as many commits as you want when working, or just a single one when you are done. More is often better than less.
+
+</Step>
+<Step>
+    ## Push your changes to GitHub
+    The next step is to publish the local commits (changes) you have made to GitHub so that they can be seen by others.
+    To do so, just run:
+
+    ```bash
+    git push
+    ```
+
+</Step>
+<Step>
+    ## Open the pull request
+    A pull request is the actual suggestion to change something, and it will be reviewed before your changes are put into the primary repository.
+
+    Opening your fork in the browser shortly after pushing should have GitHub prompt you with a button to open a pull request.
+    Clicking the button, you will need to write a title and description explaining what you did.
+    You do not need to go into every detail, we can see the code after all.
+
+    Finally: Click "Create pull request", or use the dropdown next to it to open a draft pull request.
+    Being a draft means that your changes are not ready to be put into the codebase yet, but you may want some sort of feedback/review.
+
+</Step>
+</Steps>
+
+## Congratulations!
+
+You have now made a pull request!  
+You should feel proud!
+
+We will get back to you about your pull request via GitHub.
+We may ask for some changes, or your suggestions may be deemed good enough already and applied as-is.
+
+If changes are requested, but you have started working on other things and need to get back to the changes relevant to the pull request, you may need to switch branch.  
+If you have uncommitted changes in your other branch, make sure to commit them first and then switch branch, either through your editors UI or by running: `git switch {branch name}`  
+If you forgot the name of the branch, you can see a list of all of them on GitHub, or by running: `git branch -a`.
+
+## What do the responses on the pull request mean?

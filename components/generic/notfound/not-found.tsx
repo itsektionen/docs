@@ -1,5 +1,4 @@
 "use client";
-import { getLocationInfo, getMapping } from "@/lib/pathname-mapper";
 import { usePathname } from "fumadocs-core/framework";
 import SiMoN from "./images/SiMoN.svg";
 import Image from "next/image";
@@ -13,17 +12,7 @@ import { baseOptions } from "@/lib/layout.shared";
 
 export default function NotFound() {
   const pathname = usePathname();
-  const locationInfo = getLocationInfo(getMapping(pathname));
 
-  let image = null;
-  switch (locationInfo.notFoundImage?.imageName) {
-    case "SiMoN":
-      image = SiMoN;
-      break;
-    default:
-      image = null;
-      break;
-  }
   const tabs = getSidebarTabs(source.getPageTree(), {
     transform: (option, node) => {
       return {
@@ -35,7 +24,7 @@ export default function NotFound() {
 
   return (
     <DocsLayout tree={source.getPageTree()} {...baseOptions()}>
-      <DocsPage full={true}>
+      <DocsPage>
         <div className="p-5 prose">
           <h1
             className="mx-auto w-fit my-0!"
@@ -47,11 +36,8 @@ export default function NotFound() {
           </h1>
           <p className="mx-auto w-fit">Not found</p>
           <div className="w-50 mx-auto">
-            {image && (
-              <Image
-                src={image}
-                alt={locationInfo.notFoundImage?.imageAlt ?? ""}
-              />
+            {pathname.startsWith("/docs/locale") && (
+              <Image src={SiMoN} alt="SiMoN" />
             )}
           </div>
           <hr />

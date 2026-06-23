@@ -1,0 +1,81 @@
+---
+title: Writing Documentation
+icon: PenLine
+description: How to contribute
+---
+
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+Documentation is an integral part of ensuring the longevity of our systems, and it should not be taken lightly.
+
+Our goal is to document all systems as we develop them through prose, and for relevant software, through [OpenAPI](https://www.openapis.org/).
+However, there are several systems for which documentation is sparse or entirely non-existent.
+If you are knowledgeable about such a system and have the ability to contribute, please do not hesitate to open an issue or pull request as described below.
+
+<CalloutExt type="danger">
+  Be careful about what you write documentation about; things that are meant to
+  be secret (such as passwords or reception) should _never_ be added here. This
+  is a public website.
+</CalloutExt>
+
+## Writing guidelines
+
+The documentation should be clear, concise, and easy to understand. Everything should be written under the assumption
+that the reader is unfamiliar with the system (although one can assume rudimentary knowledge in the relevant field, such as basic programming).
+It is important that all documentation is written in english, so that everyone can understand it.
+
+If you feel that a document is getting too large, see if you can split it up into multiple pages.
+
+## Workflow
+
+<Steps>
+<Step>
+    ### Setup the development environment
+    Fork and clone the [GitHub repository](https://github.com/itsektionen/docs) and run `npm install` to get the required dependencies. Then run `npm run dev` to start a live environment which you can preview your changes in.
+    
+    If that sounds like voodoo magic to you, dont worry! See [Setting up the dev environment](./setting-up-the-dev-environment.mdx) for detailed instructions and explanations.
+</Step>
+<Step>
+    ### Writing the documentation
+    All documentation is written somewhere in the `content/docs/` directory. When creating new pages, the rule of thumb is to pick the most specific location that the page fits in. If you are unsure of where to place something, feel free to ask!
+    
+    As an example, LMixer pertains to both [software](./software) and [the locale](./locale), 
+    but it is more specific to place it under `locale`, so that is where it goes.
+
+    If the project is not documented, make a new folder for it (for instance `software/my-cool-project`), otherwise just use the existing ones.
+
+    Documentation files all end with `.mdx`.
+
+    <CalloutExt type="info" title="index.mdx">
+        Files named `index.mdx` are treated as the default document for a folder. You are reading from one right now!
+
+        For example:
+
+        `content/docs/infrastructure/sso/servers.mdx` will have the URL `/docs/infrastructure/sso/servers`
+
+        `content/docs/infrastructure/sso/index.mdx` will have the URL `/docs/infrastructure/sso` (notice how it ends earlier)
+    </CalloutExt>
+
+    The first thing you need in the file is the Frontmatter, it is described more in [How to format your document](./how-to-format-your-document.mdx) but the basic format is:
+    ```mdx
+    ---
+    title: Here goes the title of the file
+    icon: Album
+    description: This is the description; keep it brief
+    ---
+    ```
+
+    After that, you can just write the documentation using standard markdown. If you want a overview, see [How to format your document](./how-to-format-your-document.mdx).
+
+    <CalloutExt type="tip">
+        Psst! Don't forget, you can look at the other .mdx files if you are unsure!
+    </CalloutExt>
+
+</Step>
+<Step>
+    ### Getting it onto the website
+    Create a Pull Request with the relevant labels and await our review
+    
+    If that also sounds like voodoo magic to you, dont worry! See [Making the pull request](./making-the-pull-request.mdx)
+</Step>
+</Steps>
