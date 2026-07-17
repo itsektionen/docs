@@ -1,0 +1,27 @@
+---
+title: Docker
+icon: Container
+description: Running the software
+---
+
+<CalloutExt type="note">
+  This page is intended for people with SSH access to IN-SMN
+</CalloutExt>
+
+We use [Docker](https://www.docker.com/) to host almost all of our software.
+
+There are two locations we store docker-compose.yml files. `/root/SMN/docker-compose.yml` and `/home/deploy/*/docker-compose.yml`, the later is for auto deployment.
+
+If a container has a website then it needs to have [Traefik](./traefik) configured using container labels.
+
+If you change a `docker-compose.yml` file, then you can run `docker compose up -d` to restart only the affected containers.
+
+## Auto deployment
+
+We use Github Actions to automatically build, push, and restart containers on the server whenever something gets pushed to `main`.
+
+To setup Auto Deployment, copy `/home/deploy/example-app` and modify it as needed. Then copy the workflow file from a suitable repository and modify the
+directory path (i.e. the final line should start with `script: cd <App_Directory>`)
+
+The automation requires an SSH login which we store as Github Secrets.
+If the repository is public then Github handles these for you, however, if the repository to private then you need to manually add the SSH keys.

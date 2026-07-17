@@ -1,0 +1,56 @@
+---
+title: Traefik
+icon: TrafficCone
+description: Routing the web requests
+---
+
+<CalloutExt type="note">
+  This page is intended for people with SSH access to IN-SMN
+</CalloutExt>
+
+We use [Traefik](https://doc.traefik.io/traefik/) to route and protect our websites.
+We almost always use [container labels](https://doc.traefik.io/traefik/reference/routing-configuration/other-providers/docker/) in our docker compose files.
+
+The exception to this is when we need to route data to IN-ITK. Here we use .yaml config files located in `/root/SMN/traefik/conf/`.
+
+You can find the admin panel for traefik at [traefik.kth.it](https://traefik.kth.it/)
+
+## Label configuration
+
+Most of the labels are just boilerplate, as such the easiest approach is to copy `/home/deploy/example-app` and modify it to the new app
+
+## Adding authentication
+
+We currently support two types of authentication: Basic HTTP auth, and Authentik.
+
+Both of these are middleware that is specified as container labels:
+
+Basic auth:
+
+```yaml
+- "traefik.http.routers.<APP_NAME>.middlewares=basic-auth@docker"
+```
+
+Authentik:
+
+```yaml
+- "traefik.http.routers.<APP_NAME>.middlewares=authentik@docker"
+```
+
+<CalloutExt type="note">
+  To use Authentik, the website needs to be configured on the Authentik dashboard.
+  See [Auth proxy](../sso#auth-proxy)
+</CalloutExt>
+
+<CalloutExt type="warning">
+  Basic Auth is not secure! While it is significantly better than nothing, for
+  anything critical Authentik should be used.
+</CalloutExt>
+
+To not have any authentication (and thus have the website accessible to the public internet!) simply omit the middlewares line.
+
+## SSL Encryption
+
+We use [Lets Encrypt](https://letsencrypt.org/) to get signed SSL certificates. Traefik automatically requests these for the subdomains we use.
+
+Since these are per subdomain and not for all \*.kth.it, if subdomain isn't used then the browser warns about a self signed certificate.

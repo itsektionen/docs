@@ -20,6 +20,23 @@ Services that needs to be controlled by auth that we host ourselves can add
 authentication using the [Traefik][3] proxy. The app also needs to be added with
 access control to the SSO service to be allowed in the proxy.
 
+This is done in the admin interface by creating an application and proxy provider for it.
+The provider needs to be "Forward auth (single application)" and the sites URL specified as the host. (e.g. `https://shit.kth.it`)
+Finally you need to bind a group that has access to it. You should choose the most suitable group. You can use any exported Google group - their names should be self explanatory, but there are also group which are not from Google Workspace:
+
+
+| Group              | What                                                                       | Use                                                                      |
+| ------------------ | -------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| itsektionen        | This is everyone with a kth.it account.                                    | Used as the default when anyone active in the chapter should have access |
+| Server Maintainers | This is the people who maintain our infrastructure (i.e. **init** and SMN) | Used for more sensitive and critical websites                            |
+
+In addition, any exported google group can be specified if needed.
+
+Finally, the traefik router must have Authentik added as a middleware. For docker containers, the label looks like the following:
+```yaml
+- "traefik.http.routers.<APP_NAME>.middlewares=authentik@docker"
+```
+
 [1]: https://goauthentik.io/
 [2]: https://sso.kth.it
 [3]: https://traefik.io

@@ -2,5 +2,13 @@
   "title": "Infrastructure",
   "description": "Docs for the chapter's digital infrastructure",
   "root": true,
-  "icon": "ServerCog"
+  "icon": "ServerCog",
+  "pages": [
+    "---Local Server---",
+    "servers",
+    "...",
+    "in-smn",
+    "---External---",
+    "sso"
+  ]
 }
