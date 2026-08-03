@@ -10,6 +10,8 @@ COPY package.json package-lock.json source.config.ts /src/
 RUN npm ci
 
 COPY . /src/
+ARG NEXT_PUBLIC_SITE_URL
+ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-https://docs.kth.it}
 RUN npm run build
 
 FROM nginx:alpine AS release
