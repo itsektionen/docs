@@ -85,7 +85,6 @@ export async function generateMetadata(
       siteName: metaConstants.title,
       title: page.data.title,
       description: page.data.description,
-      images: getPageImage(page).url,
     },
   };
 }
