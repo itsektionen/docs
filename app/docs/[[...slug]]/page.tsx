@@ -87,11 +87,5 @@ export async function generateMetadata(
       description: page.data.description,
       images: getPageImage(page).url,
     },
-    twitter: {
-      card: getPageImage(page) ? "summary_large_image" : "summary",
-      title: page.data.title,
-      description: page.data.description,
-      images: getPageImage(page).url,
-    },
   };
 }
