@@ -79,6 +79,7 @@ Here is a list of all options and their effects:
 | Key                    | Type           | Default        | Description                                                                                                              |
 | ---------------------- | -------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | deploy-dir             | string         | N/A (required) | The folder where the docker-compose.yaml is, i.e. `/home/deploy/<deploy-dir>/docker-compose.yaml`                        |
+| context-dir            | string         | "."            | The folder with the dockerfile. Use if not placed in the root directory. Prefix with `./`, e.g. `./website/`             |
 | cache                  | "gha" or ""    | ""             | Enables caching on the docker build step. "gha" caches all intermediary steps.                                           |
 | gha-mode               | "min" or "max" | "min"          | How aggressively "gha" caching is done. See [gha caching mode](https://docs.docker.com/build/cache/backends/#cache-mode) |
 | use-lfs                | boolean        | false          | If the repository uses LFS to track files                                                                                |
