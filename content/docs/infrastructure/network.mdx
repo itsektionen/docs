@@ -4,31 +4,42 @@ icon: Network
 description: How data gets to the right place
 ---
 
-As listed in [Servers](./servers), we have two main servers: IN-SMN and IN-ITK.
+As detailed in [Servers](./servers), the chapter has two main servers in our
+locale: IN-SMN and IN-ITK. IN-SMN is the primary server and runs the vast
+majority of our self-hosted infrastructure and services. IN-ITK is managed by
+[ITK](https://itk.gg) and is primarily used to host game servers with
+[Pterodactyl](https://pterodactyl.io).
 
-IN-SMN is the primary server and runs the vast majority of our self-hosted infrastructure.
+## Incoming traffic
 
-IN-ITK is managed by [ITK](https://itk.gg), and is primarily used to host game servers using Pterodactyl.
+The router forwards incoming traffic from the internet to IN-SMN or IN-ITK,
+depending on the destination port.
 
-The router has port forwarding setup to both IN-SMN and IN-ITK for their respective ports.
+HTTP(S) traffic (ports `80` and `443`) and standard SSH (port `22`), is sent to IN-SMN. 
 
-Since most games use higher ports numbers, a range of these ports have been forwarded to IN-ITK, thereby not requiring configuration of the router
-for most games.
-
-Since port 22 (standard SSH port) goes to IN-SMN, port 2222 is the port used for SSH to IN-ITK.
+SSH for IN-ITK uses port `2222` instead. Since most games use higher-numbered
+ports, a range of these ports is forwarded to IN-ITK. This avoids the need to
+touch the router configuration for most games.
 
 <CalloutExt type="note">
-  Since HTTP(S) traffic (port 80 and 443) goes to IN-SMN, hosting websites on
-  IN-ITK requires IN-SMN to forward it to IN-ITK using
-  [traefik](in-smn/traefik).
+  Since HTTP(S) traffic (ports 80 and 443) goes to IN-SMN, hosting websites on
+  IN-ITK requires IN-SMN to forward it to IN-ITK using [Traefik](in-smn/traefik).
 </CalloutExt>
 
-![Server data is sent to IN-ITK. Http, mqtt, and ssh is sent to IN-SMN. Some HTTP traffic is forwarded to IN-ITK by IN-SMN](networkexample.svg)
+![Traffic from the internet reaches the router. HTTP, MQTT, and SSH traffic is sent to IN-SMN; game-server traffic is sent to IN-ITK; and Traefik on IN-SMN can forward HTTP traffic to IN-ITK.](networkexample.svg)
 
-## Netlify
+## External hosting
 
-Some services/websites need higher availability, such as [kth.it](kth.it) and the major committee websites.
-These should be hosted on a high availability service, commonly [Netlify](https://www.netlify.com/).
+Some websites need better availability than our local servers can guarantee,
+such as [kth.it](https://kth.it) and the major committee websites.
+These should instead be hosted on an external hosting service, commonly
+[Netlify](https://www.netlify.com/) or sometimes [Vercel](https://vercel.com).
 
-Since kth.it is on Netlify and not hosted on IN-SMN, we have two DNS records. One for `kth.it` that goes to Netlify, and a wildcard `*.kth.it` that goes to our servers.
-As such, when using SSH to the server, use `server.kth.it` as the IP instead of `kth.it`. The DNS records are configured on Netlify.
+Since the main [kth.it](https://kth.it) site ([Heim](../software/heim))
+is not hosted locally on IN-SMN, there are two separate DNS records.
+One record points the apex domain (`kth.it`) to Netlify
+and another points the wildcard `*.kth.it` to the chapter's public IP address.
+
+As a result, `kth.it` resolves to Netlify rather than the local router and
+cannot be used to connect to the chapter servers over SSH. Use
+`server.kth.it` instead.
