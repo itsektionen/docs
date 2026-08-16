@@ -46,7 +46,7 @@ To set up automatic deployment:
 Copy `/home/deploy/example-app` modify its configuration as needed.
 </Step>
 <Step>
-Copy the [workflow template](https://github.com/itsektionen/andesite) and modify it as listed in the readme.
+Copy the [workflow template](https://github.com/itsektionen/andesite) and configure it as detailed in its readme.
 </Step>
 <Step>
 The workflow connects to the server over SSH as the `deploy` user.
@@ -55,7 +55,6 @@ and are exposed to workflows as `SSH_HOST`, `SSH_USERNAME`, and `SSH_KEY`.
 
 These secrets will be made available automatically to actions running on public repositories.
 If the repository to private, you need to manually add the SSH credentials.
-
 </Step>
 </Steps>
 

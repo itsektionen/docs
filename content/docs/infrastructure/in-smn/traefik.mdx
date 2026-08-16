@@ -1,56 +1,65 @@
 ---
-title: Traefik
+title: Websites and routing
 icon: TrafficCone
 description: Routing the web requests
 ---
 
 <CalloutExt type="note">
-  This page is intended for people with SSH access to IN-SMN
+  This page assumes that you have SSH access to the IN-SMN server. It may still
+  be useful if you do not have access but are developing software that will be
+  deployed to our servers.
 </CalloutExt>
 
-We use [Traefik](https://doc.traefik.io/traefik/) to route and protect our websites.
-We almost always use [container labels](https://doc.traefik.io/traefik/reference/routing-configuration/other-providers/docker/) in our docker compose files.
+We use [Traefik](https://doc.traefik.io/traefik/) to handle routing to our websites and to apply middleware.
+It is usualy configured through [container labels](https://doc.traefik.io/traefik/reference/routing-configuration/other-providers/docker/)
+defined in project compose files, with the exception of when we need to route data to [IN-ITK](../servers#server-in-itk).
+{/* TODO: Document yaml config */} In this case we use YAML configs located in `/root/SMN/traefik/conf/`.
 
-The exception to this is when we need to route data to IN-ITK. Here we use .yaml config files located in `/root/SMN/traefik/conf/`.
+The traefik admin dashboard is hosted at [traefik.kth.it](https://traefik.kth.it/) for those with access.
 
-You can find the admin panel for traefik at [traefik.kth.it](https://traefik.kth.it/)
+## Basic configuration
 
-## Label configuration
-
-Most of the labels are just boilerplate, as such the easiest approach is to copy `/home/deploy/example-app` and modify it to the new app
+Most required labelss are just boilerplate and will not vary significantly between deployments.
+The easiest approach to get up and running is to copy the labels of `/home/deploy/example-app` and modify them to fit the new deployment.
 
 ## Adding authentication
 
-We currently support two types of authentication: Basic HTTP auth, and Authentik.
+There are two types of authentication commonly used for deployments: Basic HTTP auth and Authentik.
+Both are added through defining middleware with a traefik label.
+To not have any authentication (and leave the site available to the entire internet) just omit a middlewares label.
 
-Both of these are middleware that is specified as container labels:
+<Tabs items={["Authentik", "Basic Auth"]}>
+  <Tab value="Authentik">
+    <CalloutExt type="note">
+      To be able to acess a site with the authentik middleware, it needs to be 
+      properly configured through the authetik dashboard.
+      For details see: [Auth proxy](../sso#auth-proxy).
+    </CalloutExt>
 
-Basic auth:
+    ```yaml
+    # Label
+    - "traefik.http.routers.<APP_NAME>.middlewares=authentik@docker"
+    ```
 
-```yaml
-- "traefik.http.routers.<APP_NAME>.middlewares=basic-auth@docker"
-```
+  </Tab>
+  <Tab value="Basic Auth">
+    <CalloutExt type="warning">
+      Basic Auth is not secure! While it is significantly better than nothing,
+      anything critical should prefer Authentik.
+    </CalloutExt>
 
-Authentik:
+    ```yaml
+    # Label
+    - "traefik.http.routers.<APP_NAME>.middlewares=basic-auth@docker"
+    ```
 
-```yaml
-- "traefik.http.routers.<APP_NAME>.middlewares=authentik@docker"
-```
-
-<CalloutExt type="note">
-  To use Authentik, the website needs to be configured on the Authentik dashboard.
-  See [Auth proxy](../sso#auth-proxy)
-</CalloutExt>
-
-<CalloutExt type="warning">
-  Basic Auth is not secure! While it is significantly better than nothing, for
-  anything critical Authentik should be used.
-</CalloutExt>
-
-To not have any authentication (and thus have the website accessible to the public internet!) simply omit the middlewares line.
+  </Tab>
+</Tabs>
 
 ## SSL Encryption
 
-We use [Lets Encrypt](https://letsencrypt.org/) to get signed SSL certificates. Traefik automatically requests these for the subdomains we use.
+We use [Lets Encrypt](https://letsencrypt.org/) to get signed SSL certificates.
+Traefik automatically requests these for the subdomains we use.
 
-Since these are per subdomain and not for all \*.kth.it, if subdomain isn't used then the browser warns about a self signed certificate.
+Since these are per subdomain and not for all of \*.kth.it,
+if nothing is served on a subdomain the browser will warn about a self-signed certificate.
