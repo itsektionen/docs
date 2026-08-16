@@ -2,7 +2,7 @@
 title: Fixture Config File
 ---
 
-All fixtures accessible in LMixer should also be in a config file, located [here](../../data/gen/kistanFixtures.json?url).
+All fixtures accessible in LMixer should also be in a config file, located [in the documentation repository](https://github.com/itsektionen/docs/blob/main/components/lmixer/fixtures/kistan-fixtures.json).
 
 <CalloutExt type="note">
   Currently, the nearly all of the fixtures on the master layer are listed here,
@@ -13,8 +13,8 @@ projects having their own list of the fixtures in kistan, and having to update
 every project for every fixture, it is centralized into a single config file
 which needs to be maintained.
 
-This config file is also responsible for generating [Fixture types in Kistan](kistan_fixture_types) and
-[Fixtures in Kistan's LMixer](kistan_lmixer_fixtures)
+This config file is also responsible for generating [Fixture types in Kistan](./kistan-fixture-types) and
+[Fixtures in Kistan's LMixer](./kistan-lmixer-fixtures)
 
 Whenever "Lua name" is mentioned, it refers to the variable name within LMixer
 
@@ -49,7 +49,7 @@ Since multiple fixtures can behave the same way, FixtureType describes how a fix
 | displayNamePlural | string?                                                       | For non-standard plural forms of words (Shelf->Shelves), if empty, "s" is appended to the display name                                     |
 | model             | string?                                                       | If the fixtureType is for a specific model                                                                                                 |
 | description       | string?                                                       | Optional extra information                                                                                                                 |
-| channels          | Record\<string, [FixtureChannelSchema](fixturechannelschema)> | A dictionary for what each channel maps to, the key should be the index of the dmx-channel ("1", "2", "3"). Make sure that it is 1-indexed |
+| channels          | Record\<string, [FixtureChannelSchema](#fixturechannelschema)> | A dictionary for what each channel maps to, the key should be the index of the dmx-channel ("1", "2", "3"). Make sure that it is 1-indexed |
 
 ### FixtureChannelSchema
 
@@ -59,7 +59,7 @@ Since multiple fixtures can behave the same way, FixtureType describes how a fix
 | displayName           | string                                                       | Human readable name                                                                                                                                                                                                                                                              |
 | description           | string?                                                      | Optional extra information for documentation                                                                                                                                                                                                                                     |
 | lowerNibbleForChannel | number?                                                      | 16bit properties are divided over two bytes, this marks that this channel is the lower nibble, and the ID stored in lowerNibbleForChannel is the channel for the upper nibble. They should have the same information, but in case if a disparity, the upperNibble takes priority |
-| mapRangeForDisplay    | [RangeMappingSchema](#rangemappingschema)?                   | Used for displaying values to the user, maps the [0, 255] range to something else.                                                                                                                                                                                               |
+| mapRangeForDisplay    | [RangeMappingSchema](#rangemappingschema)?                   | Used for displaying values to the user, maps the \[0, 255\] range to something else.                                                                                                                                                                                            |
 | rangedFunction        | [ChannelRangedFunctionSchema](#channelrangedfunctionschema)? | Some channels behave differently in different ranges, when this is the case, rangeFunction should be used                                                                                                                                                                        |
 
 #### Channel Naming
@@ -88,7 +88,7 @@ The `prog_` prefix (short for program\_), is used for preprogrammed functions, s
 
 ### RangeMappingSchema
 
-Maps the 0-255 range onto another range when displaying. Most notable use case is rotations, were mapping from [0-255] to [0 degrees, 540 degrees] makes it more intuitive to control.
+Maps the 0-255 range onto another range when displaying. Most notable use case is rotations, were mapping from \[0-255\] to \[0 degrees, 540 degrees\] makes it more intuitive to control.
 
 | key | type   | comment                 |
 | --- | ------ | ----------------------- |
@@ -103,12 +103,12 @@ Strobing speed for lights tend to have a deadzone, for both of these, a "ranged"
 
 | key                  | type                                       | comment                                                                                          |
 | -------------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| min                  | number                                     | The lower bound [inclusive] of the range                                                         |
-| max                  | number                                     | The upper bound [inclusive] of the range                                                         |
+| min                  | number                                     | The lower bound \[inclusive\] of the range                                                      |
+| max                  | number                                     | The upper bound \[inclusive\] of the range                                                      |
 | functionID           | string                                     | Identifies what this range segment does, see [Range Naming](#range-naming) for naming guidelines |
 | displayName          | string                                     | Human readable name                                                                              |
 | identicalWithinRange | boolean?                                   | Set to `true` if all the values in the range behave identically                                  |
-| mapRangeForDisplay   | [RangeMappingSchema](#rangemappingschema)? | Used for displaying values to the user, maps the [0, 255] range to something else.               |
+| mapRangeForDisplay   | [RangeMappingSchema](#rangemappingschema)? | Used for displaying values to the user, maps the \[0, 255\] range to something else.            |
 
 <CalloutExt type="note">
   The ranges should not overlap. Overlapping ranges in undefined behavior.

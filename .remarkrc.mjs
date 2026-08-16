@@ -3,7 +3,7 @@ import remarkGfm from "remark-gfm";
 import remarkLint from "remark-lint";
 import remarkLintFirstHeadingLevel from "remark-lint-first-heading-level";
 import remarkLintHeadingIncrement from "remark-lint-heading-increment";
-import remarkLintNoDuplicateHeadings from "remark-lint-no-duplicate-headings";
+import remarkLintNoDuplicateHeadingsInSection from "remark-lint-no-duplicate-headings-in-section";
 import remarkLintNoEmptyUrl from "remark-lint-no-empty-url";
 import remarkLintNoUndefinedReferences from "remark-lint-no-undefined-references";
 import remarkLintNoUnusedDefinitions from "remark-lint-no-unused-definitions";
@@ -17,7 +17,7 @@ const config = {
     remarkPresetPrettier,
     [remarkLintFirstHeadingLevel, 2],
     remarkLintHeadingIncrement,
-    remarkLintNoDuplicateHeadings,
+    remarkLintNoDuplicateHeadingsInSection,
     remarkLintNoEmptyUrl,
     remarkLintNoUndefinedReferences,
     remarkLintNoUnusedDefinitions,

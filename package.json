@@ -53,7 +53,7 @@
     "remark-lint": "^10.0.1",
     "remark-lint-first-heading-level": "^4.0.1",
     "remark-lint-heading-increment": "^4.0.1",
-    "remark-lint-no-duplicate-headings": "^4.0.1",
+    "remark-lint-no-duplicate-headings-in-section": "^4.0.1",
     "remark-lint-no-empty-url": "^4.0.1",
     "remark-lint-no-undefined-references": "^5.0.2",
     "remark-lint-no-unused-definitions": "^4.0.2",
