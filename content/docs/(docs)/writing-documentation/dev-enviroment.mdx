@@ -22,7 +22,8 @@ Whenever something is written between double curly brackets (`{{` or `}}`), that
 <Step>
     ### Install the required software
     - [Git](https://git-scm.com/install/)
-    - [NodeJS](https://nodejs.org/en/download)
+    - [Node.js](https://nodejs.org/en/download)
+    - [VSCode](https://code.visualstudio.com/) (recommended, but not required)
 </Step>
 <Step>
     ### Fork the Github repository
@@ -79,6 +80,10 @@ Make sure that your terminal is at the same path as during the previous section.
     npm install
     ```
 
+    If you use VSCode, open the repository folder and install its recommended
+    Prettier, ESLint, and MDX extensions. The workspace will then format supported
+    files automatically whenever you save them.
+
 </Step>
 </Steps>
 
@@ -93,5 +98,26 @@ npm run dev
 
 This will start the development server and show the URL in the terminal. Note, the first time you open up the webpage it will take a while to load, just give it a minute.
 Any changes you make in your editor will live update on the webpage.
+
+You can format all supported files manually with:
+
+```bash
+npm run format:write
+```
+
+Before opening a pull request, run the same checks as CI:
+
+```bash
+npm run check
+```
+
+Use `npm run lint` to run only the linters, or `npm run lint:links` to focus on
+broken documentation routes, heading links, and local assets. These commands and
+CI only report problems; they do not rewrite your files.
+
+On rare occasions, an intentional MDX construct may need to suppress a Remark
+diagnostic. Keep the suppression as narrow as possible, explain why it is needed,
+and use a paired `{/* eslint-disable mdx/remark -- reason */}` and
+`{/* eslint-enable mdx/remark */}` around the affected content.
 
 You can now at long last start [writing the documentation](./index.mdx#writing-the-documentation)!
