@@ -5,38 +5,66 @@ icon: KeyRound
 
 ## Software
 
-We use a software called [Authentik][1] to manage access to different resources.
-It is hosted on the servers in Kistan and provides federated access to all
-resources and apps. It can be used as a backend for both OAuth2, SAML and OIDC.
+We use [Authentik](https://goauthentik.io/) to manage access to different resources.
+It is hosted on [IN-SMN](../servers#server-in-smn) and provides federated access
+to resources and apps. It can be used as a backend for OAuth2, SAML, and OIDC.
 This is supported by Google Workspace via LDAP as the source for accounts and
 groups.
 
-The service is hosted on the domain [https://sso.kth.it/][2] where a login
-will also show a dashboard with available apps.
+It is hosted at [sso.kth.it](https://sso.kth.it/), which is used for logins
+and displays a dashboard with apps available to the authenticated user.
 
-## Auth proxy
+## Configuration
 
-Services that needs to be controlled by auth that we host ourselves can add
-authentication using the [Traefik][3] proxy. The app also needs to be added with
-access control to the SSO service to be allowed in the proxy.
+Services that should require authentication to be accessed can use Authentik as
+middleware through the Traefik proxy, as detailed in the [routing documentation](./in-smn/traefik#adding-authentication).
+For the middleware to work, add an application with a corresponding proxy provider
+linked to the embedded outpost for the site through the Authentik admin dashboard.
 
-This is done in the admin interface by creating an application and proxy provider for it.
-The provider needs to be "Forward auth (single application)" and the sites URL specified as the host. (e.g. `https://shit.kth.it`)
-Finally you need to bind a group that has access to it. You should choose the most suitable group. You can use any exported Google group - their names should be self explanatory, but there are also group which are not from Google Workspace:
+<Steps>
+  <Step>
+    Go to the [Applications panel](https://sso.kth.it/if/admin/#/core/applications)
+    and click "Create with Provider". Give the application a name, slug, and optional icon.
+  </Step>
+  <Step>
+    Choose the provider type. When using the Traefik middleware this will be
+    "Proxy Provider". If the application itself allows for authentication
+    through OAuth, "OAuth2/OpenID Provider" can be used and the Traefik proxy
+    can be skipped.
 
+    The provider name can be kept as-is, and the authorization flow can be set to either explicit or implicit consent.
+    This controls whether the user is prompted to log in. Implicit consent is generally preferred.
+  </Step>
+  <Step>
+    <Tabs items={["Proxy", "OAuth2/OpenID"]}>
+      <Tab value="Proxy">
+        The proxy provider allows protecting a page behind Authentik without requiring specific support from the application.
+        When used with the Traefik middleware, it should be set to "Forward auth (single application)", 
+        with the external host set to the URL at which the site is served (e.g. `https://shit.kth.it`).
+      </Tab>
+      <Tab value="OAuth2/OpenID">
+        The provider requires a client ID and secret, as well as a URL for authentication.
+        The exact configuration values and the method for obtaining them vary by application; consult its documentation.
 
-| Group              | What                                                                       | Use                                                                      |
-| ------------------ | -------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| itsektionen        | This is everyone with a kth.it account.                                    | Used as the default when anyone active in the chapter should have access |
-| Server Maintainers | This is the people who maintain our infrastructure (i.e. **init** and SMN) | Used for more sensitive and critical websites                            |
+        The Authentik documentation has a general page on [OAuth2/OIDC authentication](https://docs.goauthentik.io/add-secure-apps/providers/oauth2/),
+        and a more specific guide on [setting up Grafana](https://integrations.goauthentik.io/monitoring/grafana/#create-an-application-and-provider-in-authentik),
+        which could be a useful reference.
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step>
+    To decide who has access, configure bindings for the application's provider.
+    You can create bindings for groups and specific users (also policies but we don't use them).
 
-In addition, any exported google group can be specified if needed.
-
-Finally, the traefik router must have Authentik added as a middleware. For docker containers, the label looks like the following:
-```yaml
-- "traefik.http.routers.<APP_NAME>.middlewares=authentik@docker"
-```
-
-[1]: https://goauthentik.io/
-[2]: https://sso.kth.it
-[3]: https://traefik.io
+    Most groups are sourced from the chapter's [Google Workspace](./google-workspace.mdx) and sync automatically.
+    Their names should be largely self-explanatory.
+    A few groups are special and are not defined in Google Workspace, Notably:
+    | Group              | Who                                                        | Why                                                                       |
+    | ------------------ | ---------------------------------------------------------- | ------------------------------------------------------------------------- |
+    | itsektionen        | Everyone who has logged in with a kth.it account           | The preferred option when anyone active in the chapter should have access |
+    | Server Maintainers | People who maintain our infrastructure (i.e. init and SMN) | Used for more sensitive or critical systems such as Grafana               |
+  </Step>
+  <Step>
+    If using a proxy provider, add it to the Embedded [Outpost](https://sso.kth.it/if/admin/#/outpost/outposts).
+  </Step>
+</Steps>
