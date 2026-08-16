@@ -1,7 +1,7 @@
 ---
 title: Websites and routing
 icon: TrafficCone
-description: Routing the web requests
+description: Routing web requests
 ---
 
 <CalloutExt type="note">
@@ -11,29 +11,29 @@ description: Routing the web requests
 </CalloutExt>
 
 We use [Traefik](https://doc.traefik.io/traefik/) to handle routing to our websites and to apply middleware.
-It is usualy configured through [container labels](https://doc.traefik.io/traefik/reference/routing-configuration/other-providers/docker/)
+It is usually configured through [container labels](https://doc.traefik.io/traefik/reference/routing-configuration/other-providers/docker/)
 defined in project compose files, with the exception of when we need to route data to [IN-ITK](../servers#server-in-itk).
 {/* TODO: Document yaml config */} In this case we use YAML configs located in `/root/SMN/traefik/conf/`.
 
-The traefik admin dashboard is hosted at [traefik.kth.it](https://traefik.kth.it/) for those with access.
+The Traefik admin dashboard is hosted at [traefik.kth.it](https://traefik.kth.it/) for those with access.
 
 ## Basic configuration
 
-Most required labelss are just boilerplate and will not vary significantly between deployments.
+Most required labels are boilerplate and will not vary significantly between deployments.
 The easiest approach to get up and running is to copy the labels of `/home/deploy/example-app` and modify them to fit the new deployment.
 
 ## Adding authentication
 
-There are two types of authentication commonly used for deployments: Basic HTTP auth and Authentik.
-Both are added through defining middleware with a traefik label.
-To not have any authentication (and leave the site available to the entire internet) just omit a middlewares label.
+There are two types of authentication commonly used for deployments: HTTP Basic Auth and Authentik.
+Both are added by defining middleware with a Traefik label.
+To leave a site available to the entire internet, omit the middleware label.
 
 <Tabs items={["Authentik", "Basic Auth"]}>
   <Tab value="Authentik">
     <CalloutExt type="note">
-      To be able to acess a site with the authentik middleware, it needs to be 
-      properly configured through the authetik dashboard.
-      For details see: [Auth proxy](../sso#auth-proxy).
+      To access a site with the Authentik middleware, it must be properly
+      configured through the Authentik dashboard. For details, see
+      [the SSO docs](../sso#configuration).
     </CalloutExt>
 
     ```yaml
@@ -56,10 +56,10 @@ To not have any authentication (and leave the site available to the entire inter
   </Tab>
 </Tabs>
 
-## SSL Encryption
+## SSL encryption
 
-We use [Lets Encrypt](https://letsencrypt.org/) to get signed SSL certificates.
+We use [Let's Encrypt](https://letsencrypt.org/) to obtain signed SSL certificates.
 Traefik automatically requests these for the subdomains we use.
 
-Since these are per subdomain and not for all of \*.kth.it,
-if nothing is served on a subdomain the browser will warn about a self-signed certificate.
+Since these certificates are issued per subdomain rather than for all of `*.kth.it`,
+the browser will warn about a self-signed certificate if visiting a subdomain where nothing is served.
