@@ -18,8 +18,8 @@ and displays a dashboard with apps available to the authenticated user.
 
 Services that should require authentication to be accessed can use Authentik as
 middleware through the Traefik proxy, as detailed in the [routing documentation](./in-smn/traefik#adding-authentication).
-For the middleware to work, add an application with a corresponding proxy provider
-linked to the embedded outpost for the site through the Authentik admin dashboard.
+For the middleware to work, create an application with a corresponding proxy
+provider, then add that provider to the embedded outpost as described below.
 
 <Steps>
   <Step>
@@ -56,9 +56,9 @@ linked to the embedded outpost for the site through the Authentik admin dashboar
     To decide who has access, configure bindings for the application's provider.
     You can create bindings for groups and specific users (also policies but we don't use them).
 
-    Most groups are sourced from the chapter's [Google Workspace](./google-workspace.mdx) and sync automatically.
+    Most groups are sourced from the chapter's [Google Workspace](./google-workspace) and sync automatically.
     Their names should be largely self-explanatory.
-    A few groups are special and are not defined in Google Workspace, Notably:
+    A few groups are special and are not defined in Google Workspace, notably:
     | Group              | Who                                                        | Why                                                                       |
     | ------------------ | ---------------------------------------------------------- | ------------------------------------------------------------------------- |
     | itsektionen        | Everyone who has logged in with a kth.it account           | The preferred option when anyone active in the chapter should have access |

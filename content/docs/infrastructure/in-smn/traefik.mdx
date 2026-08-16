@@ -44,8 +44,8 @@ To leave a site available to the entire internet, omit the middleware label.
   </Tab>
   <Tab value="Basic Auth">
     <CalloutExt type="warning">
-      Basic Auth is not secure! While it is significantly better than nothing,
-      anything critical should prefer Authentik.
+      Basic Auth uses shared, static credentials and does not provide per-user
+      access control. Use Authentik for sensitive services.
     </CalloutExt>
 
     ```yaml
