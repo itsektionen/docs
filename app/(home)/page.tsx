@@ -1,7 +1,7 @@
 import Card, { CardType, EmptyCard } from "@/components/generic/card";
 import { source } from "@/lib/source";
 import { Cards } from "fumadocs-ui/components/card";
-import { getSidebarTabs } from "fumadocs-ui/components/sidebar/tabs/index";
+import { getSidebarTabs } from "fumadocs-ui/components/sidebar/tabs";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { ReactNode } from "react";
