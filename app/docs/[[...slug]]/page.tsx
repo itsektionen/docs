@@ -12,6 +12,7 @@ import { createRelativeLink } from "fumadocs-ui/mdx";
 import { LLMCopyButton, ViewOptions } from "@/components/ai/page-actions";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import Time from "@/components/generic/time";
+import { metaConstants } from "@/app/layout";
 
 export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
   const params = await props.params;
@@ -76,8 +77,14 @@ export async function generateMetadata(
   return {
     title: page.data.title,
     description: page.data.description,
+    alternates: {
+      canonical: page.url,
+    },
     openGraph: {
-      images: getPageImage(page).url,
+      type: "article",
+      siteName: metaConstants.title,
+      title: page.data.title,
+      description: page.data.description,
     },
   };
 }
