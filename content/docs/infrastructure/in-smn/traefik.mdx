@@ -59,7 +59,28 @@ To leave a site available to the entire internet, omit the middleware label.
 ## SSL encryption
 
 We use [Let's Encrypt](https://letsencrypt.org/) to obtain signed SSL certificates.
-Traefik automatically requests these for the subdomains we use.
+Traefik automatically requests these for the domains and subdomains we use.
 
 Since these certificates are issued per subdomain rather than for all of `*.kth.it`,
 the browser will warn about a self-signed certificate if visiting a subdomain where nothing is served.
+
+### Adding new domains
+
+<Steps>
+  <Step>
+    Ensure that the DNS record points to IN-SMN.
+    This can be checked by pinging both the domain and `server.kth.it` and comparing the IPs.
+    You might need to wait a long while for the DNS propagation to finish.  
+    [Insert meme about DNS propagation being slow]
+
+    Note that for unused `*.kth.it` domains this step is already taken care of.
+  </Step>
+  <Step>
+    Setup the `Host(...)` rule(s) on the traefik configuration.
+  </Step>
+  <Step>
+    Start the container. Traefik will automatically detect the Hosts and request SSL certificates for them.
+
+    These certificates last for 90 days and are automatically renewed.
+  </Step>
+</Steps>

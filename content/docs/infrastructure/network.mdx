@@ -43,3 +43,9 @@ and another points the wildcard `*.kth.it` to the chapter's public IP address.
 As a result, `kth.it` resolves to Netlify rather than the local router and
 cannot be used to connect to the chapter servers over SSH. Use
 `server.kth.it` instead.
+
+Some subdomains of `kth.it` are also hosted on Netlify,
+such as [init.kth.it](https://init.kth.it).
+An easy way to find out where a domain is hosted is to simply ping the domain.
+If it matches the IP for `kth.it`, it is Netlify, and if it matches `server.kth.it` it is
+IN-SMN (or IN-ITK).
