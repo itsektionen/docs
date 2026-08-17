@@ -1,0 +1,10 @@
+node_modules/
+.next/
+.source/
+out/
+build/
+coverage/
+*.tsbuildinfo
+
+# Binary documentation assets
+**/*.{avif,gif,ico,jpeg,jpg,png,webp}

@@ -1,0 +1,82 @@
+name: Quality
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  FORCE_COLOR: 0
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24.x
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Register problem matchers
+        run: |
+          echo "::add-matcher::.github/matchers/prettier.json"
+          echo "::add-matcher::.github/matchers/eslint.json"
+          echo "::add-matcher::.github/matchers/remark.json"
+
+      - name: Check formatting
+        id: formatting
+        continue-on-error: true
+        run: npm run format:check
+
+      - name: Lint code
+        id: code
+        continue-on-error: true
+        run: npm run lint:code
+
+      - name: Lint MDX
+        id: mdx
+        continue-on-error: true
+        run: npm run lint:mdx
+
+      - name: Lint Markdown
+        id: markdown
+        continue-on-error: true
+        run: npm run lint:markdown
+
+      - name: Validate links
+        id: links
+        continue-on-error: true
+        run: npm run lint:links
+
+      - name: Check types
+        id: types
+        continue-on-error: true
+        run: npm run types:check
+
+      - name: Report result
+        if: always()
+        env:
+          FORMATTING_OUTCOME: ${{ steps.formatting.outcome }}
+          CODE_OUTCOME: ${{ steps.code.outcome }}
+          MDX_OUTCOME: ${{ steps.mdx.outcome }}
+          MARKDOWN_OUTCOME: ${{ steps.markdown.outcome }}
+          LINKS_OUTCOME: ${{ steps.links.outcome }}
+          TYPES_OUTCOME: ${{ steps.types.outcome }}
+        run: |
+          if [[ "$FORMATTING_OUTCOME" != "success" ||
+                "$CODE_OUTCOME" != "success" ||
+                "$MDX_OUTCOME" != "success" ||
+                "$MARKDOWN_OUTCOME" != "success" ||
+                "$LINKS_OUTCOME" != "success" ||
+                "$TYPES_OUTCOME" != "success" ]]; then
+            echo "One or more quality checks failed. Review the annotations and logs above."
+            exit 1
+          fi
