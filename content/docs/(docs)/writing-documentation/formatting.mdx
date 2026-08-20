@@ -9,7 +9,7 @@ description: A quick guide to formatting
 This is a quick overview of the markdown format.
 For more extensive documentation, there are plenty of resources like [Markdown Guide](https://www.markdownguide.org/basic-syntax/) or [Fumadocs' markdown page](https://www.fumadocs.dev/docs/markdown).
 
-Headings are made using hash signs, with more signs correspond to smaller and smaller sub-headings.
+Headings are made using hash signs, where more signs correspond to smaller and smaller sub-headings.
 When writing for this documentation all headings start from `##`, since the page title itself is
 of the largest (`#`) size. Prefer creating a new page rather than dividing a single page into multiple parts using `#`.
 
@@ -59,11 +59,12 @@ Icons can be a bit tricky but do not need to exist for all pages, especially sub
 
 ### Lucide Icons
 
-Most of the icons we use are from Lucide, you can see the list [here](https://lucide.dev/icons/)
+Most of the icons we use are from Lucide, for which you can see a
+full list of available icons [here](https://lucide.dev/icons/).
 
 Icons are specified with their "component names", which are written in PascalCase.
 To get it, either manually rewrite the icon ID (`fish-off` -> `FishOff`)
-or click "Copy Component Name" under an icon on the website.
+or click "Copy Component Name" under an icon on the listing website.
 You may need to navigate through a dropdown menu to find the button.
 
 If you are feeling extra fancy, and the situation is specific enough for it to be appropriate, you can add custom Icons.
@@ -73,3 +74,78 @@ Next, add the icon to `lib/custom-icons.tsx`.
 
 1. Import the icon `import YourIconNameHere from "content/icons/yourIconNameHere.svg";`
 2. Add it to the list under "customIcons": `YourIconNameHere: YourIconNameHere,`
+
+## Mermaid
+
+To create consistent diagrams for our documentation we use Mermaid.
+It allows for creating consistent diagrams from plain-text using a custom syntax.
+You can find more detailed guides for the different diagram types on the
+official [Mermaid Docs](https://mermaid.ai/open-source/syntax/flowchart.html),
+but this will be a quick rundown.
+
+<CalloutExt type="details" title="Diagram restrictions">
+  Our documentation uses the
+  [beautiful-mermaid](https://github.com/lukilabs/beautiful-mermaid) library,
+  which supports a core subset of all mermaid diagram types and features. This
+  means that you can not blindly trust documentation for the main Mermaid
+  library, so make sure to test on the docs site directly.
+</CalloutExt>
+
+Mermaid diagrams can be created using special `mermaid` codeblocks.
+
+````mdx
+```mermaid
+<diagram code>
+```
+````
+
+The first step to creating a diagram is to specify the diagram type.
+Our documentation supports: Flowcharts, State, Sequence, Class, ER, and XY Charts.
+This quick guide will focus on flowcharts, as they are most vercetile.
+If you are interested in spending time with the other diagram types,
+then maybe [OOD](https://www.kth.se/student/kurser/kurs/IV1350) is for you!
+
+In the case of flowcharts (or their alias `graph`) a direction is also expected.
+This is typically left-right (`LR`) or top-bottom (`TB`).
+
+export const chartLocales = `
+flowchart TD
+  %% Defines a node with a label
+  places[Places worth visiting]
+  kistan
+  %% Links it to two other nodes. They don't necessarily need to be defined before
+  places --> kistan
+  places --> tempan
+`;
+
+<MermaidPreview chart={chartLocales} />
+
+The `[]` around the label is what defines the square shape.
+There are tons of other shapes too.
+
+export const chartShapes = `
+flowchart LR
+  sA[  Example  ]
+  sB{{ Example }}
+  sC(  Example  )
+  sD[( Example )]
+  sA --- sB --- sC --- sD
+  bA[[ Example ]]
+  bB{  Example  }
+  bC(( Example ))
+  bD(((Example)))
+  bA --- bB --- bC --- bD
+`;
+
+<MermaidPreview chart={chartShapes} />
+
+There's also a bunch of other fancy stuff you can do with 
+connecting multiple nodes, using different connection styles, etc.
+
+export const chartSpecials = `
+flowchart TD
+  a --> b & c --> d
+  A -.-|labeled| B
+`;
+
+<MermaidPreview chart={chartSpecials} />
