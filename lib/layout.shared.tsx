@@ -5,5 +5,6 @@ export function baseOptions(): BaseLayoutProps {
     nav: {
       title: "it/docs",
     },
+    githubUrl: "https://github.com/itsektionen/docs",
   };
 }
