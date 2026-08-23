@@ -13,6 +13,7 @@ import { LLMCopyButton, ViewOptions } from "@/components/ai/page-actions";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import Time from "@/components/generic/time";
 import { metaConstants } from "@/app/layout";
+import type { ComponentProps } from "react";
 
 export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
   const params = await props.params;
@@ -55,7 +56,12 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
           components={getMDXComponents({
             // this allows you to link to other pages with relative file paths
             a: createRelativeLink(source, page),
-            img: ImageZoom,
+            img: ({ src, ...rest }: ComponentProps<"img">) => (
+              <ImageZoom
+                {...rest}
+                src={typeof src === "string" ? src : undefined}
+              />
+            ),
           })}
         />
       </DocsBody>
