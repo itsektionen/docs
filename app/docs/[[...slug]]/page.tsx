@@ -56,12 +56,10 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
           components={getMDXComponents({
             // this allows you to link to other pages with relative file paths
             a: createRelativeLink(source, page),
-            img: ({ src, ...rest }: ComponentProps<"img">) => (
-              <ImageZoom
-                {...rest}
-                src={typeof src === "string" ? src : undefined}
-              />
-            ),
+            img: ({ src, ...rest }: ComponentProps<"img">) => {
+              if (!src || src instanceof Blob) return null;
+              return <ImageZoom {...rest} src={src} />;
+            },
           })}
         />
       </DocsBody>
