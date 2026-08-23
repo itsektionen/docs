@@ -83,14 +83,6 @@ You can find more detailed guides for the different diagram types on the
 official [Mermaid Docs](https://mermaid.ai/open-source/syntax/flowchart.html),
 but this will be a quick rundown.
 
-<CalloutExt type="details" title="Diagram restrictions">
-  Our documentation uses the
-  [beautiful-mermaid](https://github.com/lukilabs/beautiful-mermaid) library,
-  which supports a core subset of all mermaid diagram types and features. This
-  means that you can not blindly trust documentation for the main Mermaid
-  library, so make sure to test on the docs site directly.
-</CalloutExt>
-
 Mermaid diagrams can be created using special `mermaid` codeblocks.
 
 ````mdx
@@ -100,13 +92,14 @@ Mermaid diagrams can be created using special `mermaid` codeblocks.
 ````
 
 The first step to creating a diagram is to specify the diagram type.
-Our documentation supports: Flowcharts, State, Sequence, Class, ER, and XY Charts.
-This quick guide will focus on flowcharts, as they are most vercetile.
+Mermaid supports many different types, but the most useful one for our
+documentation is the flowchart.
 If you are interested in spending time with the other diagram types,
 then maybe [OOD](https://www.kth.se/student/kurser/kurs/IV1350) is for you!
 
-In the case of flowcharts (or their alias `graph`) a direction is also expected.
-This is typically left-right (`LR`) or top-bottom (`TB`).
+To create a flowchart, start a codeblock with `flowchart` (or its alias `graph`)
+followed by a direction. This is typically left-right (`LR`) or top-bottom (`TB`).
+After that, you can specify nodes and their connections. This is best shown with a code snippet:
 
 export const chartLocales = `
 flowchart TD
@@ -121,7 +114,7 @@ flowchart TD
 <MermaidPreview chart={chartLocales} />
 
 The `[]` around the label is what defines the square shape.
-There are tons of other shapes too.
+There are tons of other shapes too. A subset is shown beneath:
 
 export const chartShapes = `
 flowchart LR
@@ -141,10 +134,11 @@ flowchart LR
 
 There's also a bunch of other fancy stuff you can do with 
 connecting multiple nodes, using different connection styles, etc.
+Be sure to check the Mermaid documentation.
 
 export const chartSpecials = `
 flowchart TD
-  a --> b & c --> d
+  a & b --> c & d
   A -.-|labeled| B
 `;
 

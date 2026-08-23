@@ -1,41 +1,68 @@
-import { renderMermaidSVG } from "beautiful-mermaid";
-import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
-import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
-import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+"use client";
 
-function getMermaidSvg(chart: string): { svg: string } | { error: Error } {
-  try {
-    const svg = renderMermaidSVG(chart, {
-      bg: "var(--color-fd-card)",
-      fg: "var(--color-fd-foreground)",
-      accent: "var(--color-fd-primary)",
-      interactive: true,
-      transparent: true,
-    });
-    return { svg };
-  } catch (error) {
-    return { error: error instanceof Error ? error : new Error(String(error)) };
-  }
+import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+import { useTheme } from "next-themes";
+import { Suspense, use, useId, useSyncExternalStore } from "react";
+
+const cache = new Map<string, Promise<unknown>>();
+function cachePromise<T>(
+  key: string,
+  setPromise: () => Promise<T>
+): Promise<T> {
+  const cached = cache.get(key);
+  if (cached) return cached as Promise<T>;
+  const promise = setPromise();
+  cache.set(key, promise);
+  return promise;
 }
 
-export function Mermaid({ chart }: { chart: string }) {
-  const result = getMermaidSvg(chart);
+function MermaidContent({ chart }: { chart: string }) {
+  const id = useId();
+  const { resolvedTheme } = useTheme();
+  const { default: mermaid } = use(
+    cachePromise("mermaid", () => import("mermaid"))
+  );
 
-  if ("error" in result) {
-    console.error("Failed to render Mermaid diagram:", result.error);
-    return (
-      <CodeBlock title={`Mermaid Error: ${result.error.message}`}>
-        <Pre>{chart}</Pre>
-      </CodeBlock>
-    );
-  }
+  mermaid.initialize({
+    startOnLoad: false,
+    securityLevel: "loose",
+    fontFamily: "inherit",
+    theme: resolvedTheme === "dark" ? "dark" : "default",
+  });
+
+  const { svg, bindFunctions } = use(
+    cachePromise(`${chart}-${resolvedTheme}`, () => mermaid.render(id, chart))
+  );
 
   return (
     <div
-      className="flex justify-center overflow-x-auto [&_svg]:max-w-full [&_svg]:h-auto"
-      dangerouslySetInnerHTML={{ __html: result.svg }}
+      ref={(element) => {
+        if (element) bindFunctions?.(element);
+      }}
+      className="flex justify-center overflow-x-auto [&_svg]:h-auto [&_svg]:max-w-full"
+      dangerouslySetInnerHTML={{ __html: svg }}
     />
   );
+}
+
+function DiagramFallback() {
+  return (
+    <div className="flex justify-center items-center min-h-50 text-fd-muted-foreground border-2 bg-fd-card">
+      Loading graph...
+    </div>
+  );
+}
+
+export function Mermaid({ chart }: { chart: string }) {
+  const isClient = useSyncExternalStore(
+    () => () => {},
+    () => true, // Client
+    () => false // server
+  );
+  if (!isClient) return <DiagramFallback />;
+  return <MermaidContent chart={chart} />;
 }
 
 export function MermaidPreview({ chart }: { chart: string }) {
