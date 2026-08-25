@@ -1,0 +1,11 @@
+# Dependencies and generated output
+node_modules/
+.source/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Local files and editor metadata
+.idea/
+.DS_Store
