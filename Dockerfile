@@ -1,4 +1,3 @@
-
 FROM node:22-alpine AS build
 # Git is needed for last changed
 # libc6-compat, see: https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine

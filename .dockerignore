@@ -1,4 +1,22 @@
-out
-node_modules
-.source
-.next
+# Version control, CI, and editor metadata
+.git/
+.github/
+.idea/
+.vscode/
+.DS_Store
+
+# Local dependencies and generated build output
+/node_modules/
+.source/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Local configuration and npm logs
+.env*
+npm-debug.log*
+
+# Repository documentation is not a build input
+README.md
+license.md
