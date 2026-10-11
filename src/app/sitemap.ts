@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { source } from "@/lib/source";
-import { siteUrl } from "@/lib/site";
+import { siteUrl } from "@/lib/shared";
 
 export const dynamic = "force-static";
 

@@ -2,16 +2,17 @@ import "./global.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Provider } from "@/components/provider";
-import { siteUrl } from "@/lib/site";
+import { appName, siteUrl } from "@/lib/shared";
 
 const inter = Inter({
   subsets: ["latin"],
 });
 
 export const metaConstants = {
-  title: "it/docs",
+  title: appName,
   description: "Documentation relating to the IT Chapter",
 };
+
 export const metadata: Metadata = {
   applicationName: metaConstants.title,
   metadataBase: siteUrl,
