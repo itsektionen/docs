@@ -36,7 +36,7 @@ export default function FixtureType(
 export function FixtureTypeAccordion(fixtureTypeId: string) {
   let fixtureType = fixtureConfig.fixtureTypes[fixtureTypeId];
   return (
-    <Accordions type="single">
+    <Accordions>
       <Accordion title={"FixtureType: " + fixtureType.displayName}>
         {FixtureType(fixtureType, fixtureTypeId, true)}
       </Accordion>
