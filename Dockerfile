@@ -1,19 +1,31 @@
-
-FROM node:22-alpine AS build
-# Git is needed for last changed
-# libc6-compat, see: https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine
+FROM node:22-alpine AS base
 RUN apk add --no-cache libc6-compat git
+WORKDIR /app
 
-WORKDIR /src
-# source.config.ts is required during postinstall
-COPY package.json package-lock.json source.config.ts /src/
+
+FROM base AS deps
+COPY package.json package-lock.json ./
 RUN npm ci
 
-COPY . /src/
-ARG NEXT_PUBLIC_SITE_URL
-ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-https://docs.kth.it}
+
+FROM base AS builder
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+ARG NEXT_PUBLIC_SITE_URL=https://docs.kth.it
+ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
+ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
-FROM nginx:alpine AS release
-COPY --from=build /src/out /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/nginx.conf
+
+FROM nginx:alpine AS runner
+WORKDIR /usr/share/nginx/html
+# Clean default nginx files
+RUN rm -rf ./*
+COPY --from=builder /app/out ./
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
