@@ -1,0 +1,84 @@
+---
+title: Containers
+icon: Container
+description: How to run software in containers on the IN-SMN server using Docker Compose
+---
+
+<CalloutExt type="note">
+  This page assumes that you have SSH access to the IN-SMN server. It may still
+  be useful if you do not have access but are developing software that will be
+  deployed to our servers.
+</CalloutExt>
+
+Almost all software hosted on the IN-SMN server runs in Docker containers managed with [Docker Compose](https://docs.docker.com/compose/).
+
+Compose files are stored in two main locations:
+
+- `/root/SMN/docker-compose.yml` contains the configuration for core/static services that do not require automatic updates.
+  These include
+  [Traefik](./traefik),
+  [Authentik](../sso),
+  [Mosquitto](https://github.com/eclipse-mosquitto/mosquitto),
+  [LMixer](../../locale/software/lmixer),
+  and others.
+
+- `/home/deploy/` holds directories for automatically deployed applications,
+  which each have their own Compose file that references a published Docker image.
+  For details, see [Automatic deployment](#automatic-deployment).
+
+If a container hosts a website that should be accessible, it should define labels as detailed on the [Traefik page](./traefik).
+
+If you change a `docker-compose.yml` file, you can run `docker compose up -d` in its directory to restart only the affected containers.
+
+## Automatic deployment
+
+We use GitHub Actions to automatically build, push, pull, and restart containers
+on the server whenever changes are made to a project repository's main branch.
+
+Since we pretty much always do the same thing, we have a workflow that is reused.
+
+To set up automatic deployment:
+
+<Steps>
+<Step>
+Copy `/home/deploy/example-app` and modify its configuration as needed.
+</Step>
+<Step>
+Copy the [workflow template](https://github.com/itsektionen/andesite) and configure it as detailed in its README.
+</Step>
+<Step>
+The workflow connects to the server over SSH as the `deploy` user.
+Its credentials are stored as secrets in the chapter's [GitHub organization](https://github.com/itsektionen)
+and are exposed to workflows as `SSH_HOST`, `SSH_USERNAME`, and `SSH_KEY`.
+
+These secrets are made available automatically to workflows running on public repositories.
+If the repository is private, you need to add the SSH credentials manually.
+
+</Step>
+</Steps>
+
+### Configuring Andesite
+
+Andesite's behavior can be configured using inputs under `jobs.with`.
+
+**Example:** Enable caching with GHA:
+
+```yaml
+jobs:
+  secrets: inherit
+  with:
+    deploy-dir: docs
+    cache: "gha"
+    gha-mode: "min"
+```
+
+Here is a list of all options and their effects:
+
+| Key                    | Type           | Default        | Description                                                                                                                            |
+| ---------------------- | -------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| deploy-dir             | string         | N/A (required) | The folder containing `docker-compose.yaml`, e.g. `/home/deploy/<deploy-dir>/docker-compose.yaml`                                      |
+| context-dir            | string         | "."            | The folder containing the Dockerfile. Use this if it is not in the root directory. Prefix it with `./`, e.g. `./website/`              |
+| cache                  | "gha" or ""    | ""             | Enables caching during the Docker build step. "gha" caches all intermediate steps.                                                     |
+| gha-mode               | "min" or "max" | "min"          | Controls how aggressively "gha" caching is performed. See [GHA caching mode](https://docs.docker.com/build/cache/backends/#cache-mode) |
+| use-lfs                | boolean        | false          | Whether the repository uses LFS to track files                                                                                         |
+| limit-lfs-to-directory | string         | ""             | Fetches LFS files only from a specific folder rather than the entire repository. Useful for monorepos                                  |
