@@ -7,6 +7,8 @@ import ExclusiveTo from "@/components/generic/callout/exclusive-to";
 import Card from "@/components/generic/card";
 import Icon from "@/components/generic/icon";
 import * as mermaidComponents from "@/components/mdx/mermaid";
+import { ImageZoom } from "fumadocs-ui/components/image-zoom";
+import { ComponentProps } from "react";
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -19,6 +21,10 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     CalloutExt,
     Icon,
     Card,
+    img: ({ src, ...rest }: ComponentProps<"img">) => {
+      if (!src || src instanceof Blob) return null;
+      return <ImageZoom src={src} {...rest} />;
+    },
   };
 }
 

@@ -3,7 +3,9 @@
 @import "fumadocs-ui/css/preset.css";
 
 @theme {
-  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-mono:
+    var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
 
   /* Light mode is not quite laserviolett, but is actually readable */
   --color-fd-primary: #8a38db;

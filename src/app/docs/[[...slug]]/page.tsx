@@ -10,12 +10,10 @@ import { notFound } from "next/navigation";
 import { getMDXComponents } from "@/components/mdx";
 import type { Metadata } from "next";
 import { createRelativeLink } from "fumadocs-ui/mdx";
-import { ImageZoom } from "fumadocs-ui/components/image-zoom";
-import Time from "@/components/generic/time";
 import { getPageImageUrl, getPageMarkdownUrl, gitConfig } from "@/lib/shared";
-import { metaConstants } from "@/app/layout";
 import { TextIcon } from "lucide-react";
-import type { ComponentProps } from "react";
+import Time from "@/components/generic/time";
+import { metaConstants } from "@/app/layout";
 
 export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
   const params = await props.params;
@@ -76,10 +74,6 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
           components={getMDXComponents({
             // this allows you to link to other pages with relative file paths
             a: createRelativeLink(source, page),
-            img: ({ src, ...rest }: ComponentProps<"img">) => {
-              if (!src || src instanceof Blob) return null;
-              return <ImageZoom {...rest} src={src} />;
-            },
           })}
         />
       </DocsBody>

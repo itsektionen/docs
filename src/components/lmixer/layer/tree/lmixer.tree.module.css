@@ -167,4 +167,3 @@
     (var(--connector-node-height) - var(--connector-line-width)) / 2
   );
 }
-

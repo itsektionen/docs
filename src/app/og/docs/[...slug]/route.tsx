@@ -27,4 +27,3 @@ export function generateStaticParams() {
     slug: [...item.slug, "image.webp"],
   }));
 }
-
