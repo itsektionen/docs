@@ -6,10 +6,14 @@
   "pages": [
     "---Introduction---",
     "index",
-    "guides",
+    "...",
     "---Software---",
     "...software",
-    "---Reference---",
-    "...reference"
+    "---Lights---",
+    "...lights",
+    "---Sound---",
+    "...sound",
+    "---Drawings---",
+    "...drawings"
   ]
 }

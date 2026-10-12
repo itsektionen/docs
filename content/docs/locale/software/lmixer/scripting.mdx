@@ -6,9 +6,8 @@ title: Scripting Keyword
 
 ### Create layer
 
-A layer hold information for outputting data to a UDP listener. The layer have a
-length and can be combined with another layer using different mathematical
-operations.
+A layer hold information for outputting data to a UDP listener.
+The layer have a length and can be combined with another layer using different mathematical operations.
 
 | Name          | Optional | Description                                               |
 | ------------- | -------- | --------------------------------------------------------- |
@@ -26,8 +25,8 @@ Operations:
 | `sub`     | Subtract this from other layer |
 | `div`     | Divide the other layer by this |
 
-**Example:** Create a new layer that multiplies master with this. Default value
-is 1.
+**Example:** Create a new layer that multiplies master with this.
+Default value is 1.
 
 ```lua
 dimmer = layer(master, mul, 512, 1)
@@ -43,14 +42,15 @@ See the [layerExt](./addons/addon-suite/extended#layerext) for details.
 
 ### Create Alpha-Layer
 
-Alpha layers allow for more advanced mixing. To create them, see the [alpha_data_layer](./addons/addon-suite/extended#alpha-data-layer)
+Alpha layers allow for more advanced mixing.
+To create them, see the [alpha_data_layer](./addons/addon-suite/extended#alpha-data-layer)
 
 </ExclusiveTo>
 
 ### `output`
 
-Output controls what data is sent to each controller. An output can only send
-one layer.
+Output controls what data is sent to each controller.
+An output can only send one layer.
 
 | Name     | Optional | Description                      |
 | -------- | -------- | -------------------------------- |
@@ -74,8 +74,7 @@ Create a new output in the ArtNet[1] format.
 | Universe | No       | ArtNet universe                  |
 | Layer    | No       | Layer to send                    |
 
-**Example:** Send the master layer in ArtNet format to specific host with
-universe set to 123.
+**Example:** Send the master layer in ArtNet format to specific host with universe set to 123.
 
 ```lua
 artnet_output("192.168.1.10", 123, master)
@@ -103,8 +102,8 @@ input(1234, additional_data)
 
 ### `fix`
 
-Create a new fixture with specified parameters. Fixtures can also be added
-into "groups" by adding them to a table in Lua.
+Create a new fixture with specified parameters.
+Fixtures can also be added into "groups" by adding them to a table in Lua.
 
 | Name    | Optional | Description                                |
 | ------- | -------- | ------------------------------------------ |
@@ -210,8 +209,7 @@ Add an effect for each fixture in a group with a delay between each.
 | Function name | No       | Function to execute for each fixture |
 | ... Values    | No       | Arguments to the function            |
 
-**Example:** Set each fixture in _lamps_ to values with a delay of 100ms between
-each fixture.
+**Example:** Set each fixture in _lamps_ to values with a delay of 100ms between each fixture.
 
 ```lua
 cycle(lamps, 100, set, 255, 0, 0, 0)
@@ -219,8 +217,8 @@ cycle(lamps, 100, set, 255, 0, 0, 0)
 
 ### `rev`
 
-Reverse a group of fixtures to use them in backwards order. Is usually used
-inline with cycle command to do effects in reverse order.
+Reverse a group of fixtures to use them in backwards order.
+Is usually used inline with cycle command to do effects in reverse order.
 
 | Name  | Optional | Description      |
 | ----- | -------- | ---------------- |
@@ -234,8 +232,8 @@ rev(lamps)
 
 ### `even`
 
-Get a subset of fixtures in a group based on their index value. Usually used
-inline when specifying groups for an effect.
+Get a subset of fixtures in a group based on their index value.
+Usually used inline when specifying groups for an effect.
 
 | Name  | Optional | Description                |
 | ----- | -------- | -------------------------- |
@@ -249,8 +247,8 @@ set(even(lamps), 255, 0, 0, 0)
 
 ### `odd`
 
-Get a subset of fixtures in a group based on their index value. Usually used
-inline when specifying groups for an effect.
+Get a subset of fixtures in a group based on their index value.
+Usually used inline when specifying groups for an effect.
 
 | Name  | Optional | Description                |
 | ----- | -------- | -------------------------- |
@@ -276,14 +274,13 @@ execute("dalicmd -g 255 -c 16")
 
 ### `run`
 
-Start a script by name. Normally this is used to repeat the current script by
-starting it again after some time. Can also be used to split common effects into
-separate script and then combining them.
+Start a script by name.
+Normally this is used to repeat the current script by starting it again after some time.
+Can also be used to split common effects into separate script and then combining them.
 
 <CalloutExt type="note">
-When running a script from another script and it has been previously stopped, it
-will not be placed on the timeline. [start](#start) bypasses this and starts it
-anyway.
+When running a script from another script and it has been previously stopped, it will not be placed on the timeline.
+[start](#start) bypasses this and starts it anyway.
 
 If this stopping is desired run `Scripts.script_name:unstop()` beforehand.
 
@@ -301,8 +298,8 @@ run("rainbow")
 
 <CalloutExt type="warning">
   If not careful one might cause stacking of script if the run command is issued
-  before the last effect of the previous run. This causes an infinite loop of
-  scripts starting on top of each other until something crashes.
+  before the last effect of the previous run.
+  This causes an infinite loop of scripts starting on top of each other until something crashes.
 </CalloutExt>
 
 ### `start`
@@ -339,7 +336,8 @@ play("blotet/dans_mitt.mp3")
 
 ### `stop_play`
 
-Stop playback of all sound files. No parameters.
+Stop playback of all sound files.
+No parameters.
 
 **Example:** Stop all playback.
 
@@ -353,7 +351,8 @@ stop_play()
 
 ### `interval`
 
-Runs a function at an interval. See [interval](./addons/addon-suite/effects#interval) for details.
+Runs a function at an interval.
+See [interval](./addons/addon-suite/effects#interval) for details.
 
 </ExclusiveTo>
 
@@ -456,8 +455,7 @@ Scripts.rainbow:unstop()
 
 Checks if a script has been stopped, useful for having multiple script
 
-**Example:** Checks if rainbow is stopped, and stops rainbow_roof if
-that is the case
+**Example:** Checks if rainbow is stopped, and stops rainbow_roof if that is the case
 
 ```lua
 if (Scripts.rainbow:is_stopped()) then

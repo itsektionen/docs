@@ -5,23 +5,15 @@ icon: LampCeiling
 
 ## DALI Protocol
 
-The [DALI protocol](https://en.wikipedia.org/wiki/Digital_Addressable_Lighting_Interface)
-is used for all normal roof lights in Kistan. It is also used in all classrooms.
+The [DALI protocol](https://en.wikipedia.org/wiki/Digital_Addressable_Lighting_Interface) is used for all normal roof lights in Kistan. It is also used in all classrooms.
 
 ### Usage
 
-In a DALI network all the lights store their own information. The controller(s)
-just broadcast instructions to all or some lamps. Instructions are always
-referenced by the command-number found on page 115 in the specification linked
-above.
+In a DALI network all the lights store their own information. The controller(s) just broadcast instructions to all or some lamps. Instructions are always referenced by the command-number found on page 115 in the specification linked above.
 
-Lamps can be sent commands either by their address (single light) or groups
-(multiple lights). There is also a global group for 'everything' with the group
-value `255`.
+Lamps can be sent commands either by their address (single light) or groups (multiple lights). There is also a global group for 'everything' with the group value `255`.
 
-DALI commands are sent by the
-cmd-tool [`dalicmd`](https://github.com/Daedaluz/dalicmd) on the IN-2 server
-and usually by executing the command in the LMixer interface.
+DALI commands are sent by the cmd-tool [`dalicmd`](https://github.com/Daedaluz/dalicmd) on the IN-2 server and usually by executing the command in the LMixer interface.
 
 ```lua
 master:add(0, execute("dalicmd -g 255 -c 16"))
@@ -52,15 +44,13 @@ dalicmd [-g] [-c] [-s] [-a] [-h] [-r]
 
 ### Addresses
 
-Addresses in DALI are assigned at random and here is a map of all the DALI
-lights and their addresses in Kistan.
+Addresses in DALI are assigned at random and here is a map of all the DALI lights and their addresses in Kistan.
 
 ![dali_map](./images/dali_lamps.svg)
 
 ### Special addresses
 
-Some special addresses is used to control relays for different roof outlets. The
-DALI relays is mounted in the electrical cabinet in Spritförrådet.
+Some special addresses is used to control relays for different roof outlets. The DALI relays is mounted in the electrical cabinet in Spritförrådet.
 
 | Address | Name                                |
 | ------- | ----------------------------------- |

@@ -6,8 +6,7 @@ title: Addon Suite Extensions
 
 Various extensions to the default LMixer behavior.
 
-A leading principle is to a single tables for parameters instead
-of multiple arguments as this allows for more functionality later on.
+A leading principle is to a single tables for parameters instead of multiple arguments as this allows for more functionality later on.
 
 ## Fixtures
 
@@ -55,7 +54,8 @@ Table type:
 | size    | Size      | No       | How many bytes is this layer                                                    |
 | default | default   | Yes      | Default value for all bytes in a layer                                          |
 
-**Example:** Create a new layer that multiplies master with this. Default value is 1.
+**Example:** Create a new layer that multiplies master with this.
+Default value is 1.
 
 ```lua
 dimmer = layerExt({ name = "dimmer", parent = master, op = mul, default = 1 })
@@ -63,13 +63,12 @@ dimmer = layerExt({ name = "dimmer", parent = master, op = mul, default = 1 })
 
 ### `alpha_data_layer`
 
-Alpha-data layers are layers with alpha support. The alpha blends between the layers below
-this one and it self. An alpha of 0 means keep the layers below, an alpha of 1 means "replace"
-the layers below with this layer.
+Alpha-data layers are layers with alpha support.
+The alpha blends between the layers below this one and it self.
+An alpha of 0 means keep the layers below, an alpha of 1 means "replace" the layers below with this layer.
 
-The alpha is set on a per channel basis, this is done by accessing the layers
-`alpha` property. This is another layer which can be altered in the same way as
-other layers (i.e. `lay.alpha:add(...)`).
+The alpha is set on a per channel basis, this is done by accessing the layers `alpha` property.
+This is another layer which can be altered in the same way as other layers (i.e. `lay.alpha:add(...)`).
 
 Alpha-data layers inherit from `layerExt`, thus the information about `layerExt` also applies here.
 
@@ -80,8 +79,7 @@ Alpha-data layers inherit from `layerExt`, thus the information about `layerExt`
 | size   | Size   | No       | How many bytes is this layer                                                                                            |
 
 <CalloutExt type="note">
-  size and default value are not applicable since theses are set by
-  alpha_data_layer
+  size and default value are not applicable since theses are set by alpha_data_layer
 </CalloutExt>
 **Example:** Create a new alpha-data layer on master
 
@@ -89,36 +87,29 @@ Alpha-data layers inherit from `layerExt`, thus the information about `layerExt`
 jingle = alpha_data_layer({ name="jingle", parent = master, size = 512})
 ```
 
-Alpha-data layers start with an alpha of 0, this needs to be changed for the layer to be visible,
-see [alpha-data-layer.alpha](#alpha-data-layer-alpha).
+Alpha-data layers start with an alpha of 0, this needs to be changed for the layer to be visible, see [alpha-data-layer.alpha](#alpha-data-layer-alpha).
 
 <CalloutExt type="warning">
-Do not add child layers to an alpha-data-layer **_unless_** their operation is `mul`. This is
-because the alpha layer is processed first instead of last, causing the alpha to not apply
-correctly on the children. This is unintended and usage is **_highly_** discouraged,
-as it is subject to change.
+  Do not add child layers to an alpha-data-layer **_unless_** their operation is `mul`.
+  This is because the alpha layer is processed first instead of last, causing the alpha to not apply correctly on the children.
+  This is unintended and usage is **_highly_** discouraged,
+  as it is subject to change.
 </CalloutExt>
 <CalloutExt type="note">
 Even if the alpha is zero, effects are still executed.
 
-For [set](./../../scripting#set) and [dim](./../../scripting#dim), the new data is
-calculated, but does not take effect until the alpha is set to a non-zero value.
+For [set](./../../scripting#set) and [dim](./../../scripting#dim), the new data is calculated, but does not take effect until the alpha is set to a non-zero value.
 
-For [execute](./../../scripting#execute), [run](./../../scripting#run), [start](./../../scripting#start),
-[play](./../../scripting#play), and [stop_play](./../../scripting#stop_play), since
-they do not effect the data anyway, they are executed exactly like normal,
-regardless of the alpha.
+For [execute](./../../scripting#execute), [run](./../../scripting#run), [start](./../../scripting#start), [play](./../../scripting#play), and [stop_play](./../../scripting#stop_play), since they do not effect the data anyway, they are executed exactly like normal, regardless of the alpha.
 
 </CalloutExt>
 
 ### `<alpha-data-layer>.alpha`
 
-Alpha-data layers are made of two layer, the data layer (the "main" layer"), and the alpha
-layer which is accessed via .alpha. It is a standard layer, thus the :add works like expected.
+Alpha-data layers are made of two layer, the data layer (the "main" layer"), and the alpha layer which is accessed via .alpha.
+It is a standard layer, thus the :add works like expected.
 
-**Example:** Sets the color of the lamp, but this is not visible until the layers alpha is set,
-specifically the light has it's color components (Red, Green, Blue) set to the new value one by
-one instead of all at once.
+**Example:** Sets the color of the lamp, but this is not visible until the layers alpha is set, specifically the light has it's color components (Red, Green, Blue) set to the new value one by one instead of all at once.
 
 ```lua
 jingle:add(1000, set(lamp1, 255, 128, 255, 0))
@@ -153,9 +144,7 @@ Remember to [release the control of the fixture](#release-control-of-fixture),
 otherwise, when another script is ran, the fixture will still be controlled,
 by the layer.
 
-(This can sometimes be desired however, see
-[Alpha-data layer scripting](mixing#alpha-data-layer-scripting) for an
-example of multi-script layer control)
+(This can sometimes be desired however, see [Alpha-data layer scripting](mixing#alpha-data-layer-scripting) for an example of multi-script layer control)
 
 </CalloutExt>
 ### `release_control_of_fixture`
@@ -174,7 +163,7 @@ jingle:add(3000, release_control_of_fixture(lamps, 1000))
 ```
 
 <CalloutExt type="note">
-  The "take control" and "release control" terminology can be slightly confusing
-  when it comes to priority. The priority is **_always_** whatever is latest in
+  The "take control" and "release control" terminology can be slightly confusing when it comes to priority.
+  The priority is **_always_** whatever is latest in
   the layer order (the order that layers are added as children).
 </CalloutExt>

@@ -48,8 +48,8 @@ Arguments:
 | hue       | The hue of the color, 0-360         |
 | intensity | The intensity of the color, 0 - 255 |
 
-Converts a hue to an [RGBColor](#rgbcolor). This is currently
-not exact, and is subject to change the internal math.
+Converts a hue to an [RGBColor](#rgbcolor).
+This is currently not exact, and is subject to change the internal math.
 
 ### `color_lerp`
 
@@ -61,8 +61,8 @@ not exact, and is subject to change the internal math.
 
 ### `color_from_srgb`
 
-Converts a [RGBColor](#rgbcolor) from srgb to linear. Useful for displaying in
-linear color gammas - such as LEDs.
+Converts a [RGBColor](#rgbcolor) from srgb to linear.
+Useful for displaying in linear color gammas - such as LEDs.
 
 ### `linear_from_srgb_hex`
 
@@ -109,18 +109,15 @@ local laserViolet = rgb_color_to_rgb_table({
 
 ### `color_table_from_srgb`
 
-Same as [color_from_srgb](#color-from-srgb), except with [ColorTable](#colortable)
-instead of [RGBColor](#rgbcolor)
+Same as [color_from_srgb](#color-from-srgb), except with [ColorTable](#colortable) instead of [RGBColor](#rgbcolor)
 
 ### `color_table_lerp`
 
-Same as [color_lerp](#color-lerp), except with [ColorTable](#colortable)
-instead of [RGBColor](#rgbcolor)
+Same as [color_lerp](#color-lerp), except with [ColorTable](#colortable) instead of [RGBColor](#rgbcolor)
 
 ### `color_srgb_table_hex`
 
-Same as [linear_from_srgb_hex](#linear-from-srgb-hex), except with [ColorTable](#colortable)
-instead of [RGBColor](#rgbcolor)
+Same as [linear_from_srgb_hex](#linear-from-srgb-hex), except with [ColorTable](#colortable) instead of [RGBColor](#rgbcolor)
 
 </CalloutExt>
 

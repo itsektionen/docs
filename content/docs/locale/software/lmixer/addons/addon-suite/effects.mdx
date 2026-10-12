@@ -19,7 +19,9 @@ Run a function at a specified interval.
 
 ### `Shader`
 
-The generic shader function. A shader is executed for every pixel of a layer. Each pixels either returns:
+The generic shader function.
+A shader is executed for every pixel of a layer.
+Each pixels either returns:
 
 - An [RGBColor](./util#rgbcolor)
 - `nil` for no change
@@ -27,5 +29,4 @@ The generic shader function. A shader is executed for every pixel of a layer. Ea
 
 The params to the fragment shader varies between pixels.
 
-This function should not be directly called in scripts, instead, addons should wrap it for the specific
-fixtures in use.
+This function should not be directly called in scripts, instead, addons should wrap it for the specific fixtures in use.

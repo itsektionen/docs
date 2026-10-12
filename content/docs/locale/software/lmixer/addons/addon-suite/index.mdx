@@ -4,11 +4,10 @@ title: Addon Suite
 
 The addon suite contains a mix of utility functions, effects and extensions to LMixer.
 
-The features of the addon suite are susceptible when in beta, and they should be used
-at one's own risk.
+The features of the addon suite are susceptible when in beta, and they should be used at one's own risk.
 
-Some features are unfinished and are then not documented here. These are almost guaranteed
-to change.
+Some features are unfinished and are then not documented here.
+These are almost guaranteed to change.
 
 ## Types
 
@@ -24,12 +23,12 @@ The most "essential" parts to have.
 
 ### `AddonData`
 
-This is a table that can be used by any addon to store data in without polluting the global
-name space.
+This is a table that can be used by any addon to store data in without polluting the global name space.
 
 ### `LMixerError`
 
-Prints a error message to mqtt, which thus gets displayed on the LMixer UI. Useful for debugging.
+Prints a error message to mqtt, which thus gets displayed on the LMixer UI.
+Useful for debugging.
 
 | Name          | Optional | Description       |
 | ------------- | -------- | ----------------- |
@@ -48,7 +47,8 @@ LMixerError("This is a test message");
 
 ### `LMixerPrint`
 
-Prints a message to mqtt, which thus gets displayed on the LMixer UI. Useful for debugging.
+Prints a message to mqtt, which thus gets displayed on the LMixer UI.
+Useful for debugging.
 
 | Name          | Optional | Description          |
 | ------------- | -------- | -------------------- |
@@ -73,5 +73,4 @@ LMixerPrint("Testing");
 
 **_Location:_** `addon_suite/completeSuite`
 
-Adds [core](#core), [effects](./effects), and [extended](./extended.md) as
-dependencies.
+Adds [core](#core), [effects](./effects), and [extended](./extended.md) as dependencies.

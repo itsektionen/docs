@@ -8,13 +8,10 @@ All fixtures accessible in LMixer should also be in a config file, located [here
   Currently, the nearly all of the fixtures on the master layer are listed here,
   other layers are not listed.
 </CalloutExt>
-This file exists reduce maintenance for future projects. Instead of all of the
-projects having their own list of the fixtures in kistan, and having to update
-every project for every fixture, it is centralized into a single config file
-which needs to be maintained.
+This file exists reduce maintenance for future projects.
+Instead of all of the projects having their own list of the fixtures in kistan, and having to update every project for every fixture, it is centralized into a single config file which needs to be maintained.
 
-This config file is also responsible for generating [Fixture types in Kistan](kistan_fixture_types) and
-[Fixtures in Kistan's LMixer](kistan_lmixer_fixtures)
+This config file is also responsible for generating [Fixture types in Kistan](kistan_fixture_types) and [Fixtures in Kistan's LMixer](kistan_lmixer_fixtures)
 
 Whenever "Lua name" is mentioned, it refers to the variable name within LMixer
 
@@ -35,7 +32,8 @@ The file needs a `formatVersion` which specifies the version, this should be inc
 
 ### ID Naming
 
-IDs should always follow snake_case. Capital letters are allowed in names and abbreviations.
+IDs should always follow snake_case.
+Capital letters are allowed in names and abbreviations.
 
 When including the model name, the format is `[role/category (wash, wallspot, etc)]_[model name (abbreviations AOK)]`
 
@@ -88,7 +86,8 @@ The `prog_` prefix (short for program\_), is used for preprogrammed functions, s
 
 ### RangeMappingSchema
 
-Maps the 0-255 range onto another range when displaying. Most notable use case is rotations, were mapping from [0-255] to [0 degrees, 540 degrees] makes it more intuitive to control.
+Maps the 0-255 range onto another range when displaying.
+Most notable use case is rotations, were mapping from [0-255] to [0 degrees, 540 degrees] makes it more intuitive to control.
 
 | key | type   | comment                 |
 | --- | ------ | ----------------------- |
@@ -111,12 +110,12 @@ Strobing speed for lights tend to have a deadzone, for both of these, a "ranged"
 | mapRangeForDisplay   | [RangeMappingSchema](#rangemappingschema)? | Used for displaying values to the user, maps the [0, 255] range to something else.               |
 
 <CalloutExt type="note">
-  The ranges should not overlap. Overlapping ranges in undefined behavior.
+  The ranges should not overlap.
+  Overlapping ranges in undefined behavior.
 </CalloutExt>
 #### Range Naming
 
-Ranged functions can _in general_ do their own system, every model is unique after all,
-however, there are some recommended names to use _if applicable_:
+Ranged functions can _in general_ do their own system, every model is unique after all, however, there are some recommended names to use _if applicable_:
 
 | Name            | Usage                                                                                                                                                                               |
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -131,7 +130,8 @@ When a channel is a lower nibble, simply append `_lower` to the name.
 
 ## FixtureSchema
 
-Since it is common for multiple fixture instance of the same type and model to exist, creation is grouped to allow for multiple at once. If only one is desired, only specify one channel.
+Since it is common for multiple fixture instance of the same type and model to exist, creation is grouped to allow for multiple at once.
+If only one is desired, only specify one channel.
 
 | key               | type                    | comment                                                                                                                                                                                                                                                                                                                    |
 | ----------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -152,9 +152,8 @@ In LMixer, fixtures can be grouped, so the config file also has support for this
 | fixtures    | string[] | An array of the fixtures contained. The values are the Lua names of the fixtures. Fixture groups are also allowed to be specified with their Lua name |
 
 <CalloutExt type="note">
-  Take care to order the FixtureGroups such that dependencies (other fixture
-  groups) are **_earlier_** in the file then the dependent group. This is to
-  simply the loading.
+  Take care to order the FixtureGroups such that dependencies (other fixture groups) are **_earlier_** in the file then the dependent group.
+  This is to simply the loading.
 </CalloutExt>
 ## Schema
 
