@@ -15,7 +15,7 @@ export async function GET(
   return generateOGImage({
     title: page.data.title,
     description: page.data.description,
-    site: "My App",
+    site: "it/docs",
     format: "webp",
   });
 }
@@ -26,3 +26,4 @@ export function generateStaticParams() {
     slug: [...item.slug, "image.webp"],
   }));
 }
+
