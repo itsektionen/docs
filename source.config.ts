@@ -9,6 +9,7 @@ export default defineConfig({
         light: "catppuccin-latte",
         dark: "catppuccin-mocha",
       },
+      inline: "tailing-curly-colon",
     },
   },
 });

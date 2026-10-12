@@ -21,6 +21,7 @@ export function getMDXComponents(components?: MDXComponents) {
     CalloutExt,
     Icon,
     Card,
+    Image: ImageZoom,
     img: ({ src, ...rest }: ComponentProps<"img">) => {
       if (!src || src instanceof Blob) return null;
       return <ImageZoom src={src} {...rest} />;
