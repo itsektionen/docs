@@ -22,8 +22,7 @@ Compose files are stored in two main locations:
   [LMixer](../../locale/software/lmixer),
   and others.
 
-- `/home/deploy/` holds directories for automatically deployed applications,
-  which each have their own Compose file that references a published Docker image.
+- `/home/deploy/` holds directories for automatically deployed applications, which each have their own Compose file that references a published Docker image.
   For details, see [Automatic deployment](#automatic-deployment).
 
 If a container hosts a website that should be accessible, it should define labels as detailed on the [Traefik page](./traefik).
@@ -32,8 +31,7 @@ If you change a `docker-compose.yml` file, you can run `docker compose up -d` in
 
 ## Automatic deployment
 
-We use GitHub Actions to automatically build, push, pull, and restart containers
-on the server whenever changes are made to a project repository's main branch.
+We use GitHub Actions to automatically build, push, pull, and restart containers on the server whenever changes are made to a project repository's main branch.
 
 Since we pretty much always do the same thing, we have a workflow that is reused.
 

@@ -6,34 +6,33 @@ icon: KeyRound
 ## Software
 
 We use [Authentik](https://goauthentik.io/) to manage access to different resources.
-It is hosted on [IN-SMN](../servers#server-in-smn) and provides federated access
-to resources and apps. It can be used as a backend for OAuth2, SAML, and OIDC.
-This is supported by Google Workspace via LDAP as the source for accounts and
-groups.
+It is hosted on [IN-SMN](../servers#server-in-smn) and provides federated access to resources and apps.
+It can be used as a backend for OAuth2, SAML, and OIDC.
+This is supported by Google Workspace via LDAP as the source for accounts and groups.
 
-It is hosted at [sso.kth.it](https://sso.kth.it/), which is used for logins
-and displays a dashboard with apps available to the authenticated user.
+It is hosted at [sso.kth.it](https://sso.kth.it/), which is used for logins and displays a dashboard with apps available to the authenticated user.
 
 ## Configuration
 
-Services that should require authentication to be accessed can use Authentik as
-middleware through the Traefik proxy, as detailed in the [routing documentation](./in-smn/traefik#adding-authentication).
-For the middleware to work, create an application with a corresponding proxy
-provider, then add that provider to the embedded outpost as described below.
+Services that should require authentication to be accessed can use Authentik as middleware through the Traefik proxy, as detailed in the [routing documentation](./in-smn/traefik#adding-authentication).
+For the middleware to work, create an application with a corresponding proxy provider, then add that provider to the embedded outpost as described below.
 
 <Steps>
   <Step>
     Go to the [Applications panel](https://sso.kth.it/if/admin/#/core/applications)
-    and click "Create with Provider". Give the application a name, slug, and optionally an icon and group.
+    and click "Create with Provider".
+    Give the application a name, slug, and optionally an icon and group.
   </Step>
   <Step>
-    Choose the provider type. When using the Traefik middleware this will be
-    "Proxy Provider". If the application itself allows for authentication
+    Choose the provider type.
+    When using the Traefik middleware this will be "Proxy Provider".
+    If the application itself allows for authentication
     through OAuth, "OAuth2/OpenID Provider" can be used and the Traefik proxy
     can be skipped.
 
     The provider name can be kept as-is, and the authorization flow can be set to either explicit or implicit consent.
-    This controls whether the user is prompted to log in. Implicit consent is generally preferred.
+    This controls whether the user is prompted to log in.
+    Implicit consent is generally preferred to avoid being like KTH.
   </Step>
   <Step>
     <Tabs items={["Proxy", "OAuth2/OpenID"]}>
