@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@import "fumadocs-ui/css/vitepress.css";
+@import "fumadocs-ui/css/preset.css";
+
+@theme {
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Light mode is not quite laserviolett, but is actually readable */
+  --color-fd-primary: #8a38db;
+  --color-fd-primary-foreground: #ffffff;
+  --color-fd-ring: #c9f;
+}
+
+.dark {
+  --color-fd-primary: #c9f;
+  --color-fd-primary-foreground: #1b1b1f;
+  --color-fd-ring: #c9f;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+html > body[data-scroll-locked] {
+  margin-right: 0px !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}
+
+::selection {
+  background: color-mix(in oklch, var(--color-fd-primary) 20%, transparent);
+}
