@@ -1,3 +1,4 @@
+import { metaConstants } from "@/app/layout";
 import { source } from "@/lib/source";
 import { notFound } from "next/navigation";
 import { generateOGImage } from "fumadocs-ui/og/takumi";
@@ -15,7 +16,7 @@ export async function GET(
   return generateOGImage({
     title: page.data.title,
     description: page.data.description,
-    site: "My App",
+    site: metaConstants.title,
     format: "webp",
   });
 }
@@ -26,3 +27,4 @@ export function generateStaticParams() {
     slug: [...item.slug, "image.webp"],
   }));
 }
+

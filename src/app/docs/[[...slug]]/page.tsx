@@ -7,12 +7,13 @@ import {
 } from "fumadocs-ui/layouts/docs/page";
 import { buttonVariants } from "fumadocs-ui/components/ui/button";
 import { notFound } from "next/navigation";
-import { getMDXComponents } from "@/components/mdx";
+import { getMDXComponents } from "@/mdx-components";
 import type { Metadata } from "next";
 import { createRelativeLink } from "fumadocs-ui/mdx";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import Time from "@/components/generic/time";
 import { getPageImageUrl, getPageMarkdownUrl, gitConfig } from "@/lib/shared";
+import { metaConstants } from "@/app/layout";
 import { TextIcon } from "lucide-react";
 import type { ComponentProps } from "react";
 
@@ -100,7 +101,14 @@ export async function generateMetadata(
   return {
     title: page.data.title,
     description: page.data.description,
+    alternates: {
+      canonical: page.url,
+    },
     openGraph: {
+      type: "article",
+      siteName: metaConstants.title,
+      title: page.data.title,
+      description: page.data.description,
       images: getPageImageUrl(page).url,
     },
   };
