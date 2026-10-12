@@ -10,7 +10,7 @@ import * as mermaidComponents from "@/components/mdx/mermaid";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import { ComponentProps } from "react";
 
-export function getMDXComponents(components?: MDXComponents): MDXComponents {
+export function getMDXComponents(components?: MDXComponents) {
   return {
     ...defaultMdxComponents,
     ...TabsComponents,
