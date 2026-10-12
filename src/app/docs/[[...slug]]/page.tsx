@@ -7,7 +7,7 @@ import {
 } from "fumadocs-ui/layouts/docs/page";
 import { buttonVariants } from "fumadocs-ui/components/ui/button";
 import { notFound } from "next/navigation";
-import { getMDXComponents } from "@/mdx-components";
+import { getMDXComponents } from "@/components/mdx";
 import type { Metadata } from "next";
 import { createRelativeLink } from "fumadocs-ui/mdx";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
