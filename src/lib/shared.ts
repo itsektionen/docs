@@ -9,6 +9,7 @@ export const gitConfig = {
   repo: "docs",
   branch: "main",
 };
+export const gitRepoUrl = `https://github.com/${gitConfig.user}/${gitConfig.repo}`;
 
 export const siteUrl = new URL(
   process.env.NEXT_PUBLIC_SITE_URL || "https://docs.kth.it"

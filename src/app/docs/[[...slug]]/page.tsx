@@ -10,7 +10,7 @@ import { notFound } from "next/navigation";
 import { getMDXComponents } from "@/components/mdx";
 import type { Metadata } from "next";
 import { createRelativeLink } from "fumadocs-ui/mdx";
-import { getPageImageUrl, getPageMarkdownUrl, gitConfig } from "@/lib/shared";
+import { getPageImageUrl, getPageMarkdownUrl, gitConfig, gitRepoUrl } from "@/lib/shared";
 import { TextIcon } from "lucide-react";
 import Time from "@/components/generic/time";
 import { metaConstants } from "@/app/layout";
@@ -21,8 +21,6 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
   if (!page) notFound();
 
   const MDX = page.data.body;
-  const markdownUrl = getPageMarkdownUrl(page).url;
-  const githubUrl = `https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/content/docs/${page.path}`;
 
   return (
     <DocsPage toc={page.data.toc} full={page.data.full}>
@@ -32,7 +30,7 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
       </DocsDescription>
       <div className="flex flex-row gap-2 items-center border-b pb-6 flex-wrap">
         <a
-          href={markdownUrl}
+          href={getPageMarkdownUrl(page).url}
           target="_blank"
           rel="noreferrer noopener"
           className={buttonVariants({
@@ -46,7 +44,7 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
           View as Markdown
         </a>
         <a
-          href={githubUrl}
+          href={`${gitRepoUrl}/blob/${gitConfig.branch}/${page.absolutePath}`}
           target="_blank"
           rel="noreferrer noopener"
           className={buttonVariants({
