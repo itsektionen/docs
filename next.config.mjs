@@ -4,7 +4,8 @@ const withMDX = createMDX();
 
 /** @type {import('next').NextConfig} */
 const config = {
-  output: "export",
+  // `next dev` errors when rewrites are configured together with `output: "export"`,
+  ...(process.env.NODE_ENV === "development" ? {} : { output: "export" }),
   reactStrictMode: true,
   images: {
     unoptimized: true,
@@ -13,7 +14,7 @@ const config = {
     ],
   },
   serverExternalPackages: ["@takumi-rs/core"],
-  // NOTE: This only works in dev. Static export uses nginx to do this
+  // This only works in dev. Static export uses nginx to do the same thing
   async rewrites() {
     return [
       {
