@@ -1,17 +1,23 @@
 import "./global.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { Provider } from "@/components/provider";
-import { siteUrl } from "@/lib/site";
+import { appName, siteUrl } from "@/lib/shared";
 
 const inter = Inter({
   subsets: ["latin"],
 });
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
+
 export const metaConstants = {
-  title: "it/docs",
+  title: appName,
   description: "Documentation relating to the IT Chapter",
 };
+
 export const metadata: Metadata = {
   applicationName: metaConstants.title,
   metadataBase: siteUrl,
@@ -35,7 +41,11 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={inter.className} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${inter.className} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <body className="flex flex-col min-h-screen">
         <Provider>{children}</Provider>
       </body>

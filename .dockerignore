@@ -1,4 +1,6 @@
-out
 node_modules
-.source
 .next
+out
+.git
+.source
+.env*.local
