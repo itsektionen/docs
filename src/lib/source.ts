@@ -32,7 +32,7 @@ export const source = loader({
     if (icon in LucideIcons) {
       const Comp = (LucideIcons as Record<string, any>)[icon];
       if (typeof Comp === "function" || typeof Comp === "object") {
-        return createElement(Comp);
+        return createElement(Comp, { key: icon });
       }
     }
   },
