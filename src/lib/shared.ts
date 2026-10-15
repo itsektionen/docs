@@ -1,4 +1,5 @@
 import { createGetUrl } from "fumadocs-core/source";
+import type { Page as PageType } from "fumadocs-core/source";
 
 export const appName = "it/docs";
 export const docsRoute = "/docs";
@@ -15,19 +16,16 @@ export const siteUrl = new URL(
   process.env.NEXT_PUBLIC_SITE_URL || "https://docs.kth.it"
 );
 
-export function getPageMarkdownUrl(page: {
-  slugs: string[];
-  url?: string;
-  locale?: string;
-}) {
-  const segments = [...page.slugs, "content.md"];
+export function getPageMarkdownUrl(page: PageType) {
+  const ext = page.path.split(".").pop() || "mdx";
+  const segments = [...page.slugs, `content.${ext}`];
   const path =
     page.url ??
     (page.slugs.length === 0
       ? docsRoute
       : `${docsRoute}/${page.slugs.join("/")}`);
 
-  return { segments, url: `${path}.md` };
+  return { segments, url: `${path}.${ext}` };
 }
 
 const getImageUrl = createGetUrl(docsImageRoute);

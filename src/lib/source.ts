@@ -1,5 +1,5 @@
 import { llms, loader } from "fumadocs-core/source";
-import { docsRoute } from "./shared";
+import { docsRoute, gitConfig } from "./shared";
 import { defineDocs } from "fumadocs-mdx/macro";
 import { metaSchema, pageSchema } from "fumadocs-core/source/schema";
 import { iconResolver } from "./custom-icons";
@@ -39,7 +39,11 @@ export const source = loader({
 });
 
 export const docsLlms = llms(source, {
-  renderPage: async (page) => `# ${page.data.title} (${page.url})
+  renderPage: async (page) => `# ${page.data.title}
+URL: ${page.url}
+Source: https://raw.githubusercontent.com/${gitConfig.user}/${gitConfig.repo}/refs/heads/${gitConfig.branch}/${page.absolutePath}
+
+${page.data.description ?? ""}
 
 ${await page.data.getText("processed")}`,
 });
