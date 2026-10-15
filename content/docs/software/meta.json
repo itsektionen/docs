@@ -3,5 +3,10 @@
   "description": "Docs for software developed by the chapter",
   "root": true,
   "icon": "Hammer",
-  "pages": ["index", "starting-a-project", "---Software Projects---", "..."]
+  "pages": [
+    "index", 
+    "starting-a-project", 
+    "---Software Projects---", 
+    "...(projects)"
+  ]
 }
