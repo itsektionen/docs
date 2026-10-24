@@ -1,0 +1,16 @@
+---
+title: shIT
+icon: MousePointerClick
+---
+
+GitHub: https://github.com/itsektionen/shIT
+
+shIT is a webapp button panel used to control the locale, meant to make life easier for bar workers.
+It allows running [LMixer](../../locale/software/lmixer) scripts through a more accessible GUI, with the ability to create collections of buttons for specific events.
+
+It is built with SvelteKit and stores data in SQLite through Drizzle.
+It was developed as the successor to [CrAp](https://github.com/itsektionen/control-app), an older React applicaiton with a similar purpose.
+
+<CalloutExt type="warning">
+  shIT allows anyone to easily mess with the locale and should be [placed behind auth](../infrastructure/in-smn/traefik#adding-authentication).
+</CalloutExt>
