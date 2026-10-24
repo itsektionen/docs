@@ -1,3 +1,16 @@
+:root {
+  --tree-node-bg: #efddf7;
+  --tree-node-border: #dc85f7;
+  --tree-bg: #f9f2fa;
+  --tree-border: #e08cfa;
+}
+
+:global(.dark) {
+  --tree-node-bg: #2b1d3f;
+  --tree-node-border: #d176e7;
+  --tree-bg: #1f1d24;
+  --tree-border: #a19cb1;
+}
 @charset "UTF-8";
 
 .dotNode {
