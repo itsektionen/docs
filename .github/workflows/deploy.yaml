@@ -13,3 +13,5 @@ jobs:
     secrets: inherit
     with:
       deploy-dir: docs
+      cache: "gha"
+      gha-mode: "min"

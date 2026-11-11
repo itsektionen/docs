@@ -1,7 +1,7 @@
-import { getPageImage, source } from "@/lib/source";
+import { metaConstants } from "@/app/layout";
+import { source } from "@/lib/source";
 import { notFound } from "next/navigation";
-import { ImageResponse } from "next/og";
-import { generate as DefaultImage } from "fumadocs-ui/og";
+import { generateOGImage } from "fumadocs-ui/og/takumi";
 
 export const revalidate = false;
 
@@ -13,22 +13,17 @@ export async function GET(
   const page = source.getPage(slug.slice(0, -1));
   if (!page) notFound();
 
-  return new ImageResponse(
-    <DefaultImage
-      title={page.data.title}
-      description={page.data.description}
-      site="it/docs"
-    />,
-    {
-      width: 1200,
-      height: 630,
-    }
-  );
+  return generateOGImage({
+    title: page.data.title,
+    description: page.data.description,
+    site: metaConstants.title,
+    format: "webp",
+  });
 }
 
 export function generateStaticParams() {
-  return source.getPages().map((page) => ({
-    lang: page.locale,
-    slug: getPageImage(page).segments,
+  return source.generateParams().map((item) => ({
+    ...item,
+    slug: [...item.slug, "image.webp"],
   }));
 }
