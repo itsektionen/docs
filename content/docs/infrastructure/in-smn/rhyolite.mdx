@@ -1,0 +1,114 @@
+---
+title: Rhyolite
+icon: Stone
+description: Secure Scoped Deployment
+---
+
+<CalloutExt type="note">
+  This page covers in detail what Rhyolite is and how it works.
+
+If you just want to get set up with automatic deployment, see the [Deployment](./containers#automatic-deployment) page.
+
+</CalloutExt>
+
+<CalloutExt type="note">
+  This page assumes that you have SSH access to the IN-SMN server. It may still
+  be useful if you do not have access but are developing software that will be
+  deployed to our servers.
+</CalloutExt>
+
+Rhyolite lets you run commands on the server via HTTPS Post Requests.
+
+## Terminology
+
+Rhyolite is split up into multiple parts that share the "Rhyolite" name, the combined system is called Rhyolite
+
+- Rhyolite Server/Rhyolite API - Handles the incoming requests and runs the commands  
+  The server is ran via systemctl as the deploy user, and thus commands are executed with the privilege.
+- Rhyolite CLI - Utilities for configuring things on the server
+- Rock - A folder that has a rhyolite config is called a Rock.  
+  Each rock lives at `/home/deploy/{rock-name}`, and each rock defined its own commands.
+- Rhyolite Github Workflow - Recommended method of sending the requests from github actions. Andesite uses this under the hood
+
+## Rhyolite Config
+
+The rhyolite configuration for each rock is stored at `/home/deploy/{rock-name}/.rhyolite.yaml`.
+Changes are automatically applied whenever something changes.
+
+The config specifies a list of commands. Each command consists of the command name, the token, and the command string.
+
+Example:
+
+```yaml
+commands:
+  cat:
+    token: EXAMPLE_TOKEN_DONT_USE_pPTzkrkVcNQhKtT4lpleJc7iTfitn9Pi
+    command: "cat hi"
+  ls:
+    token: EXAMPLE_TOKEN_DONT_USE_xUWAs1nM2dgxOi_LsoE53dmjnREPC2hO
+    command: "ls"
+```
+
+Tokens are easiest generated with `rhyolite gen`
+
+| Key                | Type   | Default        | Description                                                                                                |
+| ------------------ | ------ | -------------- | ---------------------------------------------------------------------------------------------------------- |
+| token              | string | N/A (required) | The token required for running this command. Keep it secret                                                |
+| command            | string | N/A (required) | The command which gets ran                                                                                 |
+| use-ghcr-login    | bool   | false          | This logs in with GHCR, useful for docker commands, see API                                                |
+| dont-override-home | bool   | false          | By default, `$HOME` is set to the Rock's folder, this makes each deployment use its own docker credentials |
+
+## Rhyolite API
+
+The Rhyolite API is quite simple, it is just a POST request to `https://rhyolite.kth.it/v1/{path}/{name}/{token}`. Where:  
+`{path}` - Where to find the rock config, i.e. `/home/deploy/{path}/.rhyolite.yaml`  
+`{name}` - name of the command as listed in the rock config  
+`{token}` - the token as listed in the rock config
+
+The API does not support running arbitrary code externally.
+
+### GHCR login
+
+When running docker commands, sometimes you need to be logged in to fetch packages from ghcr.io.
+The login for these are specified via the headers `X-Github-Token` and `X-Github-Actor`.
+
+Note however that it only gets ran *if* `use-ghcr-login` is set.
+
+## Rhyolite CLI
+
+The rhyolite CLI is your friend when on the IN-SMN server, as most things are handled by it.
+
+Run `rhyolite` to get a list of commands. Below are the most commonly used:
+
+### `rhyolite new andesite <name>`
+
+Creates a new folder for a rock called `<name>`, and populates it with the boilerplate required for docker.
+
+### `rhyolite preset docker`
+
+Adds a command for `docker compose up -d`
+
+### `rhyolite gen`
+
+Prints a token to stdout, great for copy paste
+
+## Rhyolite Workflow
+
+If Andesite is not desired to be used, Rhyolite can still be used for deployment with its own workflow:
+
+```yaml
+deploy:
+  needs: build
+  uses: itsektionen/rhyolite/.github/workflows/v1.yml@main
+  secrets:
+    RHYOLITE_TOKEN: ${{ secrets.RHYOLITE_TOKEN }}
+  with:
+    deploy-dir: <deploy-dir>
+    command-name: <command-name>
+```
+
+It uses `RHYOLITE_TOKEN` to send the command.
+<CalloutExt type="note">
+Note that since each command should have its own token,
+you might need to define multiple secrets and pass them individually to each job.
+</CalloutExt>
