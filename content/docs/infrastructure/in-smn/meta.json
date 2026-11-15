@@ -1,4 +1,12 @@
 {
     "title": "IN-SMN",
-    "icon": "Server"
+    "icon": "Server",
+    "pages": [
+        "containers",
+        "traefik",
+        "...",
+        "---Advanced deployment---",
+        "andesite",
+        "rhyolite"
+    ]
 }
